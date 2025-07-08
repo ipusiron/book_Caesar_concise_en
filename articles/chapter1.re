@@ -1,126 +1,105 @@
-= 本書を読むにあたって
+= About This Book
 
-本書のテーマは、シーザー暗号です。
+This book focuses on the Caesar cipher, one of the most famous and simplest classical ciphers, along with its natural extension—the shift cipher.
 
-シーザー暗号は、古典暗号の中でもっともシンプルな暗号の1つです。
-一方で、その自然な拡張形としてシフト暗号があります。
+While conventional cryptography books typically devote only a few pages to these ciphers, this book dedicates an entire volume to exploring them in depth. You will fully understand both the Caesar cipher and the shift cipher, gaining insight into the essence of classical cryptography.
 
-従来の暗号本では数ページ程度の解説ですが、本書では1冊丸ごと解説に費やしました。
-本書を通じて、シーザー暗号とシフト暗号を堪能できるはずです。
-また、この過程で古典暗号の本質に触れることができます。
-シフト暗号の仕組みはシンプルゆえに応用しやすく、高度な古典暗号や現代暗号の一部に組み込まれているためです。
-古典暗号の本質がわかれば、現代暗号についても新しい視点を持てるようになります。
+The shift cipher's simplicity makes it easy to apply, and it forms the foundation for several advanced classical and modern ciphers. By mastering these fundamental concepts, you'll develop a fresh perspective on modern cryptographic systems.
 
-== 本書「簡易版」について
+== The Original Book Has Full and Simplified Versions
 
-本書は、著者による既刊『シーザー暗号の解読法』（以下「フル版」）を再構成し、要点を凝縮した「簡易版」です。
+This book is an English translation of "How to Decipher Caesar Ciphers: Simplified Version," originally published in Japanese.
 
-フル版が「全16章＋5付録」で構成されているのに対し、簡易版は「5章＋1付録」として、シーザー暗号の本質に絞った内容となっています。
-短時間で効率よく学びたい読者に適しています。
+The Japanese edition comes in two versions:
 
-=== なぜ「簡易版」なのか
-
-以下のような読者ニーズに応えるため、本書「簡易版」を用意しました。
-
- * シーザー暗号だけを手っ取り早く知りたい。
- * 古典暗号の一般論や統計的考察までは不要。
- * 気軽に安価で読みたい。
-
-価格もフル版（1,500円）に対し、簡易版は800円と手頃に設定しています。
-
-また、著者としては将来的な「英訳版」出版を見据えており、簡易版はその足がかりでもあります。
-文章量が抑えられた簡易版なら、翻訳や制作の負担が軽く、Kindle海外展開の第一歩として現実的です。
-
-=== 「フル版」のすすめ
-
-「簡易版」で古典暗号に興味と持ち、さらに深く学びたくなった場合は、ぜひ「フル版」の購入をご検討ください。
-
- * 「フル版」サポートページ
- ** @<href>{https://akademeia.info/?page_id=37037}
- * BOOTHでの購入
+ * Full version: 16 chapters + 5 appendices with detailed explanations
  ** @<href>{https://hack.booth.pm/items/5557030}
+ * Simplified version: 5 chapters + 1 appendix focusing on essentials
+ ** @<href>{https://www.amazon.co.jp/dp/B0FH1DT5RX}
 
-== 本書から何を学べるのか
+This English edition, based on the simplified version, is ideal for readers who want to quickly grasp Caesar cipher mechanisms and decryption methods.
 
- * シーザー暗号およびシフト暗号の仕組みの理解
- * 古典暗号の基本構造と考え方
- * Linuxコマンドでの暗号体験
- * CrypTool 2を使った暗号解読
- * 著者作成のWebツールによるハンズオン体験
+Depending on reader response and interest, we may consider translating the full version or creating an expanded edition in the future.
 
-== 想定する読者層
+== What You Can Learn from This Book
 
- * セキュリティの初学者
- * 暗号理論に関心のある方
- * 古典暗号を学び直したい方
- * シーザー暗号が大好きな方
- * 教養として古典暗号を知っておきたい方
- * アマチュアの暗号愛好家
- * 暗号解読技術を身につけたい方
- * 自由研究や研究課題を探している学生（小中高）
+ * Understanding the mechanisms of the Caesar cipher and shift ciphers
+ * Basic structure and concepts of classical cryptography
+ * Hands-on experience with encryption using Linux commands
+ * Cryptanalysis using CrypTool 2
+ * Interactive practice using web tools created by the author
 
-== 前提知識
+== Intended Audience
 
-本書を読むに当たっての前提知識は、基本的に必要ありません。
-高度な数学やプログラミングの知識も不要です。
+ * Students (K-12) seeking independent study or research projects
+ * Beginners in cybersecurity
+ * Amateur cryptography enthusiasts
+ * Those interested in cryptographic theory
+ * People who want to revisit classical ciphers
+ * People who want to develop cryptanalysis skills
+ * Fans of the Caesar cipher
+ * Those seeking classical cryptography for general education
 
-== なぜ今、古典暗号の学習を始めるべきか
+== Prerequisites
 
-=== 未解決暗号文はまだたくさん残されている
+No prior knowledge is required to read this book.
+You don't need advanced mathematics or programming skills.
 
-未解決の暗号文はまだたくさん残されています。
-世界で有名な未解決暗号文もあれば、歴史的観点から重要でないと思われる一般人による未解決暗号文もあります。
-未解決の暗号文が増えることはないと一般に思われがちですが、実際にはそうではありません。
+== Why Start Studying Classical Ciphers Now?
 
-図書館や古民家を解体・整理する過程で、これまで知られていなかった書類・日誌・メモなどが発見されることがあります。
-そういった文書の中には暗号文を含むものもあるのです。
-興味のある方は、HCPortal（Portal of Historical Ciphers）の暗号文データベースにアクセスしてみてください。
-絵ハガキ、暗号メモなど、多岐にわたる暗号文が登録されています。
-解決済み（Solved）・未解決（Not solved）といったタグが割り振られており、未解読暗号文がすぐに見つかります。
+=== Many Unsolved Ciphertexts Still Remain
+
+There are still many unsolved ciphertexts left in the world. Some are world-famous, while others were created by ordinary individuals and may seem insignificant from a historical standpoint.
+
+It is commonly believed that the number of unsolved ciphertexts will not increase, but this is not actually the case. During the dismantling or organization of libraries or old houses, previously unknown documents, journals, and notes are sometimes discovered. Among these documents, there are occasionally ciphertexts.
+
+If you're interested, try accessing the ciphertext database on HCPortal (Portal of Historical Ciphers). It contains a wide range of ciphertexts, including encrypted postcards and notes. Each entry is tagged as either "Solved" or "Not solved," making it easy to find unsolved ciphertexts.
 
  * HCPortal
  ** @<href>{https://hcportal.eu/}
- * 暗号文データベース
+ * Ciphertext Database
  ** @<href>{https://www.cryptograms.hcportal.eu/}
 
-もし有名な未解決暗号文の解読に成功すれば、多大な名声を得られることは間違いありません。
-その名声はIT業界や暗号界隈を越えたものになるはずです。
+If you succeed in deciphering a famous unsolved ciphertext, it will undoubtedly bring you great recognition—possibly even beyond the cryptography and IT communities.
 
-=== 古典暗号は知的好奇心を満たしてくれる
+=== Classical Ciphers Satisfy Intellectual Curiosity
 
-古典暗号を学ぶ最後の理由は、知的好奇心を満たしてくれるということです。
-雑学として古典暗号について知っておけば、人生において3回ぐらい役に立つかも知れません。
-映画や小説では古典暗号がたびたび登場するので、よりストーリーを楽しめるでしょう。
+The final reason to study classical ciphers is that they satisfy intellectual curiosity.
 
-古典暗号はペンと紙さえあれば暗号文を作れるため、コンピューターが使えない状況で秘密裏に通信したい場合に活用できます。
-たとえば、監視下に置かれている囚人同士、あるいは囚人と外部の人間の間で古典暗号が活用されるケースが報告されています。
+Knowing about classical ciphers as trivia might come in handy two or three times in your life. Since they frequently appear in movies and novels, understanding them will enhance your enjoyment of these stories.
 
-== 読者へのお願い
+Classical ciphers can be created with nothing more than pen and paper, making them useful for secret communication when computers are unavailable. There have been documented cases of prisoners under surveillance using classical ciphers to communicate with each other or with people on the outside.
 
-本書に関する感想や実験の報告は大歓迎です。
-ご意見は「シーザー暗号の解読法」というキーワードや「#シーザー暗号の解読法」のハッシュタグを使用してXプラットフォームに投稿してください。
+== Note to Readers
 
-質問や疑問は、公開の場での議論が他の読者にも役立つため、Xプラットフォームでの投稿を推奨します。
-問題解決のために必要な情報（エラー画面のスクリーンショットなど）を添付してください。
+We welcome your feedback, questions, and experimental reports about this book.
 
-FAQや正誤表の情報は、Security Akademeia（@<href>{https://akademeia.info/}）からリンクします。
+To share your thoughts publicly, please post on X (formerly Twitter) using:
 
-正誤表に載っていない誤字・脱字を発見した方は、私宛にメール（ipusiron@gmail.com）かDM（@ipusiron宛）でお知らせください。
-確認後、正誤表に反映します。
+ * Keyword: "Caesar Cipher Breaking"
+ * Hashtag: #CaesarCipherBreaking
 
-== 本書の注意事項
+Public discussions benefit the entire reader community. When reporting issues or asking questions, please include relevant details such as error screenshots to facilitate troubleshooting.
 
- * 本書の対象を超えるもの、記述箇所を特定されないもの、また読者固有の環境に起因するご質問等にはお答えできませんので、あらかじめご了承ください。
- * 本書に記載されたURL等は予告なく変更される場合があります。
- * PDF生成ソフトの仕様上、URLをコピーした場合に空白が入ったり切れたりすることがあります。
- ** その際は印刷・表示されている内容を参考にして、手入力してください。
+ * Resources:
+ ** FAQ and errata: Security Akademeia – https://akademeia.info/
 
-== 本書における語句の統一
+ * Contact: If you discover errors not listed in the errata, please contact the author:
+ ** Email: ipusiron@gmail.com
+ ** X (Twitter): @ipusiron
 
- * 「執筆時点」という表現は2025年7月を指します。
+Verified corrections will be added to the errata promptly.
 
-== 免責事項
+== Notes on This Book
 
-本書の内容は、情報提供を目的としたものであり、特定の目的に対する適合性や正確性を保証するものではありません。
-本書を用いた開発・製作・運用は、必ずご自身の責任と判断によって行ってください。
-著者はその結果について一切の責任を負いません。
+ * We cannot respond to inquiries beyond the scope of this book, questions without specific section references, or issues arising from individual reader environments.
+ * URLs and other information in this book may change without notice.
+ * PDF viewers may introduce spaces or break URLs when copying. If this occurs, please type the URL manually.
+
+== Terminology
+
+ * "At the time of writing" refers to July 2025.
+
+== Disclaimer
+
+The content of this book is provided for informational purposes only and does not guarantee fitness or accuracy for any specific purpose. Any use of this book's content must be at your own discretion and risk. The author assumes no liability for any resulting outcomes.
