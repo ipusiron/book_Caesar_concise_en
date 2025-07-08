@@ -79,10 +79,10 @@ Build instructions and scripts will be added before the public release.
 
 He has authored **over 30 books in Japanese** on cryptography, classical ciphers, and cybersecurity—including bestsellers such as:
 
-- _The Complete Guide to Cryptography (『暗号技術のすべて』)_
-- _How to Build a Hacking Lab Complete Edition (『ハッキング・ラボのつくりかた 完全版』)_
-- _The Textbook of White-Hat Hackers (『ホワイトハッカーの教科書』)_
-- _The Hacker’s School: A Handbook of Lockpicking (『ハッカーの学校 鍵開けの教科書』)_
+- _The Complete Guide to Cryptography (暗号技術のすべて』_
+- _How to Build a Hacking Lab Complete Edition (ハッキング・ラボのつくりかた 完全版)_
+- _The Textbook of White-Hat Hackers (ホワイトハッカーの教科書)_
+- _The Hacker’s School: A Handbook of Lockpicking (ハッカーの学校 鍵開けの教科書)_
 
 He is also an experienced translator and editorial supervisor of cryptographic literature.  
 Notably, he served as:
