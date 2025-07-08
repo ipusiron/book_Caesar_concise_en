@@ -82,11 +82,11 @@ To share your thoughts publicly, please post on X (formerly Twitter) using:
 Public discussions benefit the entire reader community. When reporting issues or asking questions, please include relevant details such as error screenshots to facilitate troubleshooting.
 
  * Resources:
- ** FAQ and errata: Security Akademeia – https://akademeia.info/
+ ** FAQ and errata: Security Akademeia(@<href>{https://akademeia.info/})
 
  * Contact: If you discover errors not listed in the errata, please contact the author:
  ** Email: ipusiron@gmail.com
- ** X (Twitter): @ipusiron
+ ** X (Twitter): @ipusiron(@<href>{https://x.com/ipusiron})
 
 Verified corrections will be added to the errata promptly.
 
