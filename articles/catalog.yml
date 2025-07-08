@@ -1,0 +1,15 @@
+PREDEF:
+
+CHAPS:
+  - chapter1.re
+  - chapter2.re
+  - chapter3.re
+  - chapter4.re
+  - chapter5.re
+
+APPENDIX:
+  - appendixA.re
+
+POSTDEF:
+  - postface.re
+  - profile.re

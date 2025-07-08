@@ -1,0 +1,35 @@
+{
+  "plugins": ["japanese"],
+  "rules": {
+    "preset-japanese": true,
+    "preset-japanese/common-misspellings": true,
+    "preset-japanese/max-ten": true,
+    "preset-japanese/no-doubled-joshi": true,
+    "preset-japanese/no-mixed-zenkaku-and-hankaku-alphabet": true,
+    "preset-japanese/no-exclamation-question-mark": true,
+    //"preset-japanese/ja-hiragana-keishikimeishi": true,
+
+    "ja-no-mixed-period": {
+      "periodMark": "。",         // ピリオド混在禁止
+      "allowPeriodMarks": ["…"]  // 許容文字
+    },
+
+    "ja-hiragana-hojodoushi": true,
+
+    "ja-hiragana-keishikimeishi": {
+       "prefer": "ひらく"
+    },
+
+    "ja-hiragana-fukushi": {
+      "prefer": "ひらく"
+    },
+
+    "ja-no-weak-phrase": true,
+
+    "ja-technical-writing/ja-no-abusage": true,
+
+    "prh": {
+        "rulePaths": ["prh-rules/media/ipusiron.yml"]
+    }
+  }
+}

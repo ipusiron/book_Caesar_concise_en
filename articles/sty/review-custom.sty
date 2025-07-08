@@ -1,0 +1,77 @@
+% for user-defined macro
+
+%% 偶数ページの左側に章名、奇数ページの右側に説明
+%% http://acro-engineer.hatenablog.com/entry/2018/12/18/120000
+\lhead[\gtfamily\sffamily\bfseries\upshape \leftmark]{}
+\rhead[]{\gtfamily\sffamily\bfseries\upshape \rightmark}
+
+%% サンプルコードを更に小さく
+\renewenvironment{reviewemlist}{%
+  \medskip\footnotesize\begin{shaded}\setlength{\baselineskip}{1.2zw}\begin{alltt}}{%
+  \end{alltt}\end{shaded}}
+
+\renewenvironment{reviewlist}{%
+  \begin{shaded}\footnotesize\setlength{\baselineskip}{1.2zw}\begin{alltt}}{%
+  \end{alltt}\end{shaded}\par\vspace*{0.5zw}}
+
+\renewenvironment{reviewcmd}{%
+  \color{white}\medskip\footnotesize\begin{shadedb}\setlength{\baselineskip}{1.2zw}\begin{alltt}}{%
+  \end{alltt}\end{shadedb}}
+
+%% 章タイトルの上余白をなくす
+\def\@makechapterhead#1{%
+  %\vspace*{2\Cvs}% 欧文は50pt
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \huge\headfont \@chapapp\thechapter\@chappos
+        \par\nobreak
+        \vskip \Cvs % 欧文は20pt
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \Huge \headfont #1\par\nobreak
+    \vskip 3\Cvs}} % 欧文は40pt
+
+%% 目次の上余白を狭める
+\renewcommand{\tableofcontents}{%
+  \settowidth\jsc@tocl@width{\headfont\prechaptername\postchaptername}%
+  \settowidth\@tempdima{\headfont\appendixname}%
+  \ifdim\jsc@tocl@width<\@tempdima \setlength\jsc@tocl@width{\@tempdima}\fi
+  \ifdim\jsc@tocl@width<2zw \divide\jsc@tocl@width by 2 \advance\jsc@tocl@width 1zw\fi
+  \if@twocolumn
+    \@restonecoltrue\onecolumn
+  \else
+    \@restonecolfalse
+  \fi
+  %
+  %\chapter*{\contentsname}%
+  %% 章も目次も右起こしにする or しない
+  \if@openleft\cleardoublepage\else
+  \if@openright\cleardoublepage\else\clearpage\fi\fi
+  %% 章が右起こしでも、目次は右起こしにしない
+  %\clearpage
+  %
+  \plainifnotempty
+  \@makechapterhead{\contentsname}
+  %
+  \@mkboth{\contentsname}{}%
+  \@starttoc{toc}%
+  \if@restonecol\twocolumn\fi
+}
+
+%% //cmdや//emlistの横幅をぎりぎりまで広げる
+\setlength{\FrameSep}{4pt}
+
+%% ページ番号配置を下部中央にする
+\fancyfoot{}% 既存の設定をキャンセル
+\cfoot{\thepage}% 下部中央に配置
+\fancypagestyle{plainhead}{% 章扉も変更
+  \fancyfoot{}% 既存の設定をキャンセル
+  \cfoot{\thepage}% 下部中央に配置
+  \fancyhead{}% 以下はオリジナルのreview-styleと同じ
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}}
+
+%% 奥付を必ず偶数ページにする
+\renewcommand{\reviewcolophon}[0]{\clearoddpage}

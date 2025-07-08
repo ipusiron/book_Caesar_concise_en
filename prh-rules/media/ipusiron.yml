@@ -1,0 +1,24 @@
+version: 1
+rules:
+  - expected: たとえば
+    pattern: 例えば
+    message: "「例えば」は「たとえば」とひらがな表記に統一します"
+
+  - expected: おこなう
+    pattern: 行う
+    message: "「行う」は「おこなう」とひらがなで表記します"
+
+  - expected: できる
+    pattern: 出来る
+    message: "「出来る」は常用外のため、ひらがなで「できる」としてください"
+
+  - expected: コンピューター
+    pattern: コンピュータ
+    message: "表記を『コンピューター』に統一してください"
+
+  - expected: おすすめ
+    pattern: おすすめ
+    specs:
+      - from: おすすめ
+        to: おすすめ（意図的に使用）
+    prh: false

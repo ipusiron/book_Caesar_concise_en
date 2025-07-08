@@ -1,0 +1,113 @@
+■書籍ページ
+BOOTHのURL
+https://hack.booth.pm/items/5557030
+
+パスワード
+3TA94_WjABC99=?
+
+QRコード生成ページ（https://qr.quel.jp/design.php）
+
+
+docker run --rm -v `pwd`:/work vvakame/review:5.8 /bin/sh -c "gem install unicode-display_width && cd /work && review-epubmaker config.yml"
+
+■PDF生成コマンド
+
+https://akademeia.info/?p=22074
+
+root@UBUNTU:/mnt/d/Dropbox/Git2/book_Caesar/articles# docker run --rm -v `pwd`:/work vvakame/review:5.8 /bin/sh -c "gem install unicode-display_width && cd /work && review-pdfmaker config.yml"
+
+【注意】
+上記コマンド実行時に、次のエラーが出ることがある。
+docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.
+See 'docker run --help'.
+そのときは、Ubuntuを管理者として起動して、そのUbuntuにて次を実行。
+sudo cgroupfs-mount && sudo service docker start
+
+■Visioの画像劣化解決法
+
+https://akademeia.info/?p=22159
+
+1：PowerPointのスライドの解像度をレジストリで上げる。
+https://docs.microsoft.com/ja-jp/office/troubleshoot/powerpoint/change-export-slide-resolution
+
+2：Visioで作成したら、それをコピーして、PowerPointで[Ctrl]＋[Alt]＋[v]で形式を指定してペーストする。
+その際、「図（拡張メタファイル）」を選ぶ。
+
+3：スライドのままPNGで保存する。
+
+4：そのPNGをGimpでトリミングする。
+
+5：プレビューで見て拡大しても、画像が劣化（にじまない）ことを確認して終わり。
+
+◆電子版完成チェック
+
+・images/cover-b5.pdf差し替え済み
+⇒電書版に反映される
+⇒電子版の表紙がはみ出たり小さくなっていないこと。
+
+◆入稿前のチェック項目
+
+■グレースケール化対象の原稿
+
+・ページ数が4の倍数であること。
+・奥付チェック
+・通しのページ番号（ノンブル）をチェック
+・全体を見て、はみ出しているところがないことをチェック
+
+■表紙の入稿について
+・すべてのレイヤーがキャンパスに合っていることを調べる
+・削除指定された2枚のレイヤーを統合前に削除
+・指定されたレイヤーを一番上にして、全体のレイヤーを統合
+・推奨された形式（PSDやEPSなど）でエクスポートして、これを入稿。
+
+■PDFの入稿について
+https://review-knowledge-ja.readthedocs.io/ja/latest/printing/submit.html
+・Acrobat Proで仕上がりサイズがB5（182×257mm）であることをチェック
+・プロパティから「左綴じ」であることをチェック
+・フォントがすべて埋め込まれていることをチェック
+・グレースケール化する（Dot Gain 15%）
+カラープロファイルは埋め込む
+or
+★（こちらを採用した）プリフライトのデジタルプリンティングで「白黒化」
+その後、「印刷工程」＞「出力プレビュー」から色分解でチェック
+「Japan Color 2001 Coated」で黒を外してトンボ以外表示されていないこと。
+・再度フォントがすべて埋め込まれていることをチェック
+・PDF/X-4に変換する。
+その後、解析して警告なしであることをチェック
+・最終チェックとして全体を見直す。
+・印刷してみるのがベスト。
+とくに、写真、スクリーンショット、イラストのあるページを印刷してみる。
+・問題がなければ、入稿。
+
+※先にPDF/X-4に変換してから、白黒化しても、色分解で黒以外が残ってしまう。
+
+●グレースケール化
+https://review-knowledge-ja.readthedocs.io/ja/latest/faq/faq-tex.html#3f78cadbcbb0be17decae21e21d1e6a8
+
+http://www.k-prep.co.jp/guideline/acrobat_pf.html
+https://teranao.wordpress.com/2016/08/18/web2/
+
+プリフライト機能でできる。
+https://www.shippo.co.jp/neko/howto/data_4c.shtml
+・変換のプロファイル：Dot Gain 15%
+（Japan Color 2001 CoatedはCYMKなのでここではいらなかった）
+・変換オプション：黒を維持
+
+■入稿における注意
+↓重要
+https://review-knowledge-ja.readthedocs.io/ja/latest/printing/submit.html
+
+https://qiita.com/hmikisato/items/673a910d5b02f3b1dca6
+
+◆TeXclip
+https://texclip.marutank.net
+
+◆◆ 以下は追加ネタ
+
+・ChatGPTで暗号解読
+・CrypTool2で解読
+・英文判定
+・解読の厄介さ…スライド参照
+
+
+◆◆◆　以下は没ネタ

@@ -1,0 +1,39 @@
+name: Build Re:VIEW with Docker
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: vvakame/review:5.8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install required gem
+        run: gem install unicode-display_width
+
+      - name: Copy cover image for build
+        run: cp articles/images/cover-b5.pdf articles/cover-b5.pdf
+
+      - name: Build PDF
+        run: review-pdfmaker config.yml
+        working-directory: articles
+
+      - name: Build EPUB
+        run: review-epubmaker config.yml
+        working-directory: articles
+        
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: Book PDF
+          path: articles/book_Caesar_concise.pdf
+
+      - name: Upload EPUB
+        uses: actions/upload-artifact@v4
+        with:
+          name: Book EPUB
+          path: articles/book_Caesar_concise.epub
