@@ -15,6 +15,7 @@ With @<b>{over 30 books published in Japanese} on cryptography, hacking, and cyb
  * The Hacker’s School: A Handbook of Lockpicking (ハッカーの学校 鍵開けの教科書)
 
 As an experienced translator and editorial supervisor, he has brought important cryptographic literature to Japanese readers:
+
  * Supervising translator of _Serious Cryptography_ by Jean-Philippe Aumasson
  * Translator of _Codebreaking: A Practical Guide_ by Elonka Dunin & Klaus Schmeh
  * Translator of _Cracking Codes with Python_ by Al Sweigart
