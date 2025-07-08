@@ -1,63 +1,68 @@
-= 著者プロフィール
+= About the Author
 
-//indepimage[profile][著者近影][scale=0.4]
+//indepimage[profile][Author Photo][scale=0.4]
 
-== IPUSIRON（イプシロン）
+== IPUSIRON
 
-1979年、福島県相馬市生まれ。相馬市在住。
-セキュリティ技術書作家。
+Born in 1979 in Soma City, Fukushima, Japan. Currently residing in Soma.
 
-過去に業務アプリなどの設計・開発、スマホアプリやWebアプリの検査・デバッグ、機械警備・防災設備の設置などに従事。
-現在は、情報・物理的・人的セキュリティを総合的に研究し続けながら、執筆・講演・開発活動を中心に活動している。
+IPUSIRON is a Japanese writer specializing in security and cryptography.
 
-執筆歴は20年を超え、暗号・ハッキング・セキュリティ教育に関する書籍を多数刊行。
-専門知識を「読んで終わりにしない」「手を動かして理解する」形で伝えることを信条とする。
-近年は同人誌の執筆、洋書の翻訳・監訳、技術イベントや高校講演にも携わり、対象層を広げている。
+With over 20 years of experience in technical writing, he has published numerous books on cryptography, hacking, and cybersecurity education.
 
-一般社団法人サイバーリスクディフェンダー理事。
+His career includes:
+- Developing business applications
+- Inspecting and debugging mobile/web apps
+- Installing physical security and disaster prevention systems
 
-== 基本情報
+He now focuses on writing, lecturing, and developing tools, while continuing comprehensive research in information, physical, and human security.
 
- * Mail：ipusiron@gmail.com
- * X：@ipusiron（@<href>{https://x.com/ipusiron}）
- * Webサイト：Security Akademeia（@<href>{https://akademeia.info/}）
- * GitHub：@ipusiron（@<href>{https://github.com/ipusiron}）
+His educational philosophy emphasizes active learning—encouraging readers to not just read, but "learn by doing."
 
-フォロー大歓迎です。
+In recent years, he has expanded into doujin (independent/self-published) books, translation and supervision of English technical titles, and lectures at tech events and high schools.
 
-== 主な著書
+He serves as a board member of the Cyber Risk Defender Association.
 
-=== 商業誌
+== Contact
 
- * 『ハッキング・ラボのつくりかた 完全版』（翔泳社）
- * 『ホワイトハッカーの教科書』（C&R研究所）
- * 『暗号技術のすべて』（翔泳社）
- * 『ハッカーの学校』（データハウス）
- * 『ハッカーの学校 個人情報調査の教科書』（データハウス）
- * 『ハッカーの学校 鍵開けの教科書』（データハウス）
- * 『パスワード解析 完全版』（データハウス）
+ * Mail: ipusiron@gmail.com
+ * X (Twitter): @<href>{https://x.com/ipusiron}
+ * Web: @<href>{https://akademeia.info/}
+ * GitHub: @<href>{https://github.com/ipusiron}
 
-=== 同人誌
+Feel free to reach out or follow!
 
- * 『ハッキング・ラボの冒険 初心者のサーバー侵入チャレンジ』（ミライ・ハッキング・ラボ）
- * 『シーザー暗号の解読法』（ミライ・ハッキング・ラボ）
- * 『ハッキング・ラボで遊ぶために辞書ファイルを鍛える本』（ミライ・ハッキング・ラボ）
- * 『ハッキング・ラボの構築で困ったら読む本 Windows/Mac対応』（ミライ・ハッキング・ラボ）
- * 『1日で自作するポータブル・ハッキング・ラボ』（ミライ・ハッキング・ラボ）
- * 『ハッキング・ラボのそだてかた ミジンコでもわかるBadUSB』（ミライ・ハッキング・ラボ）
+== Selected Works
 
-== 主な共著
+=== Commercial Publications (in Japanese)
 
- * 『「技術書」の読書術』（翔泳社）
- * 『Wizard Bible事件から考えるサイバーセキュリティ』（PEAKS）
+ * _How to Build a Hacking Lab – Complete Edition (『ハッキング・ラボのつくりかた 完全版』)_
+ * _The Textbook of White-Hat Hackers (『ホワイトハッカーの教科書』)_
+ * _The Complete Guide to Cryptography (『暗号技術のすべて』)_
+ * _The Hacker’s School: Lockpicking Handbook (『ハッカーの学校 鍵開けの教科書』)_
+ * _Password Cracking – Complete Edition (『パスワード解析 完全版』)_
 
-== 翻訳本
+=== Self-Published Technical Book
 
- * 『暗号解読 実践ガイド』（マイナビ）
- * 『Pythonでいかにして暗号を破るか 古典暗号解読プログラムを自作する本』（ソシム）
+ * _Adventures in the Hacking Lab (『ハッキング・ラボの冒険』)_
+ * _Caesar Cipher Breaking Method (『シーザー暗号の解読法』)_
+ * _Building Stronger Wordlists for Hacking Labs (『ハッキング・ラボで遊ぶために辞書ファイルを鍛える本』)_
+ * _Troubleshooting Hacking Lab Setup on Windows/Mac (『ハッキング・ラボの構築で困ったら読む本 Windows/Mac対応』)_
+ * _Build Your Own Portable Hacking Lab in One Day (『1日で自作するポータブル・ハッキング・ラボ』)_
+ * _BadUSB Basics for Beginners (『ハッキング・ラボのそだてかた ミジンコでもわかるBadUSB』)_
 
-== 監訳本
+=== Co-authored Books
 
- * 『安全な暗号をどう実践するか 暗号技術の新設計思想』（マイナビ）
- * 『サイバーセキュリティの教科書』（マイナビ）
- * 『暗号技術実践活用ガイド』（マイナビ）
+ * _How to Read Technical Books Effectively (『「技術書」の読書術』)_
+ * _Cybersecurity Reflections on the Wizard Bible Case (『Wizard Bible事件から考えるサイバーセキュリティ』)_
+
+=== Translated Titles (Japanese Editions)
+
+ * _Codebreaking: A Practical Guide_ by Elonka Dunin & Klaus Schmeh
+ * _Cracking Codes with Python_ by Al Sweigart
+
+=== Supervised Translations
+
+ * _Serious Cryptography_ by Jean-Philippe Aumasson
+ * _The Textbook of Cybersecurity_
+ * _Applied Cryptography in Practice_
