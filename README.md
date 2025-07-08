@@ -23,13 +23,34 @@ This edition focuses solely on the Caesar cipher and its natural extension, the 
 
 ```text
 .
-├── manuscript/         # Source text files (Markdown, Re:VIEW, or LaTeX)
-├── images/             # Diagrams and illustrations used in the book
-├── epub/               # Compiled EPUB files (for Kindle etc.)
-├── pdf/                # Preview or printable PDFs
-├── assets/             # Cover images, metadata
-└── LICENSE             # License to be added upon public release
+├── articles/                 # Main manuscript directory (EPUB/PDF output stored here)
+│   ├── book_Caesar_concise_en.epub
+│   └── book_Caesar_concise_en.pdf
+├── pdf-sample/              # Optional sample PDFs for preview or layout checking
+├── .circleci/               # CI/CD configuration
+├── .devcontainer/           # Dev container settings for VSCode/Dev Containers
+├── .github/                 # GitHub-specific workflows and metadata
+├── node_modules/            # Node.js dependencies (auto-generated)
+├── .textlintrc              # Textlint configuration for style/grammar checking
+├── Gemfile                  # Ruby dependencies (e.g. Re:VIEW)
+├── Gruntfile.js             # Build automation script
+├── redpen-conf-ja.xml       # RedPen Japanese proofreading config
+├── build-in-docker.sh       # Build helper script (inside Docker)
+├── setup.sh                 # Environment setup script
+├── rebuild-css.sh           # Stylesheet regeneration script
+├── package.json             # Node.js project metadata
+├── package-lock.json        # Lockfile for npm dependencies
+├── .gitignore, .gitlab-ci.yml, .gitpod.yml, .textlintrc, etc.
+└── README.md                # This file
 ```
+
+### 📦 Output Files
+
+The main outputs of this repository are the finalized English edition of the book in both EPUB and PDF formats.  
+These files are stored in the `articles/` directory and will be published under open access terms upon release.
+
+- `articles/book_Caesar_concise_en.epub` — EPUB format (for Kindle and other e-readers)
+- `articles/book_Caesar_concise_en.pdf` — Printable PDF format
 
 ---
 
