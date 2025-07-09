@@ -30,10 +30,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Book PDF
-          path: articles/book_Caesar_concise.pdf
+          path: articles/book_Caesar_concise_en.pdf
 
       - name: Upload EPUB
         uses: actions/upload-artifact@v4
         with:
           name: Book EPUB
-          path: articles/book_Caesar_concise.epub
+          path: articles/book_Caesar_concise_en.epub
