@@ -76,50 +76,35 @@ Although the Caesar cipher is simple, it demonstrates three fundamental elements
  * Key (3 in the Caesar cipher)
  * Substitution
 
-== シフト暗号とは
+== What Is a Shift Cipher?
 
-シーザー暗号は通常3文字をずらしますが、必ずしも3文字に限定されるわけではありません。
-たとえば、1文字や10文字をずらすバージョンも考えられます。
+The Caesar cipher typically shifts letters by 3 positions, but it isn't limited to 3. For instance, you can shift by 1, 10, or any other number of positions. Shifting by 26 positions is effectively the same as no shift at all, since the remainder when divided by 26 is zero.
 
-26文字ずらすと、実質的に文字をずらさないのと同じになります。
-これは、26で割った余りが0になるためです。
+A cipher that shifts letters by any arbitrary number is called a @<b>{shift cipher}, with the shift amount defined as @<b>{n}. This value @<b>{n} serves as the key, shared only between sender and receiver.
 
-このように任意の数の文字をずらす暗号をシフト暗号と呼び、ずらす量をシフトnとして定義します。
-このシフト量nは鍵の役割を果たし、送受信者の間でのみ共有されます。
+Due to their cyclic nature, shift ciphers are often called @<b>{ROT ciphers}, from the English word @<i>{rotate}. A shift of @<b>{n} positions is denoted as @<b>{ROTn}.
 
-シフト暗号はその循環性から、しばしばROTと呼ばれます。
-これは英語の"rotate"、つまり「回転させる」からきています。
-n文字シフトした場合は、ROTnと表記します。
+For example, a 1-position shift is written as @<b>{ROT1}, with the following substitution table:
 
-たとえば、1文字をシフトする暗号はROT1と表記され、その置換表は次のとおりです。
-
-#@# 1ページ内に収まらないので画像化した.
-#@# //table[rot1_tikanhyou][ROT1の置換表]{
-#@# a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s	t	u	v	w	x	y	z
-#@# -------------------------------------------------------------
-#@# B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z	A
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
 #@# //}
-
-#@# #@# //embed[latex]{
-#@# #@# \floatplacement{figure}{t}
-#@# #@# //}
-#@# //image[rot1_tikanhyou][ROT1の置換表][scale=1.0]{
-#@# //}
-#@# #@# //embed[latex]{
-#@# #@# \floatplacement{figure}{H}
-#@# #@# //}
-
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/rot1_tikanhyou.png" alt="ROT1の置換表" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ROT1の置換表</figcaption>
-</figure>
+//image[rot1_tikanhyou][Substitution Table for ROT1][scale=1.0]{
 //}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
-シーザー暗号はシフト3のシフト暗号と同一であり、これをROT3と表します。
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot1_tikanhyou.png" alt="Substitution Table for ROT1" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>図：Substitution Table for ROT1</figcaption>
+#@# </figure>
+#@# //}
 
-シフト暗号はシーザー暗号と仕組み的に本質な違いがない、文献によっては両者を同義として扱っていることがあります。
-文脈によって、その用途を識別すべきでしょう。
+The Caesar cipher is a shift cipher with a shift of 3, denoted as ROT3.
+
+Since shift ciphers and the Caesar cipher share the same mechanism, some sources use these terms interchangeably. Context determines which term is more appropriate.
 
 == シフト暗号のアルゴリズム
 
