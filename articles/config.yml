@@ -17,15 +17,15 @@ review_version: 5.0
 # inherit: ["A.yml", "B.yml"]
 
 # ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
-bookname: book_Caesar_concise
+bookname: book_Caesar_concise_en
 # 記述言語。省略した場合はja
-language: ja
+language: en
 
 # 書名
-booktitle: { name: 'シーザー暗号の解読法 簡易版', file-as: 'シーザーアンゴウノカイドクホウ カンイバン' }
+booktitle: { name: 'Caesar Cipher Breaking - A Concise Edition', file-as: 'Caesar Cipher Breaking - A Concise Edition' }
 
 # 著者名。「, 」で区切って複数指定できる
-aut: [{ name: 'IPUSIRON', file-as: 'イプシロン' }]
+aut: [{ name: 'IPUSIRON', file-as: 'ipusiron' }]
 
 # 以下はオプション
 # 以下はオプション(autと同じように配列書式で複数指定可能)。
@@ -74,7 +74,7 @@ date: 2025-07-08
 # 複数指定する場合は次のように記述する
 # [["初版第1刷の日付", "初版第2刷の日付"], ["第2版第1刷の日付"]]
 # 日付の後ろを空白文字で区切り、任意の文字列を置くことも可能。
-history: [['2025-07-08 簡易版（KDP版）v1.0.0']]
+history: [['2025-10-16 A Concise Edition（PDF版）v1.0.0']]
 # 権利表記(配列で複数指定可)
 # rights: (C) 2016 Re:VIEW Developers
 rights: (C) 2024-2025 Security Akademeia
@@ -90,7 +90,7 @@ rights: (C) 2024-2025 Security Akademeia
 debug: null
 
 # 固有IDに使用するドメイン。省略した場合は時刻に基づくランダムUUIDが入る
-urnid: urn:uuid:https://github.com/ipusiron/book_Caesar_concise
+urnid: urn:uuid:https://github.com/ipusiron/book_Caesar_concise_en
 #
 # ISBN。省略した場合はurnidが入る
 # isbn: null
