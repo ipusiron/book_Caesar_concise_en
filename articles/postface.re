@@ -1,35 +1,23 @@
-= おわりに
+= Afterword
 
-このたびは『シーザー暗号の解読法 簡易版』をお読みいただき、心から感謝申し上げます。
+Thank you for reading @<i>{Caesar Cipher Breaking - A Concise Edition}.
 
-昨今の暗号本では、古典暗号が脇役になっていることがほとんどです。
-とくに日本では、その傾向が顕著だと感じていました。
-商業誌であれば、売上げを第一に考えなければならないために、それもやむを得ないことでしょう。
+In recent years, classical ciphers have often taken a backseat in cryptography books—especially in Japan, where this trend is particularly noticeable. For commercial publications, prioritizing sales is inevitable, so this outcome is understandable.
 
-対して、本書は同人誌であるため、売上げを度外視し、自分が伝えたい内容を自由に書けます。
-ずっと以前から、古典暗号全般を解説する本ではなく、1つの古典暗号に絞って解説する本を書きたいと思っていました。
-そのときから、最初はシーザー暗号をテーマにしようと決めていました。
-このたび、本書は古典暗号シリーズの第1弾として、シーザー暗号を採用した次第です。
+In contrast, this book is a self-published work, which means I could freely focus on the content I truly wanted to share without worrying about profitability. For a long time, I had wanted to write a book that focuses on a single classical cipher, rather than covering all of them broadly. From the beginning, I knew the first topic would be the Caesar cipher. As such, this book marks the first volume in the Classical Cipher Series, with Caesar as its starting point.
 
-今回、本書を発行したのは、Kindleでも読んでみたいという読者の方に届けたいという思いからです。
-ただし、「フル版」をそのままKindleで出すことは、大きな課題があるため、「簡易版」という形でリリースしました。
-詳細な経緯については、@<chap>{chapter1}を参照してください。
-加筆・改訂を重ねた「完全版」、英語に翻訳した「英訳版」も将来的に視野に入れつつ、その第一歩として本書を世に出す決断をいたしました。
+The Caesar cipher is simple in structure, yet it embodies the essence of substitution ciphers.
+Once you understand this essence, you will no longer be intimidated by more complex substitution ciphers.
 
-シーザー暗号はシンプルな仕組みですが、換字式暗号の本質が凝縮されています。
-その本質を理解すれば、より複雑な仕組みを持つ換字式暗号に出会っても戸惑うことはなくなるでしょう。
+This book aims not only to explain the cipher itself but also to convey the charm of classical cryptography.
+I hope that this small volume will help many readers discover the fascination of classical ciphers and contribute to renewed interest in this field.
 
-本書では、単に暗号の解説を行うだけでなく、古典暗号そのものの魅力を感じてもらうことにも力を入れました。
-この小さな一冊が、少しでも多くの方に古典暗号の面白さを届け、界隈の盛り上がりにつながることを願っています。
+Finally, I have a small request. I would be grateful for any honest feedback or impressions you may have about this book. Whether through posts on X or reviews on Amazon—any form is welcome. Your candid opinions will be incredibly helpful for my future writing.
 
-最後にお願いがあります。
-本書に関する、忌憚のないご意見や感想をお待ちしております。
-Xでの投稿、Amazonのレビューなど、どのような形でも構いません。
-あなたの率直な意見が、今後の執筆に大いに役立ちます。
-今後とも、どうぞよろしくお願いいたします。
+Thank you again for your support, and I hope you continue to enjoy the world of cryptography.
 
-== 謝辞
+== Acknowledgments
 
-本書のカバーデザインは、Shizuka（@lily_mar32）さんに作成していただたものを、私が一部加工しました。
+The cover design of this book was originally created by Shizuka (@lily_mar32) and partially modified by the author.
 
-心より感謝申し上げます。
+I would like to express my sincere gratitude.
