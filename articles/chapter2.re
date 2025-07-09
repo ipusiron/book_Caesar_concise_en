@@ -1,20 +1,20 @@
-= シーザー暗号の基本
+= The Basics of the Caesar Cipher
 
-本章では、本書のテーマであるシーザー暗号の仕組みについて詳しく解説します。
+In this chapter, we will provide a detailed explanation of the Caesar cipher, which is the central theme of this book.
 
-シーザー暗号をただ単に解説するだけでは、「単純な仕組みの暗号」という感想で終わってしまうかもしれません。
-しかし、ここまで一緒に読み進めてきたあなたには、本章がとくに価値あるものとなるでしょう。
-古典暗号の本質を理解していることが前提なら、シーザー暗号の解説を通じてその重要性を深く認識できるはずです。
+If we were to explain the Caesar cipher in a straightforward manner, it might simply come across as "a cipher with a simple mechanism."
 
-== シーザー暗号とは
+However, having read this far, you will find this chapter especially valuable.
 
-シーザー暗号は、平文の各文字を辞書順に3文字分ずらして暗号文に変換する暗号化方式です。
-この暗号は、古代ローマの軍事的指導者であるガイウス・ユリウス・カエサル（Gaius Julius Caesar、英語読みで「シーザー」）が使用していたことから、その名を冠しています。
-ガリア戦争中、シーザーはこの暗号を用いて敵に悟られることなく味方と通信していました。
+With an understanding of the essence of classical ciphers, you will be able to recognize the Caesar cipher's deeper significance.
 
-シーザー暗号の置換表は、次のようになります。
-平文のアルファベットを右に3文字ずらして、暗号文を生成します。
-最後の3文字については、先頭に戻ります。
+== What Is the Caesar Cipher?
+
+The Caesar cipher is an encryption method that converts plaintext into ciphertext by shifting each letter three positions forward in alphabetical order.
+
+This cipher is named after Gaius Julius Caesar—known simply as "Caesar" in English—the Roman military leader who famously employed it during the Gallic Wars to communicate with his allies while avoiding enemy interception.
+
+The substitution table for the Caesar cipher works as follows:
 
 #@# 1ページ内に収まらないので画像化した.
 #@# //table[rot3_tikanhyou][シーザー暗号の置換表]{
@@ -23,58 +23,58 @@
 #@# D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z	A	B	C
 #@# //}
 
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
-#@# //}
-#@# //image[rot3_tikanhyou][シーザー暗号の置換表][scale=1.0]{
-#@# //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
-
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/rot3_tikanhyou.png" alt="シーザー暗号の置換表" style="max-width: 90%; height: auto;" />
-  <figcaption>図：シーザー暗号の置換表</figcaption>
-</figure>
+//embed[latex]{
+\floatplacement{figure}{t}
+//}
+//image[rot3_tikanhyou][Substitution Table for the Caesar Cipher][scale=1.0]{
+//}
+//embed[latex]{
+\floatplacement{figure}{H}
 //}
 
-例として、"hello"という平文をシーザー暗号を用いて暗号化する過程を見てみましょう。
-平文の各文字を順に暗号化します。
-
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
-#@# //}
-#@# //image[caesar_enc_hello]["hello"を暗号化する][scale=0.8]{
-#@# //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot3_tikanhyou.png" alt="Substitution Table for the Caesar Cipher" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>図：Substitution Table for the Caesar Cipher</figcaption>
+#@# </figure>
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/caesar_enc_hello.png" alt="&quot;hello&quot;を暗号化する" style="max-width: 90%; height: auto;" />
-  <figcaption>図："hello"を暗号化する</figcaption>
-</figure>
+Each letter in the plaintext is shifted three positions forward to generate the ciphertext. When this shift extends beyond 'Z', it wraps around to the beginning of the alphabet.
+
+As an example, let's look at the process of encrypting the plaintext "hello" using the Caesar cipher.
+We encrypt each letter in order:
+
+//embed[latex]{
+\floatplacement{figure}{t}
+//}
+//image[caesar_enc_hello][Encrypting "hello"][scale=0.8]{
+//}
+//embed[latex]{
+\floatplacement{figure}{H}
 //}
 
- * 平文文字'h'⇒暗号文文字'K'
- * 平文文字'e'⇒暗号文文字'H'
- * 平文文字'l'⇒暗号文文字'O'
- * 平文文字'l'⇒暗号文文字'O'
- * 平文文字'o'⇒暗号文文字'R'
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/caesar_enc_hello.png" alt="Encrypting &quot;hello&quot;" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>図：Encrypting "hello"</figcaption>
+#@# </figure>
+#@# //}
 
-結果として、暗号文は"KHOOR"となります。
+ * Plaintext letter 'h' ⇒ Ciphertext letter 'K'
+ * Plaintext letter 'e' ⇒ Ciphertext letter 'H'
+ * Plaintext letter 'l' ⇒ Ciphertext letter 'O'
+ * Plaintext letter 'l' ⇒ Ciphertext letter 'O'
+ * Plaintext letter 'o' ⇒ Ciphertext letter 'R'
 
-ところで、解説において平文文字を小文字、暗号文文字を大文字で表記したのは、古典暗号における伝統的な習慣にしたがったためです。
-この方法により、平文と暗号文を容易に区別できるようになります。
-ただし、すべての解説がこの習慣を踏襲しているわけではないため、文脈を参考にして平文と暗号文を識別してください。
+As a result, the ciphertext becomes @<b>{"KHOOR"}.
 
-シーザー暗号はシンプルですが、現代暗号において重要視される次の3つの要素を備えています。
+Note that plaintext is written in lowercase and ciphertext in uppercase, following a traditional convention in classical cryptography. This distinction makes it easy to identify which is which at a glance. However, not all texts follow this convention, so context remains important.
 
- * アルゴリズム
- * 鍵（シーザー暗号では3）
- * 置換
+Although the Caesar cipher is simple, it demonstrates three fundamental elements of modern cryptography:
+
+ * Algorithm
+ * Key (3 in the Caesar cipher)
+ * Substitution
 
 == シフト暗号とは
 
