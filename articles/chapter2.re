@@ -16,13 +16,6 @@ This cipher is named after Gaius Julius Caesar—known simply as "Caesar" in Eng
 
 The substitution table for the Caesar cipher works as follows:
 
-#@# 1ページ内に収まらないので画像化した.
-#@# //table[rot3_tikanhyou][シーザー暗号の置換表]{
-#@# a	b	c	d	e	f	g	h	i	j	k	l	m	n	o	p	q	r	s	t	u	v	w	x	y	z
-#@# -------------------------------------------------------------
-#@# D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z	A	B	C
-#@# //}
-
 //embed[latex]{
 \floatplacement{figure}{t}
 //}
@@ -106,17 +99,16 @@ The Caesar cipher is a shift cipher with a shift of 3, denoted as ROT3.
 
 Since shift ciphers and the Caesar cipher share the same mechanism, some sources use these terms interchangeably. Context determines which term is more appropriate.
 
-== シフト暗号のアルゴリズム
+== Shift Cipher Algorithm
 
-暗号化方式はアルゴリズムの観点で見ると、KenGen、Enc、Decの3つのアルゴリズムから成り立ちます。
-ここで、KeyGenは鍵生成アルゴリズム、Encは暗号化アルゴリズム、Decは復号アルゴリズムを指します@<fn>{enc_alg}。
+From an algorithmic perspective, an encryption scheme comprises three fundamental algorithms: `KeyGen`, `Enc`, and `Dec`. Here, `KeyGen` denotes the key generation algorithm, `Enc` denotes the encryption algorithm, and `Dec` denotes the decryption algorithm @<fn>{enc_alg}.
 
-//footnote[enc_alg][KeyGen、Enc、Decの3つのアルゴリズムはシフト暗号に限定されず、現代暗号の暗号化もこの3つによって定義されます。]
+//footnote[enc_alg][These three algorithms—`KeyGen`, `Enc`, and `Dec`—are not exclusive to shift ciphers but form the foundational framework of modern cryptographic schemes.]
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[shift_enc_alg][シフト暗号のアルゴリズム][scale=1.0]{
+#@# //image[shift_enc_alg][Shift Cipher Algorithm][scale=1.0]{
 #@# //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
@@ -124,26 +116,20 @@ Since shift ciphers and the Caesar cipher share the same mechanism, some sources
 
 //embed[html]{
 <figure style="text-align: center;">
-  <img src="images/shift_enc_alg.png" alt="シフト暗号のアルゴリズム" style="max-width: 90%; height: auto;" />
-  <figcaption>図：シフト暗号のアルゴリズム</figcaption>
+  <img src="images/shift_enc_alg.png" alt="Shift Cipher Algorithm" style="max-width: 90%; height: auto;" />
+  <figcaption>図：Shift Cipher Algorithm</figcaption>
 </figure>
 //}
 
-鍵生成アルゴリズムは鍵を生成し、暗号化アルゴリズムは平文を暗号文に変換します。
-そして、復号アルゴリズムは暗号文を復号します。
+The key generation algorithm generates a key, while the encryption algorithm converts plaintext into ciphertext. The decryption algorithm decrypts the ciphertext.
 
-ここでいう鍵とは、暗号化および復号アルゴリズムにおける変換処理を制御するデータです。
-暗号化システムでは、鍵は非常に重要あり、通信の安全を保つために送受信者以外には秘密にされます。
-鍵が漏れると、暗号文は誰にでも解読可能となり、平文が露見してしまいます。
+The term key here refers to the data that controls the transformation process in both encryption and decryption algorithms. In cryptographic systems, keys are critically important and must be kept secret from anyone other than the sender and receiver to maintain secure communication. If a key is compromised, the ciphertext can be decrypted by anyone, exposing the plaintext.
 
-=== 正当性を数式で表現する
+=== Mathematical Expression of Correctness
 
-正当性とは、復号後に暗号文が元の平文に正確に戻ることを指します。
-暗号化はこの正当性を保証する必要があります。
-もし正しい暗号文と鍵を使用しても元の平文に復元できない場合、その暗号はメッセージを伝達する基本的な目的を果たせていないことになります。
+@<b>{Correctness} refers to the property that decryption accurately recovers the original plaintext from the ciphertext. An encryption scheme must guarantee this correctness. If the original plaintext cannot be recovered even when using the correct ciphertext and key, the encryption fails to fulfill its fundamental purpose of secure communication.
 
-シフト暗号は3つのアルゴリズムによって定義されると述べました。
-アルゴリズムを使って正当性を表現すると、任意のmとkeyに対して、次の式が成り立つことを意味します。
+As mentioned earlier, the shift cipher is defined by three algorithms. Using these algorithms to express correctness means that for any message `m` and `key`, the following equation must hold:
 
 //noindent
 m=Dec(key, Enc(key, m))
