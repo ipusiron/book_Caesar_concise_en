@@ -10,11 +10,11 @@ With an understanding of the essence of classical ciphers, you will be able to r
 
 == What Is the Caesar Cipher?
 
-The Caesar cipher is an encryption method that converts plaintext into ciphertext by shifting each letter three positions forward in alphabetical order.
+@<kw>{The Caesar cipher} is an encryption method that converts plaintext into ciphertext by shifting each letter three positions forward in alphabetical order.
 
 This cipher is named after Gaius Julius Caesar—known simply as "Caesar" in English—the Roman military leader who famously employed it during the Gallic Wars to communicate with his allies while avoiding enemy interception.
 
-The substitution table for the Caesar cipher works as follows:
+@<img>{rot3_tikanhyou} shows the @<kw>{substitution table} for the Caesar cipher.
 
 //embed[latex]{
 \floatplacement{figure}{t}
@@ -28,14 +28,13 @@ The substitution table for the Caesar cipher works as follows:
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
 #@#   <img src="images/rot3_tikanhyou.png" alt="Substitution Table for the Caesar Cipher" style="max-width: 90%; height: auto;" />
-#@#   <figcaption>図：Substitution Table for the Caesar Cipher</figcaption>
+#@#   <figcaption>Figure: Substitution Table for the Caesar Cipher</figcaption>
 #@# </figure>
 #@# //}
 
 Each letter in the plaintext is shifted three positions forward to generate the ciphertext. When this shift extends beyond 'Z', it wraps around to the beginning of the alphabet.
 
-As an example, let's look at the process of encrypting the plaintext "hello" using the Caesar cipher.
-We encrypt each letter in order:
+As an example, let us examine how the plaintext "hello" is encrypted using the Caesar cipher. Each letter is encrypted sequentially. See @<img>{caesar_enc_hello}.
 
 //embed[latex]{
 \floatplacement{figure}{t}
@@ -49,7 +48,7 @@ We encrypt each letter in order:
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
 #@#   <img src="images/caesar_enc_hello.png" alt="Encrypting &quot;hello&quot;" style="max-width: 90%; height: auto;" />
-#@#   <figcaption>図：Encrypting "hello"</figcaption>
+#@#   <figcaption>Figure: Encrypting "hello"</figcaption>
 #@# </figure>
 #@# //}
 
@@ -73,25 +72,25 @@ Although the Caesar cipher is simple, it demonstrates three fundamental elements
 
 The Caesar cipher typically shifts letters by 3 positions, but it isn't limited to 3. For instance, you can shift by 1, 10, or any other number of positions. Shifting by 26 positions is effectively the same as no shift at all, since the remainder when divided by 26 is zero.
 
-A cipher that shifts letters by any arbitrary number is called a @<b>{shift cipher}, with the shift amount defined as @<b>{n}. This value @<b>{n} serves as the key, shared only between sender and receiver.
+A cipher that shifts letters by any arbitrary number is called a @<kw>{shift cipher}, with the shift amount defined as @<b>{n}. This value @<b>{n} serves as the key, shared only between sender and receiver.
 
-Due to their cyclic nature, shift ciphers are often called @<b>{ROT ciphers}, from the English word @<i>{rotate}. A shift of @<b>{n} positions is denoted as @<b>{ROTn}.
+Due to their cyclic nature, shift ciphers are often called @<kw>{ROT ciphers}, from the English word @<i>{rotate}. A shift of @<b>{n} positions is denoted as @<kw>{ROTn}.
 
-For example, a 1-position shift is written as @<b>{ROT1}, with the following substitution table:
+For example, a 1-position shift is written as @<kw>{ROT1}. See @<img>{rot1_tikanhyou} for its substitution table.
 
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
-#@# //}
+//embed[latex]{
+\floatplacement{figure}{t}
+//}
 //image[rot1_tikanhyou][Substitution Table for ROT1][scale=1.0]{
 //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
+//embed[latex]{
+\floatplacement{figure}{H}
+//}
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
 #@#   <img src="images/rot1_tikanhyou.png" alt="Substitution Table for ROT1" style="max-width: 90%; height: auto;" />
-#@#   <figcaption>図：Substitution Table for ROT1</figcaption>
+#@#   <figcaption>Figure: Substitution Table for ROT1</figcaption>
 #@# </figure>
 #@# //}
 
@@ -101,25 +100,25 @@ Since shift ciphers and the Caesar cipher share the same mechanism, some sources
 
 == Shift Cipher Algorithm
 
-From an algorithmic perspective, an encryption scheme comprises three fundamental algorithms: `KeyGen`, `Enc`, and `Dec`. Here, `KeyGen` denotes the key generation algorithm, `Enc` denotes the encryption algorithm, and `Dec` denotes the decryption algorithm @<fn>{enc_alg}.
+From an algorithmic perspective, an encryption scheme comprises three fundamental algorithms: @<b>{KeyGen}, @<b>{Enc}, and @<b>{Dec}. Here, @<b>{KeyGen} denotes the key generation algorithm, @<b>{Enc} denotes the encryption algorithm, and @<b>{Dec} denotes the decryption algorithm@<fn>{enc_alg}.
 
-//footnote[enc_alg][These three algorithms—`KeyGen`, `Enc`, and `Dec`—are not exclusive to shift ciphers but form the foundational framework of modern cryptographic schemes.]
+//footnote[enc_alg][These three algorithms—@<b>{KeyGen}, @<b>{Enc}, and @<b>{Dec}—are not exclusive to shift ciphers but form the foundational framework of modern cryptographic schemes.]
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[shift_enc_alg][Shift Cipher Algorithm][scale=1.0]{
-#@# //}
+//image[shift_enc_alg][Shift Cipher Algorithm][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/shift_enc_alg.png" alt="Shift Cipher Algorithm" style="max-width: 90%; height: auto;" />
-  <figcaption>図：Shift Cipher Algorithm</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/shift_enc_alg.png" alt="Shift Cipher Algorithm" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Shift Cipher Algorithm</figcaption>
+#@# </figure>
+#@# //}
 
 The key generation algorithm generates a key, while the encryption algorithm converts plaintext into ciphertext. The decryption algorithm decrypts the ciphertext.
 
@@ -127,78 +126,78 @@ The term key here refers to the data that controls the transformation process in
 
 === Mathematical Expression of Correctness
 
-@<b>{Correctness} refers to the property that decryption accurately recovers the original plaintext from the ciphertext. An encryption scheme must guarantee this correctness. If the original plaintext cannot be recovered even when using the correct ciphertext and key, the encryption fails to fulfill its fundamental purpose of secure communication.
+@<kw>{Correctness} refers to the property that decryption accurately recovers the original plaintext from the ciphertext. An encryption scheme must guarantee this correctness. If the original plaintext cannot be recovered even when using the correct ciphertext and key, the encryption fails to fulfill its fundamental purpose of secure communication.
 
-As mentioned earlier, the shift cipher is defined by three algorithms. Using these algorithms to express correctness means that for any message `m` and `key`, the following equation must hold:
+As mentioned earlier, the shift cipher is defined by three algorithms. Using these algorithms to express correctness means that for any message @<i>{m} and @<i>{key}, the following equation must hold:
 
-//noindent
+//texequation{
 m=Dec(key, Enc(key, m))
+//}
+#@# //noindent
+#@# @<m>{m=Dec(key, Enc(key, m))}
 
-=== 置換表を用いる処理に変更する
+=== Modify the Process to Use a Substitution Table
 
-先に示したアルゴリズムを置換表を用いる処理に変更すると、次のようになります。
+The modified algorithm using a substitution table is shown in @<img>{shift_enc_alg2}.
 
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
-#@# //}
-#@# //image[shift_enc_alg2][シフト暗号のアルゴリズム＜置換表バージョン＞][scale=1.0]{
-#@# //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/shift_enc_alg2.png" alt="シフト暗号のアルゴリズム＜置換表バージョン＞" style="max-width: 90%; height: auto;" />
-  <figcaption>図：シフト暗号のアルゴリズム＜置換表バージョン＞</figcaption>
-</figure>
+//embed[latex]{
+\floatplacement{figure}{t}
+//}
+//image[shift_enc_alg2][Shift Cipher Algorithm <Substitution Table Version>][scale=1.0]{
+//}
+//embed[latex]{
+\floatplacement{figure}{H}
 //}
 
-=== 各アルゴリズムの呼び出し方
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/shift_enc_alg2.png" alt="Shift Cipher Algorithm &lt;Substitution Table Version&gt;" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Shift Cipher Algorithm &lt;Substitution Table Version&gt;</figcaption>
+#@# </figure>
+#@# //}
 
-アリスとボブが3つのアルゴリズムをどう扱うのかを図示すると、次のようになります。
-準備段階でKeyGenアルゴリズム、主段階でEncアルゴリズムとDecアルゴリズムを呼び出します。
+=== How to Call Each Algorithm
 
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
-#@# //}
-#@# //image[alice_bob_3alg_epub][アリスとボブによるアルゴリズムの呼び出し][scale=0.8]{
-#@# //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/alice_bob_3alg_epub.png" alt="アリスとボブによるアルゴリズムの呼び出し" style="max-width: 90%; height: auto;" />
-  <figcaption>図：アリスとボブによるアルゴリズムの呼び出し</figcaption>
-</figure>
+@<img>{alice_bob_3alg_epub} shows the algorithm execution sequence. Alice and Bob call @<b>{KeyGen} in the preparation stage, then @<b>{Enc} and @<b>{Dec} in the main stage.
+
+//embed[latex]{
+\floatplacement{figure}{t}
+//}
+//image[alice_bob_3alg_epub][Calling the algorithm by Alice and Bob][scale=0.8]{
+//}
+//embed[latex]{
+\floatplacement{figure}{H}
 //}
 
-=== アルゴリズムの中身にいきなり注目しない
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/alice_bob_3alg_epub.png" alt="Calling the algorithm by Alice and Bob" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: alling the algorithm by Alice and Bob</figcaption>
+#@# </figure>
+#@# //}
 
-アルゴリズムの内部処理を直ちに理解しようとせず、まずはその入出力に注目することが重要です。
-古典暗号や現代暗号を問わず、すべての暗号化で、各アルゴリズムの入出力は基本的に同じです。
+=== Focus on Input/Output Before Implementation Details
 
- * KeyGenアルゴリズムは、鍵（ここではn）を出力する。
- * Encアルゴリズムは、平文mと鍵nを入力して、暗号文cを出力する。
- * Decアルゴリズムは、暗号文cと鍵n'を入力して、復号結果m'を出力する。
- ** 鍵が正しければ、m'はmそのもの。
- ** 正しく復号される性質を正当性という。
+Rather than diving into implementation details, first understand each algorithm's inputs and outputs. All encryption algorithms—classical or modern—follow the same basic input/output pattern:
 
-各アルゴリズムの入出力に登場する文字は、一部共通しています。
-たとえば、nはKeyGenアルゴリズムの出力、そしてEncアルゴリズムの入力として登場しています。
-m, n, c, n', m'により、各アルゴリズムが関連し合っているわけです。
-もし入出力の文字が完全に独立していれば、アルゴリズム同士も無関係となります。
+ * @<b>{KeyGen} outputs a key (denoted @<i>{n})
+ * @<b>{Enc} inputs plaintext @<i>{m} and key @<i>{n}, outputs ciphertext @<i>{c}
+ * @<b>{Dec} inputs ciphertext @<i>{c} and key @<i>{n'}, outputs decrypted result @<i>{m'}
+ ** When the key is correct: @<i>{m'} = @<i>{m}
+ ** This property is called @<kw>{correctness}
 
-入出力とその関係を理解した上で、アルゴリズムの内部処理に注目するのがコツです。
+Notice how these symbols connect the algorithms:
 
-新しい暗号化方式の解説を読む際は、以上のことを留意した上で読んでみてください。
+@<i>{n} links @<b>{KeyGen} to @<b>{Enc}, 
+while @<i>{c} links @<b>{Enc} to @<b>{Dec}. Without these shared symbols, the algorithms would be independent.
 
-== ROT13は2回暗号化すると元に戻る
+Understanding these input/output relationships first makes the implementation details much clearer. Apply this approach when learning any new cryptographic scheme.
 
-ROT13は鍵n=13を使用するシフト暗号です。
-暗号化では文字を右に13文字シフトし、復号では左に13文字シフトします。
+== Applying ROT13 Twice Restores the Original Text
 
-ROT13の置換表は次のようになります。
+@<kw>{ROT13} is a shift cipher that uses a key of @<m>{n = 13}. Since the alphabet has 26 letters and @<m>{13 = 26/2}, ROT13 has a unique property: encryption and decryption are identical operations.
+
+The substitution table for ROT13 is shown in @<img>{rot13_tikanhyou}.
 
 #@# 1ページ内に収まらないので画像化した.
 #@# //table[rot13_tikanhyou][ROT13の置換表]{
@@ -207,50 +206,57 @@ ROT13の置換表は次のようになります。
 #@# N	O	P	Q	R	S	T	U	V	W	X	Y	Z	A	B	C	D	E	F	G	H	I	J	K	L	M
 #@# //}
 
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
+//embed[latex]{
+\floatplacement{figure}{t}
+//}
+//image[rot13_tikanhyou][Substitution Table for ROT13][scale=1.0]{
+//}
+//embed[latex]{
+\floatplacement{figure}{H}
+//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot13_tikanhyou.png" alt="Substitution Table for ROT13" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Substitution Table for ROT13</figcaption>
+#@# </figure>
 #@# //}
-#@# //image[rot13_tikanhyou][ROT13の置換表][scale=1.0]{
-#@# //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/rot13_tikanhyou.png" alt="ROT13の置換表" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ROT13の置換表</figcaption>
-</figure>
+
+Notice that each letter maps to another letter exactly 13 positions away. 
+The second row is formed by swapping the first half (a–m) with the second half (n–z). This symmetry means that applying ROT13 twice returns the original text:
+
+//texequation{
+\mathrm{ROT13}( \mathrm{ROT13}(m) ) = m
 //}
 
-置換表の2行目は、1行目の前半「'a'から'm'まで」と後半「'n'から'z'まで」を入れ替えた状態になっています。
-これはアルファベットが26文字であることに基づいています。
+=== ROT13 Substitution Table
 
-=== ROT13の置換表
+@<img>{rot13_mapping} shows the bijective mapping where each letter pairs with another exactly 13 positions away.
 
-上記の置換表から後半部分を取り除くと、次のような簡略化した表が得られます。
-この表は文字の対応関係を示し、実際の置換に利用できます。
-
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
-#@# //}
-#@# //image[rot13_mapping][ROT13の文字対応][scale=1.0]{
-#@# //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
-
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/rot13_mapping_epub.png" alt="ROT13の文字対応" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ROT13の文字対応</figcaption>
-</figure>
+//embed[latex]{
+\floatplacement{figure}{t}
 //}
+//image[rot13_mapping][ROT13 Character Mapping][scale=1.0]{
+//}
+//embed[latex]{
+\floatplacement{figure}{H}
+//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot13_mapping_epub.png" alt="ROT13 Character Mapping" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: ROT13 Character Mapping</figcaption>
+#@# </figure>
+#@# //}
 
-置換表を見て気づくかもしれませんが、「左に13文字シフトすること」と「右に13文字シフトすること」は同じ結果をもたらします。
-これにより、左に13文字シフトを2回繰り返すと、元の位置に戻ります。
-これがROT13の最大の特徴です。
+Notice that shifting 13 positions left equals shifting 13 positions right. Since 13 is half of 26, this creates ROT13's defining characteristic: @<kw>{self-inverse property}.
 
-ROT13を2回適用すると各文字は元に戻ります。
+Mathematically, since @<m>$13 = -13 \pmod {26}$:
+
+ * Encryption: @<m>$(x + 13) \pmod {26}$
+ * Decryption: @<m>$(x - 13) \pmod {26} = (x + 13) \pmod {26}$
+
+Therefore, applying ROT13 twice returns each letter to its original position—ROT13 is its own inverse.
+
+@<img>{rot13_and_rot13} demonstrates this self-inverse property in action.
 
 #@# 1ページ内に収まらないので画像化した.
 #@# //table[rot13_and_rot13][ROT13を2回実行]{
@@ -259,160 +265,167 @@ ROT13を2回適用すると各文字は元に戻ります。
 #@# 1回目の暗号化	N	O	P	Q	R	S	T	U	V	W	X	Y	Z	A	B	C	D	E	F	G	H	I	J	K	L	M
 #@# 2回目の暗号化	A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
 #@# //}
-
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
-#@# //}
-#@# //image[rot13_and_rot13][ROT13を2回実行][scale=1.0]{
-#@# //}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
-
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/rot13_and_rot13.png" alt="ROT13を2回実行" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ROT13を2回実行</figcaption>
-</figure>
+//embed[latex]{
+\floatplacement{figure}{t}
 //}
+//image[rot13_and_rot13][ROT13 Applied Twice: Full Cycle][scale=1.0]{
+//}
+//embed[latex]{
+\floatplacement{figure}{H}
+//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot13_and_rot13.png" alt="ROT13 Applied Twice: Full Cycle" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: ROT13 Applied Twice: Full Cycle</figcaption>
+#@# </figure>
+#@# //}
 
-=== ROT13の用途
+=== Applications of ROT13
 
-ROT13は本格的な秘匿性を提供するものではなく、主に文字列を一時的に隠したり、読みにくくするために使用されます。
+ROT13 does not provide genuine confidentiality but is used to temporarily obscure text:
 
- * パズルの答えを一見してわからなくする。
- * 投稿時に他人を不快にさせる可能性がある内容を隠すため。
- * ジオキャッシング（geocaching）の場所に関するヒントを隠す。
- ** ジオキャッシングとは、GPSまたはGNSSを利用した地球規模の宝探しゲームのこと。
+ * To hide puzzle answers from immediate view
+ * To obscure potentially offensive content
+ * To conceal geocaching location hints
+ ** Geocaching is a GPS-based treasure-hunting game
  ** @<href>{https://www.geocaching.com/play}
 
-== シフト暗号は換字式暗号の一種
+== Shift Ciphers Are a Type of Substitution Cipher
 
-シフト暗号の鍵は、シフトする文字数を示します。
-この数に基づき、平文と暗号文の対応表が定義されます。
-この表は、全アルファベットがどのように変換されるかを示し、実質的に置換表そのものです。
+The key in a shift cipher specifies the shift distance. This creates a one-to-one character mapping—effectively a substitution table. Since shift ciphers work by substituting each letter with another, they are a special case of substitution ciphers.
 
-したがって、シフト暗号は換字式暗号の一種になります。
+=== Shift Cipher Keys and Their Representations
 
-=== シフト暗号の鍵あれこれ
+Earlier, we established that shift cipher key = shift amount = substitution table@<fn>{tougou}.
 
-以前「シフト暗号の鍵＝シフト数＝置換表」という関係性を説明しました@<fn>{tougou}。
+//footnote[tougou][The equals sign '=' indicates conceptual equivalence, not numerical equality.]
 
-//footnote[tougou][ここでの等号「＝」は数値的な一致ではなく、本質的に同じであることを示しています。]
+Shift values range from 0 to 25. Why exactly 26 values? Because the alphabet has 26 letters:
 
-実際、シフトする数は0から25までの26種類です。
-これは、26文字をシフトすると元の位置に戻り、27文字をシフトすると1文字シフトしたのと同じ効果があるためです。
+ * Shifting by 26 returns to the original position
+ * Shifting by 27 equals shifting by 1
 
-これにより、26文字のアルファベットを26種類のシフト数に対応させられます（@<table>{shift_keychar}）@<fn>{shift_keychar_mapping}。
-鍵を1文字で表現するため、これを鍵文字と呼びます。
+We can represent each shift value with a letter, creating a @<kw>{key character} system (@<table>{shift_keychar})@<fn>{shift_keychar_mapping}.
 
-//footnote[shift_keychar_mapping][たとえば、シフト数1を'A'、2を'B'、…、26を'Z'とする方法も考えられます。ただし、シフト0の場合に平文と暗号文を同じにするためには、シフト0を'A'に割り当てるほうが自然といえます。]
+//footnote[shift_keychar_mapping][Alternative mappings exist (e.g., 'A'=1, 'B'=2, ..., 'Z'=26), but 'A'=0 ensures no change when shift is zero.]
 
-//table[shift_keychar][シフト数と鍵文字の対応]{
-シフト数	鍵文字
+//table[shift_keychar][Shift Values and Key Characters]{
+Shift Value		Key Character
 -------------------------------------------------------------
-0	'A'
-1	'B'
-2	'C'
-3	'D'
-…	…
-25	'Z'
+0							'A'
+1							'B'
+2							'C'
+3							'D'
+…							…
+25						'Z'
 //}
 
-たとえば、ROT3は鍵文字'D'を用いるシフト暗号でした。
-ROT3の置換表を見ると、暗号文の行が左端から'D'で始まっており、これは鍵文字'D'と一致します。
+For example, ROT3 uses key character 'D'. 
+In its substitution table, the ciphertext row begins with 'D'—the key character determines the table structure.
 
-他のROTnについても同様の議論が可能です。
-鍵文字がわかれば、暗号文の先頭文字を容易に決定でき、置換表をすぐに作成できます。
+This principle applies to all shift ciphers: knowing the key character instantly reveals the substitution pattern.
 
-これらの点をまとめると、次の関係が明らかになります。
+Therefore:
 
 //centering{
-シーザー暗号の鍵＝ずらす文字数＝シフト数＝置換表＝鍵文字
+Caesar cipher key = shift value = key character = substitution table
 //}
 
-== 英文をシフト暗号で暗号化する
+== Encrypting English Sentences with a Shift Cipher
 
-英単語をシフト暗号で暗号化する場合、とくに問題は生じません。
+Encrypting individual English words using a shift cipher works without problems.
 
-しかし、英文を暗号化すると問題が生じます。
-英文には、非アルファベット文字（アルファベット以外の文字）が含まれているからです。
-ここでいう非アルファベット文字とは、空白、カンマ、ピリオド、感嘆符、疑問符などのことです。
+However, encrypting complete English sentences introduces complications. This is because English sentences contain non-alphabetic characters (characters other than letters of the alphabet).
 
-シーザー暗号はアルファベットのみを扱うため、暗号化の際に平文から非アルファベット文字を除外します。
-その結果、出力される暗号文には除外した文字が含まれません。
-復号後は元の文へ正確に作業が必要になります。
+These non-alphabetic characters include spaces, commas, periods, exclamation marks, question marks, and other punctuation. Since the Caesar cipher handles only alphabetic characters, it excludes all non-alphabetic characters from the plaintext during encryption. As a result, the output ciphertext consists solely of letters, without the excluded characters.
 
-== 手を動かしてシーザー暗号を体験する
+To properly restore the original sentence after decryption, you must carefully reinsert the missing spaces and punctuation.
 
-それでは、実際にシーザー暗号を使って暗号化のプロセスを体験してみましょう。
-今回は、鍵文字'D'を用いたシフト暗号と同等です。
+== Hands-on Practice with Caesar Cipher
 
-==={enc_by_caesar} 暗号化してみよう
+Let's experience the encryption process using the Caesar cipher.
+We'll use key letter 'D', which corresponds to a shift of 3.
 
-例として、エドガー・アラン・ポーの詩「眠れるひと」（"The Sleeper"）の冒頭から次に示す文@<fn>{sleeper}を引用します@<fn>{poestories}。
+==={enc_by_caesar} Encryption Example
 
-//footnote[sleeper][詩なのでさまざまな訳が考えられます。その一例として「6月のとある真夜中に、怪しげな月の下、私は立っていた」と訳せます。]
-//footnote[poestories][ポーの作品については、PoeStories.com（@<href>{https://poestories.com/read/ovalportrait}）で公開されています。"The Sleeper"は@<href>{https://poestories.com/read/sleeper}で参照できます。]
+As an example, we'll use the following line from the beginning of Edgar Allan Poe's poem @<i>{"The Sleeper"}@<fn>{sleeper}@<fn>{poestories}.
+
+//footnote[sleeper][As poetry allows various interpretations, one translation might be: "On a certain midnight in June, under a mysterious moon, I stood."]
+//footnote[poestories][Poe's works are available at PoeStories.com (@<href>{https://poestories.com/read/ovalportrait}). "The Sleeper" can be found at @<href>{https://poestories.com/read/sleeper}.]
 
 //quote{
 At midnight, in the month of June, I stand beneath the mystic moon.
 //}
 
-ここでは議論を簡単にするため、次の条件を設定します。
+To simplify our discussion, we'll follow these conditions:
 
- * 空白や句読点を除外せず、アルファベット以外の文字もそのままにする。
- * 暗号文はすべて大文字で表記する。
+ * Keep all spaces and punctuation; do @<b>{not} remove non-alphabetic characters
+ * Write all ciphertext in @<b>{uppercase}
 
-それでは、暗号化の手順を説明します。
-
-//noindent
-1：まず、平文をすべて小文字に変換します。
-変換の結果、"at midnight, in the month of june, i stand beneath the mystic moon."となります。
+Now, let's walk through the encryption steps:
 
 //noindent
-2：次に、鍵文字'D'の置換表を用いて暗号化します。
-この際、置換表の1行目にある平文文字を基に変換を進めます。
-最終的に、"DW PLGQLJKW, LQ WKH PRQWK RI MXQH, L VWDQG EHQHDWK WKH PBVWLF PRRQ."という暗号文メッセージが得られます。
+@<b>{Step 1}: Convert all plaintext to lowercase.
 
-=== 復号してみよう
-
-次に、復号の手順を説明します。
+This gives us (before capitalization):
 
 //noindent
-1：鍵文字'D'に基づく置換表を用いて、復号します。
-復号なので、表の2行目にある暗号文文字を基に変換を進めます。
-結果として、"at midnight, in the month of june, i stand beneath the mystic moon."という平文メッセージが得られます。
+"at midnight, in the month of june, i stand beneath the mystic moon."
 
 //noindent
-2：このメッセージが意味を成していることを確認した上で、適宜、正しい英文に修正します。
-具体的には、メッセージがすべて小文字であるため、文頭や'I'、および国・月などの固有名詞の頭文字を大文字に修正します。
-最終的には"At midnight, in the month of June, I stand beneath the mystic moon."となりました。
-これは元の平文と同じです。
+@<b>{Step 2}: Apply the substitution table for key letter 'D'. We substitute each letter according to the plaintext row of the table.
 
-==[column] シフト暗号と数学
-
-シフト暗号の動作を数学的に表現する方法を説明します。
-まず、次のように各アルファベット文字に0から25までの数字を割り当てます。
+The resulting ciphertext is:
 
 //noindent
+"DW PLGQLJKW, LQ WKH PRQWK RI MXQH, L VWDQG EHQHDWK WKH PBVWLF PRRQ."
+
+=== Decryption Example
+
+Now let's go through the decryption process:
+
+//noindent
+@<b>{Step 1}: Decrypt using the substitution table for key letter 'D'. For decryption, we use the ciphertext row (second row) of the table. This gives us:
+
+//noindent
+"at midnight, in the month of june, i stand beneath the mystic moon."
+
+//noindent
+@<b>{Step 2}: Verify the message makes sense and apply proper capitalization. In the final step, we apply proper capitalization as follows:
+
+ * The first letter of the sentence
+ * The pronoun "I"
+ * Proper nouns (months, countries, names)
+
+The final result is:
+
+//noindent
+"At midnight, in the month of June, I stand beneath the mystic moon."
+
+This result perfectly matches the original plaintext.
+
+==[column] Shift Ciphers and Mathematics
+
+This section explains how to express shift cipher operations mathematically. To begin with, we assign each letter a numerical value from 0 to 25:
+
+//texequation{
 A=0, B=1, ..., Z=25
+//}
 
-平文文字をT、鍵文字をK、暗号文文字をCとします。
-すると、次の関係式でシフト暗号の処理を表現できます。
+Let @<m>{T} be the plaintext character, @<m>{K} the key character, and @<m>{C} the ciphertext character.
+The shift cipher operation is then:
 
-//noindent
-T + K ≡ C (mod 26)
+//texequation{
+T + K \equiv C \pmod{26}
+//}
 
-暗号化の場合は、Cが未知、TとKは既知です。
-3つの変数のうち1つだけが未知なので、合同方程式を解くことでCを求められます。
+For encryption, @<m>{C} is unknown while @<m>{T} and @<m>{K} are known. Since only one variable is unknown, we can solve for @<m>{C}.
 
-また、復号の場合は、Tが未知、CとKが既知です。
-同様にして、Tが求められます。
+For decryption, @<m>{T} is unknown while @<m>{C} and @<m>{K} are known. We solve for @<m>{T} similarly.
 
-ところで、換字式暗号（シフト暗号を含む）はアルファベットを置き換える操作なので、置換表をアルファベットの集合からアルファベットの集合への写像でとらえられます。
+Since substitution ciphers (including shift ciphers) replace letters systematically, we can view the substitution table as a bijective mapping from the alphabet set to itself.
 
-以上のように古典暗号の仕組みを数学的にとらえると見通しがよくなり、本質が浮かび上がってきます。
-場合によっては、プログラムの実装に応用できます。
-
-==[/column]
+This mathematical perspective clarifies the fundamental mechanisms of classical ciphers 
+and often directly informs their implementation in code.
+#@# ==[/column]
+#@# Columns are used when complex layouts are needed during EPUB or PDF builds, but they are not necessary for regular paragraphs or block quotes.
