@@ -1,73 +1,79 @@
-= コンピューターの力を借りてシフト暗号を試す
+= Using Computers to Explore Shift Ciphers
 
-シフト暗号の仕組みについて解説し、手動での暗号化と復号を試しました。
-シーザー暗号やシフト暗号の解読に進む前に、もう少しシフト暗号に慣れておきましょう。
+We've explained how shift ciphers work and practiced manual encryption and decryption. Before advancing to breaking Caesar and shift ciphers, let's gain more hands-on experience.
 
-本章ではコンピューターの力を借りてシフト暗号を試します。
-コマンド、プログラム、ツールを用いてシフト暗号を堪能しましょう。
+In this chapter, we'll use computers to explore shift ciphers through commands, programs, and tools.
 
-== trコマンドでシフト暗号を試す
+== Using the @<code>{tr} Command for Shift Ciphers
 
-echoコマンドとtrコマンドをパイプでつなぐことにより、シフト暗号を簡単に試せます。
+You can implement shift ciphers easily by piping @<code>{echo} and @<code>{tr} commands.
 
-echoコマンドは、標準出力に文字列を書き出すコマンドです。
-そして、trコマンドは、標準入力から受け取った文字を置換また削除し、結果を標準出力に渡します。
+The @<code>{echo} command outputs text to standard output, while @<code>{tr} (translate) transforms characters from standard input and sends the result to standard output. By combining these commands with a pipe (|), we can create functional shift ciphers in a single line.
 
-=== シーザー暗号を試す
+=== Testing Caesar Cipher with @<code>{tr} Command
 
-平文は小文字、暗号文は大文字で表記することを考慮して、"hello world"という平文を暗号化するには、次のコマンドを実行します。
+Using lowercase for plaintext and uppercase for ciphertext, we can encrypt "hello world" as follows:
 
 //cmd{
 ipusiron@parrot:~$ echo "hello world" | tr a-z D-ZA-C
-KHOOR ZRUOG　←暗号化の結果。
+KHOOR ZRUOG  # Encrypted result
 //}
 
-暗号文を復号するには、次のコマンドを実行します。
+To decrypt the ciphertext:
 
 //cmd{
 ipusiron@parrot:~$ echo "KHOOR ZRUOG" | tr D-ZA-C a-z
-hello world　←復号の結果。
+hello world  # Decrypted result
 //}
 
-これにより、元の平文"hello world"と正確に一致することが確認できます。
+The output confirms perfect recovery of the original plaintext "hello world".
 
-=== ROT13を試す
+In classical cryptography, plaintext is conventionally written in lowercase and ciphertext in uppercase. 
+The above @<code>{tr} command follows this convention.
 
-同じコマンドを用いて、ROT13も同様に実現できます。
-"i love you."という平文を用いて、二重暗号化で元に戻ることを検証してみます。
+To handle both cases, use:
+
+//cmd{
+ipusiron@parrot:~$ echo "hello world" | tr 'a-zA-Z' 'd-za-cD-ZA-C'
+KHOOR ZRUOG  # Encrypted result
+ipusiron@parrot:~$ echo "KHOOR ZRUOG" | tr 'd-za-cD-ZA-C' 'a-zA-Z'
+hello world  # Decrypted result
+//}
+
+=== Testing ROT13
+
+We can implement ROT13 using the same command structure. Let's verify ROT13's self-inverse property using "i love you." as our plaintext.
 
 //noindent
-1：まず平文を暗号化し、その結果を復号してみます。
+@<b>{Step 1}: Standard encryption and decryption.
 
 //cmd{
 ipusiron@parrot:~$ echo "i love you." | tr a-z N-ZA-M
-V YBIR LBH.　←暗号化の結果。
+V YBIR LBH.  # Encrypted text
 ipusiron@parrot:~$ echo "V YBIR LBH." | tr N-ZA-M a-z
-i love you.　←復号の結果。
+i love you.  # Decrypted text
 //}
 
 //noindent
-2：次は、同じ平文をROT13で2回暗号化し、結果を確認します。
+@<b>{Step 2}: Apply the same ROT13 command twice. To clearly show we're using identical commands, we'll use the case-inclusive @<code>{tr} pattern.
+
+However, to make it clear that the same command is being used, we will use a version of the @<code>{tr} command that supports both lowercase and uppercase letters in its arguments.
 
 //cmd{
-ipusiron@parrot:~$ echo "i love you." | tr a-z N-ZA-M
-V YBIR LBH.　←1回目の暗号化の結果。
-ipusiron@parrot:~$ echo "V YBIR LBH." | tr A-Z n-za-m
-i love you.　←2回目の暗号化の結果。
+ipusiron@parrot:~$ echo "i love you." | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+V YBIR LBH.  # First ROT13
+ipusiron@parrot:~$ echo "V YBIR LBH." | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+i love you.  # Second ROT13 returns to original
 //}
 
-結果として、元の平文"i love you."に戻ることが確認できました。
+Note: In Step 2, we apply the same transformation twice. Since ROT13 shifts by exactly half the alphabet (13 positions), it acts as its own inverse.
 
-以上により、ROT13を2回適用すると元の平文に戻ることが証明されました。
+== Testing ROT13 with the @<code>{nkf} Command
 
-== nkfコマンドでROT13を試す
-
-nkfコマンドは、ネットワーク用漢字コードの変換を行うフィルターコマンドです。
-UNIXシステムで文字コードや改行コードの変換で広く使用されます。
+The @<code>{nkf} command is a filter command used for converting Japanese character encodings for network use. It is widely used on UNIX systems to convert character encodings and newline formats.
 
 //noindent
-1：平文が書かれた"plain.txt"ファイルを用意します。
-ここでは、平文は小文字で構成されているものとします。
+@<b>{Step 1}: Prepare a file named @<code>{plain.txt} containing the plaintext. Here, we assume the plaintext consists of lowercase letters.
 
 //cmd{
 ipusiron@parrot:~$ cat plain.txt
@@ -75,32 +81,30 @@ i love you.
 //}
 
 //noindent
-2：nkfコマンドに-rオプションをつけると、ROT13で暗号化できます。
+@<b>{Step 2}: By adding the @<code>{-r} option to the @<code>{nkf} command, you can perform ROT13 encryption.
 
 //cmd{
 ipusiron@parrot:~$ nkf -r plain.txt
 v ybir lbh.
 //}
 
-出力結果は、trコマンドを用いたROT13での暗号化した結果と同じです。
-ただし、小文字のままなので、trコマンドに渡して小文字を大文字に変換してみます。
+The output is the same as the result of ROT13 encryption using the @<code>{tr} command. However, since the text is still in lowercase, let's pass it to the @<code>{tr} command to convert it to uppercase.
 
 //cmd{
 ipusiron@parrot:~$ nkf -r plain.txt | tr '[:lower:]' '[:upper:]'
 V YBIR LBH.
 //}
 
-これで暗号文が得られました。
+Now we have obtained the ciphertext.
 
-次のステップで復号を試すので、暗号文メッセージを"cipher.txt"ファイルに保存しておきます。
+For the next step where we'll try decryption, let's save the ciphertext message to a file called @<code>{cipher.txt}.
 
 //cmd{
 ipusiron@parrot:~$ nkf -r plain.txt | tr '[:lower:]' '[:upper:]' > cipher.txt
 //}
 
 //noindent
-3：ROT13は二重暗号化で元に戻るので、復号するには再び暗号化するだけです。
-再びnkfコマンドの-rオプションを使います。
+@<b>{Step 3}: Since ROT13 returns to the original text when applied twice, decryption is simply another encryption. We'll use the @<code>{-r} option of the @<code>{nkf} command once more.
 
 //cmd{
 ipusiron@parrot:~$ nkf -r cipher.txt
@@ -109,102 +113,112 @@ ipusiron@parrot:~$ nkf -r cipher.txt | tr '[:upper:]' '[:lower:]'
 i love you.
 //}
 
-確かに、元の平文メッセージに戻ったことを確認できました。
+We have successfully confirmed that the original plaintext message has been restored.
 
-== ワンライナーコマンドでROT13を試す
+== Testing ROT13 with One-Liner Commands
 
-ワンライナーコマンドは、1行で実行できるコマンドのことを指します。
+One-liner commands execute complete operations in a single line.
+Python's @<code>{codecs} module includes built-in ROT13 support through its encoding functions.
 
-Pythonのcodecsは、さまざまなエンコードやデコードを行う関数を定義した標準ライブラリーモジュールです。
-codecs.encode()関数を使用すると、指定の方式でエンコードできます。
-対して、codecs.decode()関数を使用すると、指定の方式でデコードできます。
-
-ここでは、これらの関数を用いてROT13を扱う方法を紹介します。
-平文は"i love you."とします。
+We'll use @<code>{codecs.encode()} for encryption and @<code>{codecs.decode()} for decryption, with "i love you." as our test string.
 
 //noindent
-1：ROT13で暗号化するには、次のワンライナーコマンドを入力します。
-
+@<b>{Step 1}: Encrypt using ROT13:
 //cmd{
 ipusiron@parrot:~$ python3 -c "import codecs; print(codecs.encode(\"i love you.\", \"rot-13\"))"
-v ybir lbh.　←暗号化の結果。
+v ybir lbh.  # Encrypted text
 //}
 
 //noindent
-2：ROT13で復号するには、次のワンライナーコマンドを入力します。
-あえて二重暗号化ではなく、デコードする方法を試しています。
-
+@<b>{Step 2}: Decrypt using ROT13:
+Here we use @<code>{decode()} to show that Python treats ROT13 as a reversible encoding.
 //cmd{
 ipusiron@parrot:~$ python3 -c "import codecs; print(codecs.decode(\"v ybir lbh.\", \"rot-13\"))"
-i love you.　←復号の結果。
+i love you.  # Decrypted text
 //}
 
-== ブラウザーでシーザー暗号を試す
+== Testing Caesar Cipher in Your Browser
 
-シーザー暗号円盤ツール（Caesar Cipher Wheel Tool）という、インタラクティブなシーザー暗号（厳密にはシフト暗号）の暗号化・復号ツールを用意しました。
+I've created an interactive Caesar Cipher Wheel Tool for experimenting with shift ciphers:
 
- * GitHubページ
+ * GitHub repository
  ** @<href>{https://github.com/ipusiron/caesar-cipher-wheel}
- * デモページ
+ * Live demo
  ** @<href>{https://ipusiron.github.io/caesar-cipher-wheel/}
 
-Shiftを1に設定するとROT1、3に設定するとROT3（シーザー暗号）になります。
+Set Shift to 1 for ROT1, or 3 for ROT3 (traditional Caesar cipher).
+@<img>{caesar_wheel_tool} demonstrates the tool's interface.
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/caesar_wheel_tool.png" alt="Shiftを3にして暗号化した" style="max-width: 90%; height: auto;" />
-  <figcaption>図：Shiftを3にして暗号化した</figcaption>
-</figure>
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
+//image[caesar_wheel_tool][Caesar cipher with shift of 3][scale=1.0]{
 //}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
-=={caesar_python} Pythonでシーザー暗号を試す
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/caesar_wheel_tool.png" alt="Caesar cipher with shift of 3" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Caesar cipher with shift of 3</figcaption>
+#@# </figure>
+#@# //}
 
-シーザー暗号やシフト暗号は基本的な暗号化方式であるため、関連プログラムはインターネット上で容易に見つかります。
+=={caesar_python} Testing Caesar Cipher with Python
 
-『Pythonでいかにして暗号を破るか』（ソシム刊）では、さまざまな古典暗号と、簡単な現代暗号をPythonで実装する方法を解説しています。
-扱っている古典暗号の中には、シフト暗号が含まれています。
-具体的には、第5章で暗号化・復号のプログラム、第6章で総当たり攻撃用のプログラムを紹介しています。
-興味のある方は、読んでみてください。
+Caesar and shift ciphers are fundamental encryption methods with implementations readily available online.
 
- * 『Pythonでいかにして暗号を破るか』日本語解説ページ
- ** @<href>{https://akademeia.info/?page_id=94}
- ** @<href>{https://www.socym.co.jp/book/1216}
+This section uses code adapted from @<i>{Cracking Codes with Python} by Al Sweigart (Japanese translation: 『Pythonでいかにして暗号を破るか』, Socym).
 
-ここでは、『Pythonでいかにして暗号を破るか』に掲載されたプログラムを若干修正した@<list>{caesarCipher}を用います。
-このプログラムは非アルファベット文字にも対応しています。
-使用する際、messageには変換対象の文字列、keyにはシフト数を指定します。
-そして、暗号化する際にはmodeを"encrypt"、復号する際には"decrypt"を設定します。
+The book covers shift ciphers across two chapters:
+
+ * Chapter 5: Encryption and decryption implementation
+ * Chapter 6: Brute-force attack techniques
+
+ * Resources:
+ ** Original book: @<href>{https://nostarch.com/crackingcodes}
+ ** Japanese guide: @<href>{https://akademeia.info/?page_id=94}
+ ** Japanese publisher: @<href>{https://www.socym.co.jp/book/1216}
+
+Our implementation is a modified version of the book's code (BSD licensed) that gracefully handles non-alphabetic characters.
+
+ * Usage:
+ ** @<code>{message}: string to encrypt/decrypt
+ ** @<code>{key}: shift value (0-25)
+ ** @<code>{mode}: @<code>{"encrypt"} or @<code>{"decrypt"}
 
 //listnum[caesarCipher][caesarCipher.py][python]{
 # https://www.nostarch.com/crackingcodes (BSD Licensed)
-# 暗号化・復号する文字列.
+# The string to be encrypted/decrypted:
 message = 'This is my secret message.'
 
-# 暗号化・復号の鍵.
+# The encryption/decryption key:
 key = 13
 
-# プログラムが暗号化するか復号するか.
-mode = 'encrypt' # 'encrypt'あるいは'decrypt'のどちらかを指定する.
+# Whether the program encrypts or decrypts:
+mode = 'encrypt' # Set to either 'encrypt' or 'decrypt'.
 
-# 暗号化できるシンボルの全候補.
+# Every possible symbol that can be encrypted:
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' \
-			'abcdefghijklmnopqrstuvwxyz' \ '
+			'abcdefghijklmnopqrstuvwxyz' \
 			'1234567890 !?.'
 
 def caesar(message, key):
+	# Stores the encrypted/decrypted form of the message:
 	translated = ""
 	for symbol in message:
-		# 注意：文字列SYMBOLSに含まれるシンボルのみを暗号化・復号する.
+    	# Note: Only symbols in the `SYMBOLS` string can be encrypted/decrypted.
 		if symbol in SYMBOLS:
 			symbolIndex = SYMBOLS.find(symbol)
 
-			# 暗号化・復号を実行する.
+			# Perform encryption/decryption:
 			if mode == 'encrypt':
 				translatedIndex = symbolIndex + key
 			elif mode == 'decrypt':
 				translatedIndex = symbolIndex - key
 
-			# 必要に応じてラップアラウンドを処理する.
+			# Handle wrap-around, if needed:
 			if translatedIndex >= len(SYMBOLS):
 				translatedIndex = translatedIndex - len(SYMBOLS)
 			elif translatedIndex < 0:
@@ -212,284 +226,296 @@ def caesar(message, key):
 
 			translated = translated + SYMBOLS[translatedIndex]
 		else:
-			# 暗号化・復号せずにシンボルを追加する.
+			# Append the symbol without encrypting/decrypting:
 			translated = translated + symbol
 	return translated
 
 def main():
+	# Output the translated string:
 	print(caesar(message, key))
 
 if __name__ == '__main__':
 	main()
 //}
 
-実際にプログラムを実行してみてください。
-ローカルのPython環境下で実行してもよいですし、オンライン実行環境でもよいでしょう。
+Try running the program in your local Python environment or online:
 
- * Python Online
- ** paiza.IOのPython用オンライン実行環境。
- ** ユーザー登録不要。
- ** @<href>{https://paiza.io/ja/languages/python3}
- * Google Colaboratory
- ** Googleアカウント必須。
- ** @<href>{https://colab.research.google.com/notebooks/welcome.ipynb?hl=ja}
- * CodeChef
- ** ユーザー登録不要。
+ * paiza.IO (no registration)
+ ** @<href>{https://paiza.io/en/languages/python3}
+ * Google Colab (Google account required)
+ ** @<href>{https://colab.research.google.com/}
+ * CodeChef (no registration)
  ** @<href>{https://www.codechef.com/ide}
- * Ideone.com
- ** ユーザー登録不要。
- ** @<href>{https://ideone.com/}
 
-@<list>{caesarCipher}をそのまま実行すると、暗号文"guv6Jv6Jz!J6rp5r7Jzr66ntrM"が出力されます。
-この暗号文は、空白やピリオドも含めて暗号化されており、大文字と小文字が区別されていることがわかります。
+When you execute @<list>{caesarCipher} as is, it outputs: @<code>{"guv6Jv6Jz!J6rp5r7Jzr66ntrM"}.
 
-次に、messageに先ほど得られた暗号文"guv6Jv6Jz!J6rp5r7Jzr66ntrM"を指定し、modeを"decrypt"に設定します。
-その後、実行すると、復号されて"This is my secret message."が出力されます。
-これは元の平文そのものです。
+Notice that spaces, punctuation, and case are all preserved during encryption.
 
-=== 文字体系に合わせてROT13を拡張する
+To decrypt, set @<code>{message} to the ciphertext and @<code>{mode} to @<code>{"decrypt"}.
+The output will be the original message: @<code>{"This is my secret message."}.
 
-@<list>{caesarCipher}のプログラムでは、鍵が13でした。
-ROT13を用いて、2回暗号化すると元に戻るかを試してみてください。
+=== Extending ROT13 to Match the Character Set
+
+In the @<list>{caesarCipher} program, the key was set to 13. Try verifying whether encrypting twice returns the original text, as with ROT13.
 
 //noindent
 "This is my secret message."@<br>{}
-⇒"guv6Jv6Jz!J6rp5r7Jzr66ntrM"（1回目の暗号化の結果）@<br>{}
-⇒"t89EW9EW?KWE53D5FW?5EE175Z"（2回目の暗号化の結果）
+-> "guv6Jv6Jz!J6rp5r7Jzr66ntrM" (first encryption)@<br>{}
+-> "t89EW9EW?KWE53D5FW?5EE175Z" (second encryption)
 
-この試みでは、2回暗号化しても元のテキストに戻りませんでした。
-その理由は、プログラムが認識する文字体系の文字数を考えた鍵を使わなかったためです
-通常のROT13が扱う文字体系は26文字のアルファベットだったので、半分の13を鍵とすることで、2回の暗号化後に元のテキストに戻りました。
-しかし、今回の文字体系は合計66文字（＝大文字26＋小文字26＋数字10＋記号4）の文字を含んでいます。
-そのため、鍵を33（文字数の半分）と設定しなければ、2回の暗号化で元に戻りません。
-このことを実際に検証してみてください。
+In this experiment, applying encryption twice did @<b>{not} return the original text.
+
+The reason is that the key doesn't match the character set size. Traditional ROT13 uses a 26-letter alphabet, with a key of 13 (half of 26) ensuring that double encryption restores the original message.
+
+However, @<list>{caesarCipher} recognizes 66 characters:
+
+ * 26 uppercase letters
+ * 26 lowercase letters  
+ * 10 digits
+ * 4 symbols
+
+Therefore, we need a key of 33 (half of 66) for the self-inverse property.
+
+Try this yourself:
 
 //noindent
 "This is my secret message."@<br>{}
-⇒"1ABLdBLdFRdL!0K!MdF!LL8.!g"（1回目の暗号化の結果）@<br>{}
-⇒"This is my secret message."（2回目の暗号化の結果）
+-> "1ABLdBLdFRdL!0K!MdF!LL8.!g" (first encryption)@<br>{}
+-> "This is my secret message." (second encryption)
 
-== ROT13エンコーダーでROT13を試す
+== Testing the ROT13 Encoder
 
-ROT13エンコーダー（ROT13 Encoder）という、インタラクティブなROT13のWebツールを用意しました。
+I've created an interactive ROT13 Encoder web tool:
 
- * GitHubページ
+ * GitHub repository
  ** @<href>{https://github.com/ipusiron/rot13-encoder}
- * デモページ
+ * Live demo
  ** @<href>{https://ipusiron.github.io/rot13-encoder/}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/rot13_encorder.png" alt="ROT13エンコーダーでの実験" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ROT13エンコーダーでの実験</figcaption>
-</figure>
-//}
-
-== CrypTool 2を用いてシフト暗号を扱う
-
-CrypTool 2はGUIで操作できる総合ツールであり、あらゆる暗号に対応しています。
-直感的に操作できます。
-CrypTool 2を用いることで、暗号化方式の実装ではなく、暗号化・復号・解読そのものに力を注げます。
-
-CrypTool Portal（@<href>{https://www.cryptool.org/en/}）では、次の4種類の暗号学習プラットフォームツールが提供しています。
-
- * CrypTool-Online（CTO）
- ** Webブラウザーで動作する。
- ** 暗号支援ツールが個別に用意されている。
- ** 簡易的に各種暗号を扱いたいときに便利。
- * CrypTool 1（CT1）
- ** CrypToolのファーストバージョン。1998年から開発が始まった。
- ** Windows専用。
- ** 元々は企業向けの情報セキュリティ教育アプリケションとして設計され、その後オープンソース・プロジェクトに発展した。
- * CrypTool 2（CT2）
- ** Windows専用のGUIバージョン。
- * JCrypTool（JCT）
- ** Javaで動作し、Windows、macOS、Linuxに対応する。
- ** ユーザーインタフェースはCrypTool 2とまったく異なる。
- ** 2020年11月に安定版1.0.0をリリースした。
- ** 100以上の異なるプラグインが用意されている。
-
-本書ではWindows版のCrypTool 2.1を用いて解説します。
+@<img>{rot13_encorder} shows the algorithm execution sequence.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[CrypTool][CrypTool 2.1の起動直後の画面][scale=1.0]{
-#@# //}
+//image[rot13_encorder][Testing the ROT13 Encoder][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/CrypTool.png" alt="CrypTool 2.1の起動直後の画面" style="max-width: 90%; height: auto;" />
-  <figcaption>図：CrypTool 2.1の起動直後の画面</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot13_encorder.png" alt="Testing the ROT13 Encoder" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Testing the ROT13 Encoder</figcaption>
+#@# </figure>
+#@# //}
 
-=== ウィザード機能でシフト暗号を試す
+== Working with Shift Ciphers Using CrypTool 2
 
-CrypTool 2では、シフト暗号を手軽に試せるウィザードが備わっています。
-ここでは、そのウィザードを開始し、使用する方法を詳しく解説します。
+CrypTool 2 is a comprehensive GUI-based tool that supports various cryptographic algorithms.
+Its intuitive interface makes cryptographic operations accessible without programming knowledge.
+With CrypTool 2, you can focus on encryption, decryption, and cryptanalysis rather than implementation details.
 
-CrypTool 2で「シーザー暗号」と言及する際には、「シフト暗号」を指していることを覚えておいてください。
+The CrypTool Portal (@<href>{https://www.cryptool.org/en/}) offers four cryptographic learning platforms:
 
-//noindent
-1：CrypTool 2のホーム画面で、[New]アイコンを押します。
-または、「New」アイコンの右側にある下向き矢印を押して、「Wizard」を選択しても構いません。
+ * CrypTool-Online (CTO)
+ ** Browser-based platform
+ ** Individual tools for various ciphers
+ ** Ideal for quick experiments
+ * CrypTool 1 (CT1)
+ ** Original version from 1998
+ ** Windows only
+ ** Started as corporate security training software, now open source
+ * CrypTool 2 (CT2)
+ ** Modern Windows GUI version
+ ** Visual workflow designer for cryptographic operations
+ ** Extensive plugin architecture
+ * JCrypTool (JCT)
+ ** Java-based, cross-platform (Windows, macOS, Linux)
+ ** Different UI approach from CrypTool 2
+ ** Version 1.0.0 released November 2020
+ ** Over 100 plugins available
+
+For this book's demonstrations, we'll use CrypTool 2.1 on Windows.
+
+@<img>{CrypTool} shows the CrypTool 2.1 interface upon startup.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[crypt_enc0][Wizardの起動の仕方][scale=1.0]{
-#@# //}
+//image[CrypTool][CrypTool 2.1 startup screen][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/crypt_enc0.png" alt="Wizardの起動の仕方" style="max-width: 90%; height: auto;" />
-  <figcaption>図：Wizardの起動の仕方</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/CrypTool.png" alt="CCrypTool 2.1 startup screen" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: CrypTool 2.1 startup screen</figcaption>
+#@# </figure>
+#@# //}
+
+=== Using the Shift Cipher Wizard
+
+CrypTool 2 includes a wizard for experimenting with shift ciphers. This section explains how to launch and use it.
+
+Note: CrypTool 2 uses "Caesar Cipher" and "Shift Cipher" interchangeably.
 
 //noindent
-2：Wizardタグが開きます。
-「TASK SELECTION」画面で「Enryption/Decryption」を選び、[Next]ボタンを押します。
+@<b>{Step 1}: Click the [New] icon on the CrypTool 2 home screen, or click the dropdown arrow next to it and select "Wizard".
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[crypt_enc1][「TASK SELECTION」画面][scale=1.0]{
-#@# //}
+//image[crypt_enc0][Launching the wizard from the home screen][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/crypt_enc1.png" alt="「TASK SELECTION」画面" style="max-width: 90%; height: auto;" />
-  <figcaption>図：「TASK SELECTION」画面</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/crypt_enc0.png" alt="Launching the wizard from the home screen" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Launching the wizard from the home screen</figcaption>
+#@# </figure>
+#@# //}
 
 //noindent
-3：「AGE SELECTION」画面で「Classic Encryption/Decryption」を選び、[Next]ボタンを押します。
-
-//noindent
-4：「ALGORITHM SELECTION」画面で「Caesar」を選び、[Next]ボタンを押します。
-
-//noindent
-5：「MESSAGE INPUT」画面が表示されます。
-暗号化したい場合は「Encrypt」、復号したい場合は「Decrypt」を選びます。
-今回は暗号化するので「Encrypt」を選びます。
-
-テキストボックスには暗号化・復号の対象であるメッセージを書き込みます。
-ここでは前章で扱った"at midnight, in the month of june, i stand beneath the mystic moon."を入力しました。
-
-右のKeyにシフト数を入力します。
-ここではデフォルトの「3」のままとします。
-
-すべての設定を終えたら、[Next]ボタンを押します。
+@<b>{Step 2}: The Wizard tab opens. In the "TASK SELECTION" screen, select "Encryption/Decryption" and click [Next].
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[crypt_enc2][「MESSAGE INPUT」画面][scale=1.0]{
-#@# //}
+//image[crypt_enc1]["TASK SELECTION" screen][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/crypt_enc2.png" alt="「MESSAGE INPUT」画面" style="max-width: 90%; height: auto;" />
-  <figcaption>図：「MESSAGE INPUT」画面</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/crypt_enc1.png" alt="&quot;TASK SELECTION&quot; screen" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: &quot;TASK SELECTION&quot; screen</figcaption>
+#@# </figure>
+#@# //}
 
 //noindent
-6：「CAESAR OUTPUT」画面にて、変換前と後のメッセージが表示されます。
-"dw plgqljkw, lq wkh prqwk ri mxqh, l vwdqg ehqhdwk wkh pbvwlf prrq."という暗号文が得られました。
+@<b>{Step 3}: In the "AGE SELECTION" screen, select "Classic Encryption/Decryption" and click [Next].
+
+//noindent
+@<b>{Step 4}: In the "ALGORITHM SELECTION" screen, select "Caesar" and click [Next].
+
+//noindent
+@<b>{Step 5}: The "MESSAGE INPUT" screen appears. Select "Encrypt" to encrypt or "Decrypt" to decrypt. Since we're encrypting, select "Encrypt".
+
+Enter your message in the text box. Here, we use the text from the previous chapter:
+
+//noindent
+"At midnight, in the month of June, I stand beneath the mystic moon."
+
+Enter the shift value in the Key field on the right. We'll keep the default value of 3.
+
+Once all settings are complete, click [Next].
+
+//image[crypt_enc2]["MESSAGE INPUT" screen][scale=1.0]{
+//}
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[crypt_enc3][「CAESAR OUTPUT」画面][scale=1.0]{
-#@# //}
+//image[crypt_enc2]["MESSAGE INPUT" screen][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/crypt_enc3.png" alt="「CAESAR OUTPUT」画面" style="max-width: 90%; height: auto;" />
-  <figcaption>図：「CAESAR OUTPUT」画面</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/crypt_enc2.png" alt="&quot;MESSAGE INPUT&quot; screen" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: &quot;MESSAGE INPUT&quot; screen</figcaption>
+#@# </figure>
+#@# //}
 
-続けて別のメッセージを暗号化したければ、[Back]ボタンで「MESSAGE INPUT」画面に戻れます。
-終了したい場合は[Abort]ボタンを押します。
+//noindent
+@<b>{Step 6}: The CAESAR OUTPUT screen displays the original message and its encrypted form. The resulting ciphertext is:
 
-最終的にウィザード画面が不要であれば、タブを閉じます。
-
-=== シフト暗号を実現するためのプロジェクト
-
-次に、ワークスペース上でシフト暗号で暗号化するためのプロジェクトを作成してみます。
-復号用のプロジェクトは、基本的に暗号化のものと同じであるため、ここでは省略します。
-詳細は@<hd>{chapter4|cryptool_caesar_by_frequency}に記述しています。
-
-作成するシフト暗号用のプロジェクトは、次のようになります。
+//noindent
+@<code>{"dw plgqljkw, lq wkh prqwk ri mxqh, l vwdqg ehqhdwk wkh pbvwlf prrq."}
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[cryptool_caesar1][シフト暗号の暗号化プロジェクト][scale=1.0]{
-#@# //}
+//image[crypt_enc3]["CAESAR OUTPUT" screen][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/cryptool_caesar1.png" alt="シフト暗号の暗号化プロジェクト" style="max-width: 90%; height: auto;" />
-  <figcaption>図：シフト暗号の暗号化プロジェクト</figcaption>
-</figure>
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/crypt_enc3.png" alt="&quot;CAESAR OUTPUT&quot; screen" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: &quot;CAESAR OUTPUT&quot; screen</figcaption>
+#@# </figure>
+#@# //}
+
+To encrypt another message, click [Back] to return to MESSAGE INPUT. To exit, click [Abort]. 
+
+When finished, close the wizard tab.
+
+=== Creating a Shift Cipher Project
+
+Let's create a workspace project for shift cipher encryption. Since the decryption project uses essentially the same structure, we'll focus on encryption here. For decryption details, see @<hd>{chapter4|cryptool_caesar_by_frequency}.
+
+@<img>{cryptool_caesar1} shows the completed shift cipher project looks.
+
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
+//image[cryptool_caesar1][Shift cipher encryption project][scale=1.0]{
 //}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
-プロジェクトで中心的な役割を果たすのは、中央に配置されるCaesarコンポーネントです。
-このコンポーネントには"Caesar"という名づけられていますが、シフト暗号の処理を担います。
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/cryptool_caesar1.png" alt="Shift cipher encryption project" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Shift cipher encryption project</figcaption>
+#@# </figure>
+#@# //}
 
-自分でプロジェクトを構築する際には、最初にワークスペース上にCaesarコンポーネントを配置します。
-左のコンポーネント一覧の"Classic Ciphers"にCaesarコンポーネントがありますので、これをワークスペースにドラッグします。
-あとは入出力に各種コンポーネントを接続して、プロジェクトを完成させます。
+The Caesar component, located in the center, plays the central role in the project. Although named "Caesar," it handles shift cipher processing.
 
-Caesarコンポーネントに接続できるコネクターは次のとおりです。
+When building your own project, first place the Caesar component on the workspace. Find the Caesar component under "Classic Ciphers" in the left component list and drag it to the workspace. Then connect various components to the inputs and outputs to complete the project.
 
- * 入力
- ** Text input：平文。
- ** External alphabet input：使用するアルファベットを含む文字列。ここが接続されていない場合は、内部アルファベットが使われる。
- ** Shift value：鍵となるシフト数。整数値。
- * 出力
- ** Text output：暗号文。
+The Caesar component accepts these connectors:
 
-接続すべきものはText Input、Text Output、Number Inputコンポーネントであり、これらはすべてコンポーネント一覧の「Tools」＞「Data input/output」にあります。
+ * Input
+ ** @<b>{Text input}: Plaintext
+ ** @<b>{External alphabet input}: String containing the alphabet to use. If unconnected, uses internal alphabet
+ ** @<b>{Shift value}: Shift number (key) as integer
+ * Output
+ ** @<b>{Text output}: Ciphertext
 
-また、Caesarコンポーネントの内部設定の項目は、次のとおりです。
+Connect the Text Input, Text Output, and Number Input components, found under Tools > Data input/output.
 
- * Action：暗号化なら「Encrypt」、復号なら「Decrypt」を指定する。
- * Alphabet：External alphabet inputコネクターが未接続の場合、使用するアルファベットを指定する。
- * Alphabet parameters：アルファベット以外の文字の扱いを設定する。
- ** Unknown symbol handling：そのまま出力するなら「Ignore」、削除するなら「Remove」、不明文字として'?'に置き換えるなら「Replace with '?'」を指定する。
- ** Case sensitive：大文字と小文字を区別する場合はチェックを入れる。
- ** Output contains Source Case：変換後も大文字・小文字を保持する場合にチェックを入れる。
+Caesar component settings:
 
-各コンポーネントを配置して、必須の配線を完了すれば、プロジェクトが完成したことになります。
-ツールバーの「Execute」セクションにある「Play」アイコンを押して、暗号化を開始します。
-結果は、右側のText Outputコンポーネントに表示されます。
+ * Action: Select "Encrypt" or "Decrypt"
+ * Alphabet: Specifies alphabet when External alphabet input is unconnected
+ * Alphabet parameters: Configure non-alphabetic character handling
+ ** Unknown symbol handling: "Ignore" (output as-is), "Remove" (delete), or "Replace with '?'"
+ ** Case sensitive: Check to distinguish uppercase/lowercase
+ ** Output contains source case: Check to preserve original casing
 
-処理を止めるには「Stop」ボタンを押します。
+After placing components and making connections, click the Play icon in the Execute toolbar section to start. Results appear in the Text Output component.
 
-平文"at midnight, in the month of june, i stand beneath the mystic moon."を鍵3で暗号化すると、暗号文"dw plgqljkw, lq wkh prqwk ri mxqh, l vwdqg ehqhdwk wkh pbvwlf prrq."が得られました。
-この暗号文は、ウィザードを使用した場合と同じ結果であり、正確に暗号化されたことを証明しています。
+Click Stop to halt the process.
+
+Encrypting "at midnight, in the month of june, i stand beneath the mystic moon." with key 3 produces:
+
+//noindent
+"dw plgqljkw, lq wkh prqwk ri mxqh, l vwdqg ehqhdwk wkh pbvwlf prrq."
+
+This matches the wizard output, confirming proper implementation.

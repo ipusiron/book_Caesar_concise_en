@@ -16,14 +16,14 @@ This cipher is named after Gaius Julius Caesar—known simply as "Caesar" in Eng
 
 @<img>{rot3_tikanhyou} shows the @<kw>{substitution table} for the Caesar cipher.
 
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[rot3_tikanhyou][Substitution Table for the Caesar Cipher][scale=1.0]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
@@ -36,14 +36,14 @@ Each letter in the plaintext is shifted three positions forward to generate the 
 
 As an example, let us examine how the plaintext "hello" is encrypted using the Caesar cipher. Each letter is encrypted sequentially. See @<img>{caesar_enc_hello}.
 
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[caesar_enc_hello][Encrypting "hello"][scale=0.8]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
@@ -78,14 +78,14 @@ Due to their cyclic nature, shift ciphers are often called @<kw>{ROT ciphers}, f
 
 For example, a 1-position shift is written as @<kw>{ROT1}. See @<img>{rot1_tikanhyou} for its substitution table.
 
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[rot1_tikanhyou][Substitution Table for ROT1][scale=1.0]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
@@ -140,14 +140,14 @@ m=Dec(key, Enc(key, m))
 
 The modified algorithm using a substitution table is shown in @<img>{shift_enc_alg2}.
 
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[shift_enc_alg2][Shift Cipher Algorithm <Substitution Table Version>][scale=1.0]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
@@ -160,14 +160,14 @@ The modified algorithm using a substitution table is shown in @<img>{shift_enc_a
 
 @<img>{alice_bob_3alg_epub} shows the algorithm execution sequence. Alice and Bob call @<b>{KeyGen} in the preparation stage, then @<b>{Enc} and @<b>{Dec} in the main stage.
 
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[alice_bob_3alg_epub][Calling the algorithm by Alice and Bob][scale=0.8]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
@@ -206,14 +206,15 @@ The substitution table for ROT13 is shown in @<img>{rot13_tikanhyou}.
 #@# N	O	P	Q	R	S	T	U	V	W	X	Y	Z	A	B	C	D	E	F	G	H	I	J	K	L	M
 #@# //}
 
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[rot13_tikanhyou][Substitution Table for ROT13][scale=1.0]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
+
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
 #@#   <img src="images/rot13_tikanhyou.png" alt="Substitution Table for ROT13" style="max-width: 90%; height: auto;" />
@@ -232,14 +233,15 @@ The second row is formed by swapping the first half (a–m) with the second half
 
 @<img>{rot13_mapping} shows the bijective mapping where each letter pairs with another exactly 13 positions away.
 
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[rot13_mapping][ROT13 Character Mapping][scale=1.0]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
+
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
 #@#   <img src="images/rot13_mapping_epub.png" alt="ROT13 Character Mapping" style="max-width: 90%; height: auto;" />
@@ -265,14 +267,16 @@ Therefore, applying ROT13 twice returns each letter to its original position—R
 #@# 1回目の暗号化	N	O	P	Q	R	S	T	U	V	W	X	Y	Z	A	B	C	D	E	F	G	H	I	J	K	L	M
 #@# 2回目の暗号化	A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z
 #@# //}
-//embed[latex]{
-\floatplacement{figure}{t}
-//}
+
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
 //image[rot13_and_rot13][ROT13 Applied Twice: Full Cycle][scale=1.0]{
 //}
-//embed[latex]{
-\floatplacement{figure}{H}
-//}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
+
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
 #@#   <img src="images/rot13_and_rot13.png" alt="ROT13 Applied Twice: Full Cycle" style="max-width: 90%; height: auto;" />
