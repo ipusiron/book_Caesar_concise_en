@@ -1,130 +1,115 @@
-= シフト暗号を改良する
+= Improving the Shift Cipher
 
-前章では実際にシフト暗号を解読しました。
+In the previous chapter, we successfully deciphered a shift cipher.
 
-シフト暗号の秘匿性を低下させる根本的な問題は、利用可能な鍵数が少ないことにあります。
-鍵の数が少ないため、総当たり攻撃や統計的解析によって簡単に解読されてしまいます。
+The fundamental problem that reduces the confidentiality of the shift cipher is the limited number of available keys. Because there are so few keys, it can be easily deciphered through brute-force attacks or statistical analysis.
 
-この事実を踏まえて、本章ではシフト暗号の安全性を向上させるための具体的な改良方法を紹介します。
-これにより、シフト暗号の秘匿性が向上し、より安全な通信が可能になることを目指します。
+With this fact in mind, this chapter introduces specific improvements to enhance the security of the shift cipher. Through these improvements, we aim to increase the confidentiality of the shift cipher and enable more secure communication.
 
-=={vigenere_cipher} ヴィジュネル暗号に拡張する
+=={vigenere_cipher} Extending to the Vigenère Cipher
 
-ヴィジュネル表は、シフト暗号における26種類の置換表を並べたものでした。
-一番左は鍵文字であり、この鍵文字を基準にしてアルファベットが辞書順に並んでいます。
+The Vigenère table is a compilation of 26 different substitution tables used in the shift cipher. The leftmost column contains the key letters, and the alphabet is arranged in alphabetical order based on these key letters.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[tikan_table_tougou][ヴィジュネル表【再掲】][scale=1.0]{
-#@# //}
+//image[tikan_table_tougou][The Vigenère table (reproduced)][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/tikan_table_tougou_epub.png" alt="ヴィジュネル表【再掲】" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ヴィジュネル表【再掲】</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/tikan_table_tougou_epub.png" alt="The Vigenère table (reproduced)" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: The Vigenère table (reproduced)</figcaption>
+#@# </figure>
+#@# //}
 
-16世紀のフランスの暗号学者である、ブレード・ド・ヴィジュネルは、ヴィジュネル表を用いた多表式暗号を開発しました。
-従来のシフト暗号では単一の鍵文字が使用するのに対し、ヴィジュネル暗号では鍵として文字列が使用します。
-これを鍵文字列と呼ぶことにします。
+In the 16th century, French cryptographer Blaise de Vigenère developed a polyalphabetic cipher using the Vigenère table. Unlike the traditional shift cipher that uses a single key letter, the Vigenère cipher uses a string of letters as the key. We will refer to this as the key string.
 
-この鍵文字列により、鍵の総数が増えるため、総当たり攻撃に対して格段に強くなります。
+By using this key string, the total number of possible keys increases dramatically, making the cipher significantly more resistant to brute-force attacks.
 
-=== ヴィジュネル暗号のアルゴリズム
+=== Vigenère Cipher Algorithm
 
-ヴィジュネル暗号のアルゴリズムは、次のようになります。
+The algorithm for the Vigenère cipher is shown in @<img>{vigenere_cipher}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[vigenere_cipher][ヴィジュネル暗号のアルゴリズム][scale=1.0]{
-#@# //}
+//image[vigenere_cipher][Vigenère Cipher Algorithm][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/vigenere_cipher.png" alt="ヴィジュネル暗号のアルゴリズム" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ヴィジュネル暗号のアルゴリズム</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/vigenere_cipher.png" alt="Vigenère Cipher Algorithm" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Vigenère Cipher Algorithm</figcaption>
+#@# </figure>
+#@# //}
 
-=== 鍵生成について
+=== Key Generation
 
-鍵生成アルゴリズムKeyGenは、暗号化プロセスで使用する鍵文字列を生成します。
-この生成された鍵文字列は、送受信者間で秘密に共有され、暗号通信の安全性を保つために使用されます。
+The key generation algorithm, @<b>{KeyGen}, generates the key string used in the encryption process. This generated key string is secretly shared between the sender and receiver and is used to maintain the security of encrypted communication.
 
-鍵文字列の長さはその安全性に直結します。
-鍵文字列が短い場合、周期が発生しやすくなり、解読されるリスクが高まります@<fn>{crack_vigenere}。
-一方で、鍵文字列が長すぎると扱いが難しくなるため、実用的な長さでのバランスが求められます。
-通常、使いやすさと安全性の間で適度な長さの鍵文字列が選ばれます。
+The length of the key string directly affects its security. If the key string is too short, repeating patterns are more likely to occur, increasing the risk of decryption. On the other hand, if the key string is too long, it becomes difficult to manage, so a practical balance must be achieved. Typically, a key string of moderate length is chosen, balancing usability and security.
 
-//footnote[crack_vigenere][ヴィジュネル暗号の解読法については、『暗号技術のすべて』P.75-81で解説しています。また、機会があればヴィジュネル暗号をテーマにした同人誌を頒布したいと考えています。]
+If the key string consists of a single character, the cipher becomes equivalent to a shift cipher.
 
-鍵文字列が1文字なら、シフト暗号と同等になります。
+The key string can be based on a specific keyword (called a @<i>{key keyword}), but using a random key increases security.
 
-鍵文字列は、何らかのキーワード（このとき鍵キーワードと呼ぶ）でも構いませんが、ランダムであれば安全性が向上します。
+If a new random key is selected for each encryption, and the key length equals or exceeds the length of the plaintext, then while the ciphertext still reveals that the message uses alphabetic characters, it leaks absolutely no information about the original plaintext. This level of security is equivalent to the @<b>{one-time pad}, which is considered theoretically unbreakable.
 
-もし暗号化のたびに鍵をランダムに選択して、鍵長が平文長あるいはそれ以上の長さだったとします。
-すると、暗号文からアルファベットを使っていることはわかりますが、平文の内容に関する情報はまったく漏れません。
-これは理論的に最高の安全性を持つとされる、ワンタイムパッドと同等になります。
+Thus, the Vigenère cipher can be seen as a general form of monoalphabetic substitution ciphers. When the key string is only one character long, it becomes a shift cipher; when the key length equals or exceeds the plaintext length, it becomes a one-time pad. Furthermore, when the shift cipher's key is fixed to 3, it becomes the Caesar cipher.
 
-よって、ヴィジュネル暗号は単一換字式暗号の一般系といえます。
-鍵文字列のサイズを1文字にした方式がシフト暗号、平文のサイズ以上にしたものがワンタイムパッド暗号になります。
-そして、シフト暗号の鍵を3に固定したものがシーザー暗号になるわけです。
+=== Encryption Mechanism
 
-=== 暗号化の仕組み
+Encryption in the Vigenère cipher involves applying the shift cipher to each character of the plaintext. For example, the first character of the plaintext is encrypted using the first character of the key string as the shift key. The same process is applied to the second character, the third, and so on.
 
-ヴィジュネル暗号の暗号化は、平文の各文字をシフト暗号で暗号化する処理になります。
-たとえば、平文の1文字目は、鍵文字列の1文字目を鍵文字として、シフト暗号で暗号化します。
-2文字目以降も同様に処理します。
+However, if the key string is shorter than the plaintext, the key string is repeated as many times as necessary to match the length of the plaintext. This repeated version of the key is called the @<b>{extended key}.
 
-ただし、鍵文字列が平文より短い場合、鍵文字列を連続で連結したものを鍵として利用します。
-この鍵を拡張鍵といいます。
+In summary, the @<i>{n}-th character of the plaintext is encrypted using the @<i>{n}-th character of the extended key as the shift key.
 
-以上をまとめると、平文のn文字目は、拡張鍵のn文字目を鍵文字としてシフト暗号で暗号化すると言い換えられます。
+=== Manual Encryption Example
 
-=== 手動で暗号化してみる
+For example, suppose the plaintext is "hello world." and the key string is "STAR". After removing spaces and punctuation from the plaintext, we get "helloworld". To match the length of the plaintext (10 characters), we generate an extended key from the key string (4 characters), resulting in "STARSTARST" (10 characters). This is formed by concatenating @<code>{"STAR" || "STAR" || "ST"}.
 
-たとえば、平文が"hello world."、鍵文字列が"STAR"だとします。
-平文から空白とピリオドを取り除くと、"helloworld"になります。
+We then encrypt the plaintext using the extended key with the shift cipher. During this process, we use the Vigenère table to convert each character. The resulting ciphertext is "ZXLCGPOIDW".
 
-平文のサイズ（ここでは10文字）に合うように、鍵文字列（ここでは4文字）から拡張鍵を作ると、"STARSTARST"（10文字）になります。
-「"STAR"||"STAR"||"ST"」のように連結されています。
+See @<table>{vigenere_example}.
 
-あとは、拡張鍵を用いてシフト暗号で暗号化します。
-その際、ヴィジュネル表を活用して、1文字ずつ変換することになります。
-
-暗号化の結果、"ZXLCGPOIDW"という暗号文が得られます（@<table>{vigenere_example}）。
-
-//table[vigenere_example][ヴィジュネル暗号の暗号化の例]{
-平文	h	e	l	l	o	w	o	r	l	d
+//table[vigenere_example][Vigenère Cipher Encryption Example]{
+Plaintext				h		e		l		l		o		w		o		r		l		d
 -------------------------------------------------------------
-拡張鍵	S	T	A	R	S	T	A	R	S	T
-暗号文	Z	X	L	C	G	P	O	I	D	W
+Extended Key		S		T		A		R		S		T		A		R		S		T
+Ciphertext			Z		X		L		C		G		P		O		I		D		W
 //}
 
-== ヴィジュネル暗号ツールで実験してみよう
+== Experimenting with the Vigenère Cipher Tool
 
-ヴィジュネル暗号ツール（Vigenere Cipher Tool）は、ヴィジュネル暗号ツールの暗号化・復号を行うWebベースのツールです。
-暗号化のプロセスを視覚的に理解できるように設計されています。
+The Vigenère Cipher Tool is a web-based application for encrypting and decrypting text using the Vigenère cipher. It is designed to help users visually understand the encryption process.
 
- * GitHubページ
+ * GitHub Page
  ** @<href>{https://github.com/ipusiron/vigenere-cipher-tool}
- * デモページ
+ * Demo Page
  ** @<href>{https://ipusiron.github.io/vigenere-cipher-tool/}
 
-先ほど手動で暗号化した例を、このツールで実験し、同じ暗号文が得られることを確認してください。
+Try entering the example we encrypted manually earlier into the tool and verify that it produces the same ciphertext.
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/vigenere_cipher_tool.png" alt="ヴィジュネル暗号ツールで同じ暗号化を実現したところ" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ヴィジュネル暗号ツールで同じ暗号化を実現したところ</figcaption>
-</figure>
+#@# //embed[latex]{
+#@# \floatplacement{figure}{t}
+#@# //}
+//image[vigenere_cipher_tool][Result of performing the same encryption with the Vigenère Cipher Tool][scale=0.8]{
 //}
+#@# //embed[latex]{
+#@# \floatplacement{figure}{H}
+#@# //}
+
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/vigenere_cipher_tool.png" alt="Result of performing the same encryption with the Vigenère Cipher Tool" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Result of performing the same encryption with the Vigenère Cipher Tool</figcaption>
+#@# </figure>
+#@# //}

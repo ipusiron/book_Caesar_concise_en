@@ -312,9 +312,7 @@ I've created an interactive ROT13 Encoder web tool:
 
 == Working with Shift Ciphers Using CrypTool 2
 
-CrypTool 2 is a comprehensive GUI-based tool that supports various cryptographic algorithms.
-Its intuitive interface makes cryptographic operations accessible without programming knowledge.
-With CrypTool 2, you can focus on encryption, decryption, and cryptanalysis rather than implementation details.
+CrypTool 2 is a comprehensive GUI-based tool that supports various cryptographic algorithms. Its intuitive interface makes cryptographic operations accessible without programming knowledge. With CrypTool 2, you can focus on encryption, decryption, and cryptanalysis rather than implementation details.
 
 The CrypTool Portal (@<href>{https://www.cryptool.org/en/}) offers four cryptographic learning platforms:
 
@@ -363,7 +361,7 @@ CrypTool 2 includes a wizard for experimenting with shift ciphers. This section 
 Note: CrypTool 2 uses "Caesar Cipher" and "Shift Cipher" interchangeably.
 
 //noindent
-@<b>{Step 1}: Click the [New] icon on the CrypTool 2 home screen, or click the dropdown arrow next to it and select "Wizard".
+@<b>{Step 1}: Click the [New] icon on the CrypTool 2 home screen, or click the dropdown arrow next to it and select "Wizard". Refer to @<img>{rot13_encorder}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -382,7 +380,7 @@ Note: CrypTool 2 uses "Caesar Cipher" and "Shift Cipher" interchangeably.
 #@# //}
 
 //noindent
-@<b>{Step 2}: The Wizard tab opens. In the "TASK SELECTION" screen, select "Encryption/Decryption" and click [Next].
+@<b>{Step 2}: The Wizard tab opens. In the "TASK SELECTION" screen, select "Encryption/Decryption" and click [Next]. Refer to @<img>{crypt_enc1}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -416,7 +414,7 @@ Enter your message in the text box. Here, we use the text from the previous chap
 
 Enter the shift value in the Key field on the right. We'll keep the default value of 3.
 
-Once all settings are complete, click [Next].
+Once all settings are complete, click [Next]. Refer to @<img>{crypt_enc2}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -439,6 +437,8 @@ Once all settings are complete, click [Next].
 
 //noindent
 @<code>{"dw plgqljkw, lq wkh prqwk ri mxqh, l vwdqg ehqhdwk wkh pbvwlf prrq."}
+
+@<img>{crypt_enc2} shows the "CAESAR OUTPUT" screen.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}

@@ -23,32 +23,32 @@ See @<table>{bruteforce_of_keys} for all results.
 //table[bruteforce_of_keys][Decryption Results for All Shift Values]{
 Shift Value n		Key Character		Decrypted Result
 -------------------------------------------------------------
-0								'A'							kzdvwczvjczbvreriifn
-1								'B'							jycuvbyuibyauqdqhhem
-2								'C'							ixbtuaxthaxztpcpggdl
-3								'D'							hwastzwsgzwysoboffck
-4								'E'							gvzrsyvrfyvxrnaneebj
-5								'F'							fuyqrxuqexuwqmzmddai
-6								'G'							etxpqwtpdwtvplylcczh
-7								'H'							dswopvsocvsuokxkbbyg
-8								'I'							crvnournburtnjwjaaxf
-9								'J'							bqumntqmatqsmivizzwe
-10							'K'							aptlmsplzsprlhuhyyvd
-11							'L'							zosklrokyroqkgtgxxuc
-12							'M'							ynrjkqnjxqnpjfsfwwtb
-13							'N'							xmqijpmiwpmoierevvsa
-14							'O'							wlphiolhvolnhdqduurz
-15							'P'							vkoghnkgunkmgcpcttqy
-16							'Q'							ujnfgmjftmjlfbobsspx
-17							'R'							timeflieslikeanarrow
-18							'S'							shldekhdrkhjdzmzqqnv
-19							'T'							rgkcdjgcqjgicylyppmu
-20							'U'							qfjbcifbpifhbxkxoolt
-21							'V'							peiabheaohegawjwnnks
-22							'W'							odhzagdzngdfzvivmmjr
-23							'X'							ncgyzfcymfceyuhulliq
-24							'Y'							mbfxyebxlebdxtgtkkhp
-25							'Z'							laewxdawkdacwsfsjjgo
+0					'A'					kzdvwczvjczbvreriifn
+1					'B'					jycuvbyuibyauqdqhhem
+2					'C'					ixbtuaxthaxztpcpggdl
+3					'D'					hwastzwsgzwysoboffck
+4					'E'					gvzrsyvrfyvxrnaneebj
+5					'F'					fuyqrxuqexuwqmzmddai
+6					'G'					etxpqwtpdwtvplylcczh
+7					'H'					dswopvsocvsuokxkbbyg
+8					'I'					crvnournburtnjwjaaxf
+9					'J'					bqumntqmatqsmivizzwe
+10					'K'					aptlmsplzsprlhuhyyvd
+11					'L'					zosklrokyroqkgtgxxuc
+12					'M'					ynrjkqnjxqnpjfsfwwtb
+13					'N'					xmqijpmiwpmoierevvsa
+14					'O'					wlphiolhvolnhdqduurz
+15					'P'					vkoghnkgunkmgcpcttqy
+16					'Q'					ujnfgmjftmjlfbobsspx
+17					'R'					timeflieslikeanarrow
+18					'S'					shldekhdrkhjdzmzqqnv
+19					'T'					rgkcdjgcqjgicylyppmu
+20					'U'					qfjbcifbpifhbxkxoolt
+21					'V'					peiabheaohegawjwnnks
+22					'W'					odhzagdzngdfzvivmmjr
+23					'X'					ncgyzfcymfceyuhulliq
+24					'Y'					mbfxyebxlebdxtgtkkhp
+25					'Z'					laewxdawkdacwsfsjjgo
 //}
 
 To identify the correct plaintext, apply these three approaches:
@@ -135,7 +135,7 @@ Component connections:
  * Output
  ** @<b>{Key}: The most probable decryption key
 
-Build your project as shown:
+Build your project as shown in @<img>{caesar_fre1}:
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -226,7 +226,7 @@ JAGKBDHHD AHB GFK
 IJEHDO. EHHQ DCEFG
 //}
 
-Select "LETTER A-Z ONLY" under CHARACTERS. Click [CALCULATE IC] to display results.
+Select "LETTER A-Z ONLY" under CHARACTERS. Click [CALCULATE IC] to display the results. @<img>{ic1} shows the process of calculating the Index of Coincidence.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -306,7 +306,7 @@ Since the tool does not include a function to automatically narrow down the opti
 Now, let's actually try this process in CrypTool 2. This will deepen your practical understanding of Caesar cipher decryption.
 
 //noindent
-@<b>{Step 1}: Launch CrypTool 2. Look for the "Templates" section in the center of the main screen. Navigate to "Cryptanalysis" > "Classical" > "Caesar Brute-Force Analysis" and double-click it.
+@<b>{Step 1}: Launch CrypTool 2. Look for the "Templates" section in the center of the main screen. Navigate to "Cryptanalysis" > "Classical" > "Caesar Brute-Force Analysis" and double-click it. Refer to @<img>{bruteforce_analysis}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -325,7 +325,7 @@ Now, let's actually try this process in CrypTool 2. This will deepen your practi
 #@# //}
 
 //noindent
-@<b>{Step 2}: A project for performing a brute-force attack on a Caesar cipher will open in the workspace.
+@<b>{Step 2}: A project for performing a brute-force attack on a Caesar cipher will open in the workspace. See @<img>{cryptool_brute1}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -354,6 +354,8 @@ Note that component settings can only be modified when the project is in the Sto
 
 //footnote[bruteforce_bug][Although you can still obtain the plaintext message even if it remains set to Encrypt, the key will be incorrect. The decryption algorithm for Caesar cipher can technically be replaced with the encryption algorithm, so decryption will still succeed. However, since the key used is for encryption, you must subtract it from 26 to get the correct decryption key.]
 
+Refer to @<img>{Encrypt2Decrypt}.
+
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
@@ -377,7 +379,7 @@ After finishing the settings, click the minimize icon in the upper-right corner 
 
 After returning to the workspace, press the [Play] button to start the decryption process. Plaintext candidates will begin to appear in the "All possible plaintexts" component in the upper right. Once the decryption reaches a certain point, the process will pause, and the final decrypted result will be displayed in the "Decrypted Ciphertext" component in the lower right.
 
-Just above that, the "Found shift key" component will show the key (shift value) used in the decryption.
+Just above that, the "Found shift key" component displays the key (shift value) used for decryption. See @<img>{cryptool_brute2}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -411,8 +413,7 @@ It is immediately obvious that the decrypted text is not in English.
 
 The Dictionary component in the upper center of the CrypTool 2 workspace was set to "German" when the template was opened, suggesting that the original plaintext is in German.
 
-When we entered the decrypted message into the DeepL translation tool, it was automatically detected as German. The translation result was about the Enigma machine.
-
+When we entered the decrypted message into the DeepL translation tool, it was automatically detected as German. The translation result was about the Enigma machine. See @<img>{deepl_german}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -439,7 +440,7 @@ Since we will continue with further explanations, please stop the project but do
 //noindent
 @<b>{Step 5}: While not a direct method of decryption, checking the index of coincidence can also be useful.
 
-For example, if you calculate the index of coincidence using @<href>{https://www.dcode.fr/index-coincidence}, you can confirm that the index of coincidence of the ciphertext is 8.2%.
+For example, if you calculate the index of coincidence using @<href>{https://www.dcode.fr/index-coincidence}, you can confirm that the index of coincidence of the ciphertext is 8.2%. See @<img>{ic2}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -468,7 +469,7 @@ The index of coincidence for English is 5.7%, and for German it is 7.3%.
 The calculated value of 8.2% is therefore closer to German than to English.
 
 //noindent
-@<b>{Step 6}: From here on, we will explain the processing of each part of this project.
+@<b>{Step 6}: From here on, we will explain the processing of each part of this project. See @<img>{cryptool_brute3}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -485,8 +486,6 @@ The calculated value of 8.2% is therefore closer to German than to English.
 #@#   <figcaption>Figure: Roles of each part</figcaption>
 #@# </figure>
 #@# //}
-//image[cryptool_brute3][][scale=1.0]{
-//}
 
 If the transformed message obtained during the decryption process contains real words, it will be output as the correct plaintext message.
 
@@ -494,7 +493,7 @@ Based on this condition, only one message met the criteria this time, so only th
 
 Let's look at the left section of the project.
 
-The main role of this part is to increment numbers from 1 to 26 and output their values.
+The main role of this part is to increment numbers from 1 to 26 and output their values. See @<img>{kakubu1}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -527,7 +526,7 @@ It is composed of the following components. Although it may look complicated, yo
 
 Now focus on the center section.
 
-The role of this section is to determine whether the decryption result contains any words. If it does, the message is output from the PlaintextGate.
+The role of this section is to determine whether the decryption result contains any words. If it does, the message is output from the PlaintextGate. See @<img>{kakubu2}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -557,7 +556,7 @@ It is composed of the following components:
 
 Finally, look at the right section.
 
-The role of this part is to convert the decryption result key (numeric value) to a string for display. This is simply a process to display it in the "Found shift key" Text Output component.
+The role of this part is to convert the decryption result key (numeric value) to a string for display. This is simply a process to display it in the "Found shift key" Text Output component. See @<img>{kakubu3}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
@@ -586,6 +585,8 @@ It is composed of the following components:
  * Text Output component
  ** Named "Found shift key".
  ** Displays the identified key.
+
+Refer to @<img>{converter_component} for the Converter component settings.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
