@@ -321,7 +321,7 @@ Shift Value		Key Character
 2							'C'
 3							'D'
 …							…
-25						'Z'
+25							'Z'
 //}
 
 For example, ROT3 uses key character 'D'. 

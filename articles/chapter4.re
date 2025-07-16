@@ -1,244 +1,216 @@
-= シーザー暗号とシフト暗号を解読する
+= Breaking Caesar and Shift Ciphers
 
-本章では、シフト暗号の暗号文をどのように解読するかを詳しく解説します。
-ここで、本書のタイトルが示す主題を具体的に取り上げます。
+This chapter explains in detail how to break shift cipher ciphertexts without knowing the key. Here we address the central challenge indicated by this book's title.
 
-序盤では、解読プロセスを深く理解するため、あえて手動で解読します。
-その後、より効率的かつ効果的な解読を目指し、コンピューターを用いた解読法について説明します。
+We begin with manual cryptanalysis to develop a thorough understanding of the breaking process. We then implement computer-based methods for efficient and systematic attacks.
 
-== 総当たり攻撃による暗号解読
+== Breaking Shift Ciphers with Brute-Force Attacks
 
-シフト暗号は鍵数が少ないため、総当たり攻撃が有効です。
+With only 26 possible keys (one for each letter), shift ciphers are vulnerable to brute-force attacks.
 
-==={brute_force_by_manual} 手動での総当たり攻撃を体験する
+==={brute_force_by_manual} Manual Brute-Force Attack
 
-シフト暗号の暗号文"KZDVWCZVJCZBURERIIFN"を解読してみます@<fn>{bruteforce_example}。
-
-//footnote[bruteforce_example][この解読例は、拙著『暗号技術のすべて』P.37で紹介したものを若干アレンジしたものです。]
+Let's break the shift cipher ciphertext "KZDVWCZVJCZBURERIIFN".
 
 //noindent
-1：暗号文の特徴を把握します。
-提供された暗号文は、連続した文字列で構成されています。
-通常の単語の長さを超えるため、空白などの単語区切りが省略されていると考えられます。
+@<b>{Step 1}: Analyze the ciphertext characteristics. The ciphertext is a continuous string without spaces or punctuation. This suggests word boundaries have been removed during encryption.
 
 //noindent
-2：総当たり攻撃による復号を試みます。
-シフト暗号の性質上、シフト数0から25までのすべてを試し、それぞれのシフト数で暗号文を復号します。
-シフト数がnの場合、n分だけ左シフト（または26－n分の右シフト）して復号を試みます。
-復号結果の一覧は@<table>{bruteforce_of_keys}のとおりです。
+@<b>{Step 2}: Execute brute-force decryption. Test all 26 possible shift values (0-25). For shift value n, decrypt by shifting left n positions (or right 26-n positions).
 
-//table[bruteforce_of_keys][全シフト数で復号した結果]{
-シフト数n	鍵文字	復号結果
+See @<table>{bruteforce_of_keys} for all results.
+
+//table[bruteforce_of_keys][Decryption Results for All Shift Values]{
+Shift Value n		Key Character		Decrypted Result
 -------------------------------------------------------------
-0	'A'	kzdvwczvjczbvreriifn
-1	'B'	jycuvbyuibyauqdqhhem
-2	'C'	ixbtuaxthaxztpcpggdl
-3	'D'	hwastzwsgzwysoboffck
-4	'E'	gvzrsyvrfyvxrnaneebj
-5	'F'	fuyqrxuqexuwqmzmddai
-6	'G'	etxpqwtpdwtvplylcczh
-7	'H'	dswopvsocvsuokxkbbyg
-8	'I'	crvnournburtnjwjaaxf
-9	'J'	bqumntqmatqsmivizzwe
-10	'K'	aptlmsplzsprlhuhyyvd
-11	'L'	zosklrokyroqkgtgxxuc
-12	'M'	ynrjkqnjxqnpjfsfwwtb
-13	'N'	xmqijpmiwpmoierevvsa
-14	'O'	wlphiolhvolnhdqduurz
-15	'P'	vkoghnkgunkmgcpcttqy
-16	'Q'	ujnfgmjftmjlfbobsspx
-17	'R'	timeflieslikeanarrow
-18	'S'	shldekhdrkhjdzmzqqnv
-19	'T'	rgkcdjgcqjgicylyppmu
-20	'U'	qfjbcifbpifhbxkxoolt
-21	'V'	peiabheaohegawjwnnks
-22	'W'	odhzagdzngdfzvivmmjr
-23	'X'	ncgyzfcymfceyuhulliq
-24	'Y'	mbfxyebxlebdxtgtkkhp
-25	'Z'	laewxdawkdacwsfsjjgo
+0								'A'							kzdvwczvjczbvreriifn
+1								'B'							jycuvbyuibyauqdqhhem
+2								'C'							ixbtuaxthaxztpcpggdl
+3								'D'							hwastzwsgzwysoboffck
+4								'E'							gvzrsyvrfyvxrnaneebj
+5								'F'							fuyqrxuqexuwqmzmddai
+6								'G'							etxpqwtpdwtvplylcczh
+7								'H'							dswopvsocvsuokxkbbyg
+8								'I'							crvnournburtnjwjaaxf
+9								'J'							bqumntqmatqsmivizzwe
+10							'K'							aptlmsplzsprlhuhyyvd
+11							'L'							zosklrokyroqkgtgxxuc
+12							'M'							ynrjkqnjxqnpjfsfwwtb
+13							'N'							xmqijpmiwpmoierevvsa
+14							'O'							wlphiolhvolnhdqduurz
+15							'P'							vkoghnkgunkmgcpcttqy
+16							'Q'							ujnfgmjftmjlfbobsspx
+17							'R'							timeflieslikeanarrow
+18							'S'							shldekhdrkhjdzmzqqnv
+19							'T'							rgkcdjgcqjgicylyppmu
+20							'U'							qfjbcifbpifhbxkxoolt
+21							'V'							peiabheaohegawjwnnks
+22							'W'							odhzagdzngdfzvivmmjr
+23							'X'							ncgyzfcymfceyuhulliq
+24							'Y'							mbfxyebxlebdxtgtkkhp
+25							'Z'							laewxdawkdacwsfsjjgo
 //}
 
-表の復号結果から、英単語が含まれている文を探します。
+To identify the correct plaintext, apply these three approaches:
 
-手動で正しい平文を特定するには、次の3つのアプローチが有効です。
+ * @<b>{Approach 1: Common word detection}
+ ** Search for frequent English words ("the", "and", "that")
+ ** Their presence indicates a likely correct shift value
+ * @<b>{Approach 2: Pattern elimination}
+ ** Exclude results with unnatural consonant clusters (e.g., "kzdv")
+ ** Remember: word boundaries may be removed ("goodbye" from "good bye")
+ * @<b>{Approach 3: Rare letter analysis}
+ ** Check context around uncommon letters (z, q)
+ ** Verify if they form valid English words
 
- * アプローチ①：頻出単語の識別
- ** よく使用される単語（例："the"、"and"、"that"）を探す。
- ** これらの単語が見つかる場合、正しいシフト値である可能性が高い。
- * アプローチ②：不自然な文字列の排除
- ** 子音が連続する、通常の英単語には存在しないような文字列（例："kzdv"）を含む復号結果を除外する。
- ** ただし、単語間の空白や記号が削除されている可能性があるため、この点を考慮する。
- *** 例："good bye"が"goodbye"となり、"dby"が現れるのは自然な現象である。
- * アプローチ③：まれな文字列の分析
- ** 使用頻度の低い文字（例："z"、"q"）が含まれているかを調べ、その前後を見て単語として成立しているかを検討する。
+Applying these approaches reveals that shift value 17 produces "timeflieslikeanarrow". Adding spaces and proper capitalization yields: "Time flies like an arrow". This English proverb confirms we've found the correct plaintext with key shift n = 17.
 
-アプローチを適用した結果、シフト値n=17によって得られる文字列"timeflieslikeanarrow"が最終的な平文として特定しました。
-この文字列に適切な空白を挿入し、文の先頭を大文字化し、文末にピリオドを加えます。
-完成した"Time flies like an arrow."は「光陰矢のごとし」という意味の英文です。
-これが正しい平文であり、使用された鍵のシフト値はn＝17であることを特定できました。
+== Breaking Ciphers Through Frequency Analysis
 
-== 頻度分析による暗号解読
+Frequency analysis identifies plaintext by studying character distribution in the ciphertext. This technique devastates classical ciphers, particularly monoalphabetic substitutions like shift ciphers. Since shift ciphers preserve letter frequencies (only shifting positions), frequency analysis remains highly effective.
 
-頻度分析とは、暗号文に出現する文字頻度（文字の頻度）を分析することで、平文を特定する解読手法です。
+=== Frequency Analysis Against Monoalphabetic Substitution Ciphers
 
-頻度分析は古典暗号を解読する際に強力な手段です。
-当然ですが、シフト暗号の解読に対しても非常に効果があります。
+In monoalphabetic substitution ciphers, each plaintext character maps to a fixed ciphertext character. This preserves character frequencies—the frequency distribution remains identical, just with different letters. This preservation allows cryptanalysts to match ciphertext characters to plaintext characters.
 
-=== 頻度分析は単一換字式暗号の解読に有効
+Longer ciphertexts yield better results, as larger samples converge toward standard English letter frequencies.
 
-単一換字式暗号では文字が置き換わるので、「平文に現れる文字の頻度」は「暗号文に現れる別の文字の頻度」に一致します。
-つまり、平文と暗号文の全体を見ると、頻度の分布パターンが一致します。
-この一致性を利用して、暗号文の文字と平文の文字の対応関係を見つけ出すことができます。
+However, texts deliberately avoiding certain letters@<fn>{gadsby} defy standard frequency patterns. Cryptanalysts must consider such edge cases.
 
-暗号文が長ければ長いほど、頻度分析による解読が成功する確率が高まります。
-これは、より多くのテキストデータがあると、標準的な英文の頻度分布に収束しやすくなるためです。
+//footnote[gadsby][Ernest Vincent Wright's "Gadsby" (50,000+ words) contains no words with the letter 'e'.]
 
-ただし、自然な英文では頻度が収束しやすいですが、意図的に特定の文字を避けて書かれた文章@<fn>{gadsby}では、この収束が見られない可能性があります。
-これは頻度分析の際に考慮すべき重要なこのの1つといえます。
+Letter and word frequencies vary by language, era, and text type. New words emerge while others become obsolete. Sample selection significantly affects results. Consequently, frequency tables differ across reference sources.
 
-//footnote[gadsby][たとえば、アーネスト・ヴィンセント・ライト著の『Gadsby』（ギャズビー）は、5万語を超える短編小説ですが、全編で'e'を含む単語が登場しません。]
+=== Initial Letter Patterns in English Words
 
-文字と単語の頻度パターンについて、どの言語でも絶対的なものは存在しません。
-時代によって新しい単語が登場したり、廃れたりするためです。
-また、サンプル文によっても結果が変わります。
-そのため、統計データを掲載する文献によって、微妙な違いがあります。
+Classical cipher plaintexts typically use natural language. Natural languages exhibit predictable character distributions—here we examine English.
 
-=== 英単語の頭文字に注目する
+If you have an English dictionary, close it and view the fore edge@<fn>{maekoguti}. You'll see index tabs (black bands) marking each letter section.
+Band width directly reflects word frequency: wider bands contain more words starting with that letter.
 
-通常、古典暗号の平文は自然言語で書かれています。
-自然言語の文章では、出現する文字に偏りが生じます。
+//footnote[maekoguti][The edge opposite the spine, also called the fore edge.]
 
-ここでは英文について言及します。
-手元に英語辞典があれば、閉じた状態で横から見てください。
-前小口@<fn>{maekoguti}に検索用のインデックス（黒い帯）が印刷されているはずです。
-その帯の幅が大きいほど、その頭文字を持つ英単語が多いことを意味します。
-たとえば、's'や'c'から始まる英単語は一般的に多いです。
-逆に'x'、'y'、'z'から始まる英単語は少なく、しばしば1つのインデックスとしてまとめられています。
+Letters like 's' and 'c' have wide bands, while 'x', 'y', and 'z' are so rare they often share a single tab.
 
-//footnote[maekoguti][書物の背の反対側の部分です。小口ともいいます。]
+When ciphertexts preserve word boundaries, initial letter frequencies become powerful cryptanalytic tools. These patterns hold true across virtually all English texts.
 
-空白が含まれている暗号文では、単語の頭文字の言語的特徴が解読の手がかりとして役立ちます。
-これは、単語の頭文字が特定の頻度パターンを持つためです。
+=== Analyzing Character Frequencies Without Word Boundaries
 
-=== メッセージ内の各アルファベットの頻度を利用する
+Without spaces to mark word boundaries, we must rely on character frequency patterns.
 
-空白がない場合、単語の区切りが不明瞭になるため、文字の頻度分析に頼る別のアプローチが必要です。
+English exhibits predictable character distributions:
 
-英語では、とくに文字'e'がもっとも頻繁に使用される文字であり、'z'や'q'のような文字はほとんど使われません。
-つまり、英文全体で見れば、'e'が現れやすく、'z'などは現れにくいということです。
+ * Most common: e, t, a, o, i, n
+ * Least common: z, q, x, j
 
-メッセージ内で特定の文字が出現する回数をメッセージ全体の文字数で割った値は、出現確率になります。
-この出現確率を文字の頻度、または短縮して文字頻度と呼ぶことにします。
+//texequation{
+\text{Character Frequency} = \frac{\text{Occurrences}}{\text{Total Characters}}
+//}
 
-英語における各アルファベットの文字頻度は、統計的に分析されており、これらのデータについては@<chap>{appendixA}で詳述しています。
+This ratio reveals how often each character appears in typical English text. See @<chap>{appendixA} for detailed frequency tables.
 
-頻度分析では、文字や文字列の統計的特徴に基づき暗号文の解読を試みる手法です。
-この分析は、メッセージ全体を考慮するため、暗号文に空白が含まれているかどうかに係わらず有効です。
+Since frequency patterns persist regardless of spacing, this technique breaks both spaced and unspaced ciphertexts equally well.
 
-==={cryptool_caesar_by_frequency} CrypTool 2で頻度分析してシフト暗号を解読する
+==={cryptool_caesar_by_frequency} Breaking Shift Ciphers with Frequency Analysis in CrypTool 2
 
-CrypTool 2には、コンポーネント一覧の「Cryptanalysis」＞「Specific」カテゴリー内にCaesar Analyzerという頻度分析用のコンポーネントが用意されています。
-これは、シフト暗号を解読するために暗号文を頻度分析します。
-Caesar Analyzerコンポーネントは、ユニグラム（1文字）だけでなく、バイグラムやトライグラムなどのnグラムグラムも分析可能です。
+CrypTool 2 provides the Caesar Analyzer component (found under Cryptanalysis > Specific) for frequency-based cryptanalysis.
+This component breaks shift ciphers by analyzing character frequencies, supporting unigrams, bigrams, trigrams, and higher n-grams.
 
-Caesor Analyzerコンポーネントの内部処理は、次の流れになります。
+The Caesar Analyzer operates as follows:
 
 //noindent
-1：与えられた暗号文をすべての可能な鍵で復号します。
-つまり、総当たりで復号します。
+@<b>{Step 1}: Decrypt the ciphertext with all possible keys (brute force).
 
 //noindent
-2：得られた平文の文字頻度と、自然言語（たとえば英語）の既知の文字頻度を比較して、もっとも自然な英文になる平文を選び出します。
+@<b>{Step 2}: Compare each result's character frequencies against known language patterns.
 
 //noindent
-3：その平文を得るために用いた鍵を、解読結果として出力します。
+@<b>{Step 3}: Select the most linguistically probable plaintext and output its key.
 
-Caesar Analyzerコンポーネントの入出力コネクターは次のとおりです。
+Component connections:
 
- * 入力
- ** Encrypted text…シーザー暗号の暗号文。
- ** Frequency List…Frequency Testコンポーネントの出力。
- * 出力
- ** Key…解析した結果の鍵（1つ）。
+ * Inputs
+ ** @<b>{Encrypted text}: The shift cipher ciphertext
+ ** @<b>{Frequency List}: Language statistics from Frequency Test component
+ * Output
+ ** @<b>{Key}: The most probable decryption key
 
-CrypTool 2で次のようにプロジェクトを構築します。
+Build your project as shown:
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[caesar_fre1][頻度分析で解読するためのプロジェクト][scale=1.0]{
-#@# //}
+//image[caesar_fre1][Frequency analysis project setup][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/caesar_fre1.png" alt="頻度分析で解読するためのプロジェクト" style="max-width: 90%; height: auto;" />
-  <figcaption>図：頻度分析で解読するためのプロジェクト</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/caesar_fre1.png" alt="Frequency analysis project setup" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Frequency analysis project setup</figcaption>
+#@# </figure>
+#@# //}
 
-各コンポーネントの設定と役目は次のとおりです。
+Component configuration and roles:
 
- * Text Inputコンポーネント…プロジェクトの左上に位置する。
- ** "Ciphertext"と名づけてある。
- ** 暗号文をここに入力する。
- * Frequency Testコンポーネント
- ** "FrequencyTest"と名づけてある。
- * Caesar Analyzerコンポーネント
- ** "CaesarAnalysisHelper"と名づけてある。
- * Caesarコンポーネント
- ** "Caesar Decryption"と名づけてある。
- ** ActionでDecryptを選ぶ。
- ** AlphabetにはAからZまでのアルファベット群を書く。
- ** "Output contains Source Case"にチェックを入れる。
- * Text Outputコンポーネント
- ** "Key"と名づけてある。
- ** 解析した鍵を表示する。
- * Text Outputコンポーネント…プロジェクトの一番右に位置する。
- ** "Decrypted Ciphertext"と名づけてある。
- ** 解析した鍵を用いた復号結果を表示する。
+ * @<b>{Text Input} ("Ciphertext") – Top left
+ ** Input: Encrypted text to analyze
+ * @<b>{Frequency Test} ("FrequencyTest")
+ ** Function: Analyzes character frequencies
+ ** Output: Bar chart visualization
+ * @<b>{Caesar Analyzer} ("CaesarAnalysisHelper")
+ ** Function: Determines most probable shift value
+ * @<b>{Caesar} ("Caesar Decryption")
+ ** Action: Decrypt
+ ** Alphabet: A-Z
+ ** Settings: Enable "Output contains Source Case"
+ * @<b>{Text Output} ("Key")
+ ** Displays: Identified shift value
+ * @<b>{Text Output} ("Decrypted Ciphertext") – Far right
+ ** Displays: Final decrypted text
 
-暗号化されたテキストはまずFrequencyTestに入力されます。
-このコンポーネントはユニグラム（1文字）の頻度を分析し、その結果を棒グラフとして表示します。
-分析結果はCaesarAnalysisHelperに送られ、単一文字の頻度を使用して、シーザー暗号の暗号解析を実行します。
-解析されたシフト数（鍵）は、最終的にCaesar Decryptionに渡され、暗号文が復号されます。
-このシフト数はText OutputコンポーネントのKeyでも確認できます。
-
-先のプロジェクトでは、@<hd>{brute_force_by_manual}で使用した暗号文を解析しています。
-短い暗号文であるにもかかわらず、正しい鍵（シフト数17）を特定できました。
-
-== シフト暗号の暗号文であることを識別する
-
-暗号解読の初期段階では、まず与えられた暗号文がどのタイプの暗号化方式によって生成されたかを識別するのが重要です。
-
-暗号法が不明な暗号文が与えられた場合、頻度分析で暗号文の文字頻度の分布を生成し、それが英文の文字頻度の分布をシフトしたものと一致するかどうかを調べます。
-一致すればシフト暗号の可能性が高く、一致しなければ別の暗号化方式の可能性が高いと判断できます。
-
-=== 一致指数法で単一換字式暗号を識別する
-
-一致指数は、テキストからランダムに選んだ2つの文字が同じである確率として定義されます。
-これは、テキストを解析したり、2つのテキストを比較する際に有用です。
-一致指数を分析に利用することを、一致指数法といいます。
-
-たとえば、英語のテキストでの一致指数は約6.7%、ランダムなテキストでは約3.8%であることが知られています。
-
-暗号解読においては、一致指数の定義を完全に理解するよりも、その計算方法と適用の仕方を知ることがより重要です。
-これにより、効率的な解読が可能になります。
-
-一致指数法により、テキストが単一換字式暗号であるかどうかを判定できます。
-これは「英文である平文の一致指数」と「単一換字式暗号の暗号文の一致指数」がほぼ一致するためです。
-
-次に、一致指数法を計算する方法を紹介します。
+Workflow:
 
 //noindent
-1：dCode.frは一致指数計算ツール（@<href>{https://www.dcode.fr/index-coincidence}）を提供しています。
-Webブラウザーでアクセスしてください。
+1. FrequencyTest analyzes unigram frequencies and generates a bar chart
+//noindent
+2. CaesarAnalysisHelper uses these frequencies to determine the most probable key
+//noindent
+3. Caesar component decrypts the ciphertext using the identified key
+//noindent
+4. Both the key and decrypted text are displayed in their respective outputs
+
+Testing with the ciphertext from @<hd>{brute_force_by_manual} correctly identified shift value 17, despite its brevity.
+
+== Identifying Shift Cipher Ciphertext
+
+In cryptanalysis, identifying the encryption method is the crucial first step.
+
+When analyzing unknown ciphertext, use frequency analysis to generate its character distribution. Compare this against shifted versions of standard English frequencies. A match indicates a likely shift cipher; no match suggests a different encryption method.
+
+=== Using Index of Coincidence to Identify Monoalphabetic Ciphers
+
+The Index of Coincidence (IC) measures the probability that two randomly selected characters match.
+This statistical tool helps analyze texts and identify encryption types.
+
+Typical IC values:
+
+ * English text: ~6.7%
+ * Random text: ~3.8%
+
+In practical cryptanalysis, calculating and applying IC matters more than understanding its theoretical foundations.
+
+The IC method reliably identifies monoalphabetic substitution ciphers because character substitution preserves the original IC value—the frequency pattern remains intact, just with different letters.
+
+Next, we'll calculate the Index of Coincidence.
 
 //noindent
-2："MESSAGE TO ANALYSE"のテキストボックスに解読したいメッセージを入力します。
-ここではデフォルトで入力されているサンプル暗号文を利用します（以下の引用は、改行を省略してある）。
+@<b>{Step 1}: Access the Index of Coincidence calculator at dCode.fr: @<href>{https://www.dcode.fr/index-coincidence}
+
+//noindent
+@<b>{Step 2}: Enter the message to analyze in "MESSAGE TO ANALYSE". We'll use the provided sample ciphertext (shown here without line breaks):
 
 //quote{
 ABC DCEFG
@@ -254,417 +226,385 @@ JAGKBDHHD AHB GFK
 IJEHDO. EHHQ DCEFG
 //}
 
-CHARACTERSでは"LETTER A-Z ONLY"を選びます。
-[CALCULATE IC]ボタンを押すと、左側のResultに一致指数の計算結果が表示されます。
+Select "LETTER A-Z ONLY" under CHARACTERS. Click [CALCULATE IC] to display results.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[ic1][サンプル暗号文の一致指数を計算する][scale=1.0]{
-#@# //}
+//image[ic1][Calculating the Index of Coincidence][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/ic1_epub.png" alt="サンプル暗号文の一致指数を計算する" style="max-width: 90%; height: auto;" />
-  <figcaption>図：サンプル暗号文の一致指数を計算する</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/ic1_epub.png" alt="Calculating the Index of Coincidence" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Calculating the Index of Coincidence</figcaption>
+#@# </figure>
+#@# //}
 
 //noindent
-3：一致指数として0.06402が出力されました。これをパーセントにするには、100倍すればよく、約6.4%になります。
-この値は英語の一致指数の6.7%にとても近いため、単一換字式暗号の暗号文の可能性が高いといえます。
+@<b>{Step 3}: The IC value is 0.06402 (6.4%). This closely matches English's typical IC of 6.7%, strongly indicating a monoalphabetic substitution cipher.
 
-== 復号結果が正しい平文メッセージであることを判定する
+== Verifying Correct Plaintext Recovery
 
-暗号解読のプロセスを通じて、しばしば複数の平文候補が生成されますが、正しい解となる平文メッセージはただ1つのみ存在します。
-このメッセージは一般的に自然言語で表現されます（この文脈では英語）。
+Cryptanalysis typically generates multiple plaintext candidates, but only one represents the true message. This message will be in natural language—English in our context.
 
-正しい平文メッセージは、他の候補と比べてより英文らしく、意味のある内容を持っていることが一般的です。
-これは、言語の自然な流れと文脈の整合性から判断されます。
+The correct plaintext exhibits natural English characteristics and meaningful content, distinguishable through linguistic flow and contextual coherence.
 
-これらの候補を評価するためには、複数のアプローチが存在します。
-これには、文法的正確さ、文脈の一貫性、および言語的流暢さが含まれます。
-これらの要素を総合的に考慮して、もっとも自然で意味のあるメッセージを正しい平文として特定します。
+While @<hd>{brute_force_by_manual} demonstrated manual techniques, here we leverage computational methods to evaluate candidates:
 
-@<hd>{brute_force_by_manual}では手動で識別するアプローチを紹介しましたが、ここではコンピューターの力を借りられる前提でのアプローチを示します。
+ * @<b>{Approach 1: Word-Based Analysis}
+ ** With spaces preserved:
+ *** High-frequency words ("the", "and", "is") indicate probable correctness
+ ** Without spaces:
+ *** Word boundary detection becomes challenging@<fn>{the_fumei}
+ *** Longer word matches increase confidence
+ * @<b>{Approach 2: Frequency Analysis}
+ ** Compare character distributions against standard English frequencies
+ * @<b>{Approach 3: Bigram/Trigram Analysis}
+ ** Common pairs ("th", "er", "in") suggest natural English
 
- * アプローチ①：単語による判定
- ** 空白を含む平文の場合
- *** "the"などの頻出単語があれば、その平文が正解の可能性が高い。
- ** 空白を含まない平文の場合
- *** "the"が単独の単語として存在するかどうかの判定が難しくなる。たとえば、単語の境界が不明確で"the"が他の文字と連続している可能性がある@<fn>{the_fumei}。
- *** より長い英単語が一致する場合、正解の可能性が増す。
- * アプローチ②：文字頻度に基づく判定
- ** 平文候補の文字頻度が自然な英文の文字頻度に類似している場合、その平文が正解である可能性が高い。
- * アプローチ③：言語的特徴による判定
- ** 英語の特徴的な文字ペア、たとえば"er"、"th"などが頻繁に現れる場合、その平文が正解である可能性が高い。
+//footnote[the_fumei][Distinguishing standalone "the" from fragments like "...th" + "e..." requires context.]
 
-//footnote[the_fumei][ ヒットした"the"が「単語として単独の"the"」なのか「"～th"と"e～"の連結」なのかを区別できないからです。]
+=== Leveraging Dictionary Files
 
-=== 辞書ファイルを活用するアプローチ
+Computers can automate Approach 1 through dictionary files.
 
-コンピューターの力を借りれば、アプローチ①を自動化できます。
-このプロセスでは、辞書ファイルが中心的な役割を果たします。
+A dictionary file is a plain text file containing one word per line. This simple format enables efficient word lookup during cryptanalysis.
 
-辞書ファイルとは、テキスト形式で単語リストが保存されたファイルです。
-各単語は1行に1つずつ、改行で区切られて記録されています。
-テキストファイル形式なので、容易に単語を読み書きでき、暗号解読プロセスの効率化を支援します。
+English dictionary files help verify whether decrypted text forms valid English.
 
-英単語の辞書ファイルであれば、復号結果が英文であるかの判定に使えます。
+Common dictionary locations on UNIX-like systems:
 
-UNIXやUNIXライクなOSであれば、システム内に巨大なファイルが同梱されているケースが多いといえます。
-次に示すディレクトリーを探してみてください。
+ * @<code>{/usr/share/dict}
+ * @<code>{/usr/dict/words}
+ * Password tool directories:
+ ** ParrotOS: @<code>{/usr/share/john/password.lst}
+ ** Debian: @<code>{/usr/share/opendict/dictionaries}
+ ** macOS: @<code>{/Library/Dictionaries}
 
- * "/usr/share/dict"
- * "/usr/dict/words"
- * パスワード解析ツールのインストールディレクトリー内
- ** ParrotOSの場合、オフラインパスワードクラッカーであるJohn the Ripperのパスは"/usr/share/john"であり、ここに"password.lst"ファイルがある。
- * Debian GNU/Linuxの場合
- ** "/usr/share/opendict/dictionaries"
- * macOSの場合
- ** "/Library/Dictionaries"
+Beyond system dictionaries, specialized wordlists serve different cryptanalytic purposes:
 
-インターネット上で多様な辞書ファイルが公開されており、これらは自由にダウンロードして使用できます。
-さまざまな用途に応じた暗号解読やデータ分析が容易になります。
+ * @<b>{General dictionaries}: Animal names, European names, technical terms
+ * @<b>{Password lists}: Common choices ("12345678", "password1"), leaked databases
+ * @<b>{Filtered sets}: Excluding single letters ('a', 'I'), focusing on meaningful words
+ * @<b>{Pattern-based}: Numeric sequences (PIN analysis), alphanumeric combinations (≤8 characters)
+ * etc.
 
-公開されている辞書ファイルからいくつかをピックアップしてみました。
+=== Performing Brute-Force Attack and Dictionary Matching with CrypTool 2
 
- * 動物の英単語の辞書ファイル： 動物名や動物に関連する英単語を集めたもの。
- * ヨーロッパ圏の人名の辞書ファイル：ヨーロッパの一般的な人名を含むもの。
- * 高頻度のパスワードの辞書ファイル："12345678"や"password1"のように、よく使われるパスワードのリスト。
- * 流出したパスワードの辞書ファイル：過去に流出したパスワードの集合。パスワード解析にはとても有効。
- * 特定の単語を除外した辞書ファイル：'a'や'I'など一般的すぎる単語を除外したもの。
- * 数字列だけで構成された辞書ファイル：数字のみを含む辞書。PINの解析に有効。
- * 最大8桁の英数字列の全組み合わせの辞書ファイル：辞書攻撃の時間が限られているとき、最大8桁の認証システムのパスワード解析に有効。
- * など
+Let's experience Approach 1 using CrypTool 2.
 
-辞書ファイルの詳細については、拙著を参照ください。
+CrypTool 2 includes a template called "Caesar Brute-Force Analysis," which allows you to experience decrypting Caesar ciphers. This template performs a brute-force attack and then applies dictionary matching to identify the correct plaintext.
 
- * 『ハッキング・ラボで遊ぶために辞書ファイルを鍛える本』IPUSIRON著
- ** @<href>{https://akademeia.info/?page_id=22508}
- * 『ハッキング・ラボのつくりかた 完全版』IPUSIRON著（翔泳社刊）
- ** @<href>{https://akademeia.info/?page_id=35502}
- ** P.489-494が参考になる。
+If the decrypted result contains even one word found in the dictionary, that plaintext is output. If it does not contain any dictionary words, it is discarded. This dictionary check is performed on all decryption results.
 
-=== CrypTool 2で総当たり攻撃と辞書判定を実現する
+Since the tool does not include a function to automatically narrow down the optimal solution, multiple valid plaintext candidates may be output. Human judgment is required to select the final correct plaintext from the candidates.
 
-CrypTool 2を用いてアプローチ①を体験してみましょう。
-
-CrypTool 2には「Caesar Brute-Force Analysis」テンプレートが含まれており、これを使用してシフト暗号の解読を体験できます。
-このテンプレートは、総当たり攻撃を行い、その結果を辞書判定にかけることで平文を特定します。
-もし平文が辞書に含まれる単語を1つでも含んでいれば、その平文を出力します。
-含まなければ、その平文は出力しません。
-この辞書判定処理をすべての復号結果に対して行います。
-
-自動的に最適な解を絞り込む機能は含まれていないため、複数の有効な平文候補が出力されることがあります。
-得られた平文候補から最終的な解を選ぶには、人間の判断が必要です。
-
-それでは、このプロセスをCrypTool 2で実際に試してみましょう。
-これにより、シフト暗号解読の実践的な理解が深まります。
+Now, let's actually try this process in CrypTool 2. This will deepen your practical understanding of Caesar cipher decryption.
 
 //noindent
-1：CrypTool 2を起動します。
-メイン画面の中央にある「Templates」に注目します。
-「Cryptanalysis」＞「Classical」＞「Caesar Brute-Force Analysis」を選んで、ダブルクリックします。
+@<b>{Step 1}: Launch CrypTool 2. Look for the "Templates" section in the center of the main screen. Navigate to "Cryptanalysis" > "Classical" > "Caesar Brute-Force Analysis" and double-click it.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[bruteforce_analysis][「Caesar Brute-Force Analysis」テンプレートを選ぶ][scale=1.0]{
-#@# //}
+//image[bruteforce_analysis][Select the "Caesar Brute-Force Analysis" template][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/bruteforce_analysis.png" alt="「Caesar Brute-Force Analysis」テンプレートを選ぶ" style="max-width: 90%; height: auto;" />
-  <figcaption>図：「Caesar Brute-Force Analysis」テンプレートを選ぶ</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/bruteforce_analysis.png" alt="Select the &quot;Caesar Brute-Force Analysis&quot; template" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Select the "Caesar Brute-Force Analysis" template</figcaption>
+#@# </figure>
+#@# //}
 
 //noindent
-2：ワークスペース上に、シフト暗号を総当たり攻撃するプロジェクトが開きます。
+@<b>{Step 2}: A project for performing a brute-force attack on a Caesar cipher will open in the workspace.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[cryptool_brute1][シフト暗号を総当たり攻撃するプロジェクト][scale=1.0]{
-#@# //}
+//image[cryptool_brute1][Project for performing a brute-force attack on a Caesar cipher][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/cryptool_brute1.png" alt="シフト暗号を総当たり攻撃するプロジェクト" style="max-width: 90%; height: auto;" />
-  <figcaption>図：シフト暗号を総当たり攻撃するプロジェクト</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/cryptool_brute1.png" alt="Project for performing a brute-force attack on a Caesar cipher" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Project for performing a brute-force attack on a Caesar cipher</figcaption>
+#@# </figure>
+#@# //}
 
-各コンポーネントや処理の流れについては後で解説しますので、ここでは試しに実行してみましょう。
-左上に位置するCiphertextコンポーネントには、すでにサンプルの暗号文メッセージが入力されています。
-この暗号文を使って処理を進めます。
+We will explain each component and the process flow later. For now, let's simply try running the project.
+
+In the upper-left corner, you'll find the Ciphertext component, which already contains a sample encrypted message. We'll proceed using this ciphertext.
 
 //noindent
-3：Caesarコンポーネントの挙動を確認します。
-Caesarコンポーネントをダブルクリックし、歯車アイコンを押して設定画面を開きます。
-設定画面で、ActionがEncryptに設定されている場合は、Decryptに変更します@<fn>{bruteforce_bug}。
-なお、コンポーネントの設定はプロジェクトがStop状態でなければ行えません。
+@<b>{Step 3}: Check the behavior of the Caesar component. Double-click the Caesar component and click the gear icon to open its settings. If the Action is set to Encrypt, change it to Decrypt@<fn>{bruteforce_bug}.
 
-//footnote[bruteforce_bug][Encryptのままでも解読後の平文メッセージを得られますが、鍵が違っています。シフト暗号の復号アルゴリズムは暗号化アルゴリズムで代用できるので、この方法でも解読に成功するのです。しかし、その変換に使った鍵をあくまで暗号化用なので、正しい復号用の鍵に調整するためには26から引く必要があります。]
+Note that component settings can only be modified when the project is in the Stop state.
+
+//footnote[bruteforce_bug][Although you can still obtain the plaintext message even if it remains set to Encrypt, the key will be incorrect. The decryption algorithm for Caesar cipher can technically be replaced with the encryption algorithm, so decryption will still succeed. However, since the key used is for encryption, you must subtract it from 26 to get the correct decryption key.]
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[Encrypt2Decrypt][ActionをDecryptにする][scale=1.0]{
-#@# //}
+//image[Encrypt2Decrypt][Change Action to Decrypt][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/Encrypt2Decrypt.png" alt="ActionをDecryptにする" style="max-width: 90%; height: auto;" />
-  <figcaption>図：ActionをDecryptにする</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/Encrypt2Decrypt.png" alt="Change Action to Decrypt" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Change Action to Decrypt</figcaption>
+#@# </figure>
+#@# //}
 
-設定を終えたら、ウィンドウの右上にある最小化アイコン（×の左にあるアイコン）を押します。
-するとワークスペースに戻ります。
+After finishing the settings, click the minimize icon in the upper-right corner of the window (the icon to the left of the ×). This will return you to the workspace.
 
 //noindent
-4：それではサンプル暗号文を解読してみます。
-ワークスペースに戻ったら、[Play]ボタンを押して解読プロセスを開始します。
-すると、右上の"All possible plaintexts"コンポーネントに平文候補が次々と表示されます。
-解読が一定の段階に達すると、プロセスが一時停止し、右下の"Decrypted Ciphertext"コンポーネントに最終的な解読結果が表示されます。
-また、その直上にある"Found shift key"に、解読に使用された鍵（シフト数）が表示されます。
+@<b>{Step 4}: Now let's decrypt the sample ciphertext.
+
+After returning to the workspace, press the [Play] button to start the decryption process. Plaintext candidates will begin to appear in the "All possible plaintexts" component in the upper right. Once the decryption reaches a certain point, the process will pause, and the final decrypted result will be displayed in the "Decrypted Ciphertext" component in the lower right.
+
+Just above that, the "Found shift key" component will show the key (shift value) used in the decryption.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[cryptool_brute2][サンプル暗号文を総当たり攻撃する][scale=1.0]{
-#@# //}
+//image[cryptool_brute2][Brute-force attacking the sample ciphertext][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/cryptool_brute2_epub.png" alt="サンプル暗号文を総当たり攻撃する" style="max-width: 90%; height: auto;" />
-  <figcaption>図：サンプル暗号文を総当たり攻撃する</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/cryptool_brute2_epub.png" alt="Brute-force attacking the sample ciphertext" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Brute-force attacking the sample ciphertext</figcaption>
+#@# </figure>
+#@# //}
 
-今回用いた、解読対象の暗号文メッセージ（653文字）は次のとおりです。
+The ciphertext message (653 characters) used for decryption is as follows:
 
 //quote{
 Dxbg tgwxkxl Dtibmxe wxk Dkrimhehzbx-Zxlvabvamx oxkebxy lh wktftmblva ngw yhezxgkxbva pbx wtl wxk exzxgwtxkxg wxnmlvaxg Oxklvaenxllxengzlftlvabgx Xgbzft. Wbx 1918 xkyngwxgx Ftlvabgx xkexumx bf Spxbmxg Pxemdkbxz bakx Uenxmxsxbm ngw uxxbgyenllmx wtuxb wbx Pxemzxlvabvamx bg xbgxk Yhkf, wbx Ablmhkbdxk xklm Ctak sxagmx litxmxk bg bakxk Mktzpxbmx kbvambz xbglvatxmsxg dhggmxg. Wxk 2001 xklvabxgxgx Dbghybef Xgbzft fbm Dtmx Pbglexm bg wxk Atnimkheex blm gnk xbgxk ohg obxexg Uxexzxg ynxk wbx ngzxaxnkx Ytlsbgtmbhg, wbx wbxlx Ftlvabgx ubl axnmx tnlnxum. Lh blm wbx Xgbzft gtva pbx ohk wtl uxdtggmxlmx ngw tf uxlmxg xkyhklvamx Oxklvaenxllxengzlzxktxm wxk Pxem.
 //}
 
-プロジェクトを実行して、解読結果として得られた平文メッセージは次のとおりです。
+The plaintext message obtained after running the project is as follows:
 
 //quote{
 Kein anderes Kapitel der Kryptologie-Geschichte verlief so dramatisch und folgenreich wie das der legendaeren deutschen Verschluesselungsmaschine Enigma. Die 1918 erfundene Maschine erlebte im Zweiten Weltkrieg ihre Bluetezeit und beeinflusste dabei die Weltgeschichte in einer Form, die Historiker erst Jahr zehnte spaeter in ihrer Tragweite richtig einschaetzen konnten. Der 2001 erschienene Kinofilm Enigma mit Kate Winslet in der Hauptrolle ist nur einer von vielen Belegen fuer die ungeheure Faszination, die diese Maschine bis heute ausuebt. So ist die Enigma nach wie vor das bekannteste und am besten erforschte Verschluesselungsgeraet der Welt.
 //}
 
-復号されたテキストが英語でないことは一目瞭然です。
-テンプレートを開いた時点で、CrypTool 2のワークスペース中央上にあるDictionaryコンポーネントがドイツ語（German）に設定されていることから、元の平文がドイツ語であることを示唆しています。
+It is immediately obvious that the decrypted text is not in English.
 
-解読されたメッセージをDeepL翻訳ツールに入力したところ、ドイツ語として自動検出されました。
-その翻訳結果は、エニグマに関するものでした。
+The Dictionary component in the upper center of the CrypTool 2 workspace was set to "German" when the template was opened, suggesting that the original plaintext is in German.
+
+When we entered the decrypted message into the DeepL translation tool, it was automatically detected as German. The translation result was about the Enigma machine.
+
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[deepl_german][DeepL翻訳した結果][scale=1.0]{
-#@# //}
+//image[deepl_german][Result after translating with DeepL][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/deepl_german.png" alt="DeepL翻訳した結果" style="max-width: 90%; height: auto;" />
-  <figcaption>図：DeepL翻訳した結果</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/deepl_german.png" alt="Result after translating with DeepL" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Result after translating with DeepL</figcaption>
+#@# </figure>
+#@# //}
 
-以上で「Caesar Brute-Force Analysis」テンプレートの使い方の解説は終了です。
+This concludes the explanation of how to use the "Caesar Brute-Force Analysis" template.
 
-このテンプレートの使用を終了するには、[Stop]ボタンを押してシステムをリセットします。
-これで現在のセッションの設定やデータがクリアされます。
+To end use of this template, press the [Stop] button to reset the system. This will clear the current session's settings and data.
 
-以降も引き続き解説しますので、プロジェクトは停止だけしておき、閉じないでおきます。
+Since we will continue with further explanations, please stop the project but do not close it.
 
 //noindent
-4：暗号解読の直接的な手段ではありませんが、一致指数を確認することも有用です。
-たとえば、@<href>{https://www.dcode.fr/index-coincidence}で一致指数を計算すると、暗号文の一致指数は8.2%であることを確認できます。
+@<b>{Step 5}: While not a direct method of decryption, checking the index of coincidence can also be useful.
+
+For example, if you calculate the index of coincidence using @<href>{https://www.dcode.fr/index-coincidence}, you can confirm that the index of coincidence of the ciphertext is 8.2%.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[ic2][暗号文の一致指数を計算する][scale=1.0]{
-#@# //}
+//image[ic2][Calculate the index of coincidence of the ciphertext][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/ic2.png" alt="暗号文の一致指数を計算する" style="max-width: 90%; height: auto;" />
-  <figcaption>図：暗号文の一致指数を計算する</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/ic2.png" alt="暗Calculate the index of coincidence of the ciphertext" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Calculate the index of coincidence of the ciphertext</figcaption>
+#@# </figure>
+#@# //}
 
-続けて復号結果の一致指数を計算すると、8.2%になります。
-暗号文の一致指数と、復号結果の一致指数が合致しました。
-今回はシフト暗号の暗号文だったので、当然の結果といえます。
-「シフト暗号は単一換字式暗号の一種であること」と「単一換字式暗号の暗号文の一致指数は、平文の一致指数と同一値であること」の理由によります。
+When you then calculate the index of coincidence of the decrypted result, it also comes out to 8.2%.
 
-英語の一致指数は5.7%、ドイツ語の一致指数は7.3%です。
-今回の計算した一致指数の値は8.2%であり、英語よりドイツ語に近いこともわかります。
+The index of coincidence of the ciphertext matches that of the decrypted result.
+
+Since this was a Caesar cipher ciphertext, this is a natural outcome. This is because "the Caesar cipher is a type of monoalphabetic substitution cipher" and "the index of coincidence of a monoalphabetic substitution cipher's ciphertext equals that of the plaintext."
+
+The index of coincidence for English is 5.7%, and for German it is 7.3%.
+
+The calculated value of 8.2% is therefore closer to German than to English.
 
 //noindent
-5：以降、このプロジェクトの各部の処理について解説します。
+@<b>{Step 6}: From here on, we will explain the processing of each part of this project.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[cryptool_brute3][各部の役割][scale=1.0]{
-#@# //}
+//image[cryptool_brute3][Roles of each part][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/cryptool_brute3_epub.png" alt="各部の役割" style="max-width: 90%; height: auto;" />
-  <figcaption>図：各部の役割</figcaption>
-</figure>
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/cryptool_brute3_epub.png" alt="Roles of each part" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Roles of each part</figcaption>
+#@# </figure>
+#@# //}
+//image[cryptool_brute3][][scale=1.0]{
 //}
 
-解読プロセスで得られた変換後のメッセージに実在の単語が含まれる場合、それが正しい平文メッセージとして出力されます。
-この条件に基づいて、今回は1つのメッセージだけが条件に適合したため、解読結果としてその1つだけが出力されました。
+If the transformed message obtained during the decryption process contains real words, it will be output as the correct plaintext message.
 
-プロジェクトの左部を見てみましょう。
-この部分の主な役割は、1から26までの数をインクリメントしながら、その値を出力することです。
+Based on this condition, only one message met the criteria this time, so only that one was output as the decryption result.
+
+Let's look at the left section of the project.
+
+The main role of this part is to increment numbers from 1 to 26 and output their values.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[kakubu1][インクリメントしながら数値を出力する][scale=1.0]{
-#@# //}
+//image[kakubu1][Outputting numbers while incrementing][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/kakubu1.png" alt="インクリメントしながら数値を出力する" style="max-width: 90%; height: auto;" />
-  <figcaption>図：インクリメントしながら数値を出力する</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/kakubu1.png" alt="Outputting numbers while incrementing" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Outputting numbers while incrementing</figcaption>
+#@# </figure>
+#@# //}
 
-次に示すコンポーネントを組み合わせて構成されています。
-複雑そうに見えますが、プログラミングでよく登場するfor文の処理だと思えばよいでしょう。
+It is composed of the following components. Although it may look complicated, you can think of it as a for loop commonly used in programming.
 
- * Number Inputコンポーネント
- ** 初期値の1、最大値の26が用意されている。
- * Inc Decコンポーネント
- ** 今回はModeがIncrement、Inc/Dec valueが1なので、1ずつインクリメントする。
- * Comparatorsコンポーネント
- ** 比較する。
- ** 今回は「<=」という大小比較。
- * Gateコンポーネント
- ** 指定のTriggerを満たすと通す。
- ** 今回はTriggerにtrue valueを設定されている。
+ * Number Input component
+ ** Initial value of 1 and maximum value of 26 are provided.
+ * Inc Dec component
+ ** Since Mode is set to Increment and Inc/Dec value is 1, it increments by 1.
+ * Comparators component
+ ** Performs comparisons.
+ ** In this case, it uses the "<=" comparison operator.
+ * Gate component
+ ** Passes data when the specified Trigger is met.
+ ** The Trigger is set to true value.
 
-今度は中央部に注目してください。
-この部分の役割は、復号結果に単語が含まれているかどうかを判定することです。
-含まれていれば、PlaintextGateからそのメッセージが出力されます。
+Now focus on the center section.
+
+The role of this section is to determine whether the decryption result contains any words. If it does, the message is output from the PlaintextGate.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[kakubu2][復号結果に単語が含まれているかどうかを判定する][scale=1.0]{
-#@# //}
+//image[kakubu2][Determining whether the decrypted result contains words][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/kakubu2.png" alt="復号結果に単語が含まれているかどうかを判定する" style="max-width: 90%; height: auto;" />
-  <figcaption>図：復号結果に単語が含まれているかどうかを判定する</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/kakubu2.png" alt="Determining whether the decrypted result contains words" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Determining whether the decrypted result contains words</figcaption>
+#@# </figure>
+#@# //}
 
-次に示すコンポーネントを組み合わせて構成されています。
+It is composed of the following components:
 
- * Dictionaryコンポーネント
- ** 今回はドイツ語の辞書（30万超の単語を収録）が指定されている。
- * Containsコンポーネント
- ** Search TypeがHashtable、"Count each word only once"にチェックあり。
- * Gateコンポーネント
- ** 指定のTriggerを満たすと通す。
- ** 今回はTriggerにtrue valueを設定されている。
+ * Dictionary component
+ ** A German dictionary (containing over 300,000 words) is specified.
+ * Contains component
+ ** Search Type is set to Hashtable, with "Count each word only once" checked.
+ * Gate component
+ ** Passes data when the specified Trigger is met.
+ ** The Trigger is set to true value.
 
-最後に、右部に注目してください。
-この部分の役割は、解読結果の鍵（数値）を表示するために文字列に変換することです。
-これは"Found shift key"というText Outputコンポーネントに表示させるための処理に過ぎません。
+Finally, look at the right section.
+
+The role of this part is to convert the decryption result key (numeric value) to a string for display. This is simply a process to display it in the "Found shift key" Text Output component.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[kakubu3][数値から文字列に変換する][scale=1.0]{
-#@# //}
+//image[kakubu3][Converting numbers to strings][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/kakubu3.png" alt="数値から文字列に変換する" style="max-width: 90%; height: auto;" />
-  <figcaption>図：数値から文字列に変換する</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/kakubu3.png" alt="Converting numbers to strings" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Converting numbers to strings</figcaption>
+#@# </figure>
+#@# //}
 
-次に示すコンポーネントを組み合わせて構成されています。
+It is composed of the following components:
 
- * Gateコンポーネント
- ** 指定のTriggerを満たすと通す。
- ** 今回はTriggerにtrue valueを設定されている。
- * Converterコンポーネント
- ** "Converting to"にstringが指定されている。
- ** Digits for UInt[]の"Define Digits as"には"String of Digits"、Digitsには"0123456789ABCDEF"、Endiannessには"Big Endian"が設定されている。
- * Text Outputコンポーネント
- ** "Found shift key"と名づけられている。
- ** 特定した鍵を表示する。
+ * Gate component
+ ** Passes data when the specified Trigger is met.
+ ** The Trigger is set to true value.
+ * Converter component
+ ** "Converting to" is set to string.
+ ** For Digits for UInt[], "Define Digits as" is set to "String of Digits", Digits is set to "0123456789ABCDEF", and Endianness is set to "Big Endian".
+ * Text Output component
+ ** Named "Found shift key".
+ ** Displays the identified key.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[converter_component][Converterコンポーネントの設定内容][scale=1.0]{
-#@# //}
+//image[converter_component][Converter component settings][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/converter_component.png" alt="Converterコンポーネントの設定内容" style="max-width: 90%; height: auto;" />
-  <figcaption>図：Converterコンポーネントの設定内容</figcaption>
-</figure>
-//}
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/converter_component.png" alt="Converter component settings" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Converter component settings</figcaption>
+#@# </figure>
+#@# //}
 
-以上で「Caesar Brute-Force Analysis」テンプレートの解説を終わります。
+This concludes the explanation of the "Caesar Brute-Force Analysis" template.
 
-ワークスペースのタブを閉じる際、またはCrypToolを終了する際に、プロジェクトに変更があると"Caesar_ExhaustiveKeySearch.cwm"ファイルを上書きするかどうかを選択するダイアログが表示されます。
-もし変更を保存したくない場合は、[いいえ]ボタンを押してください。
+When closing the workspace tab or exiting CrypTool, if there are changes to the project, a dialog will appear asking whether to overwrite the "Caesar_ExhaustiveKeySearch.cwm" file. If you do not want to save the changes, click the [No] button.
 
-もし英語の暗号文を解読したい場合は、Ciphertextコンポーネントに解読対象の暗号文を入力し、Dictionaryコンポーネントの言語設定を「English」に変更してください。
-これにより、英語の単語が含まれているかどうかで平文を判断できます。
+If you want to decrypt an English ciphertext, enter the ciphertext into the Ciphertext component and change the language setting of the Dictionary component to "English". This allows you to determine the plaintext based on whether it contains English words.

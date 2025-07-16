@@ -418,9 +418,6 @@ Enter the shift value in the Key field on the right. We'll keep the default valu
 
 Once all settings are complete, click [Next].
 
-//image[crypt_enc2]["MESSAGE INPUT" screen][scale=1.0]{
-//}
-
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
