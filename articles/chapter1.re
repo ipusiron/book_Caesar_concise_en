@@ -42,8 +42,7 @@ Depending on reader response and interest, we may consider translating the full 
 
 == Prerequisites
 
-No prior knowledge is required to read this book.
-You don't need advanced mathematics or programming skills.
+No prior knowledge is required to read this book. You don't need advanced mathematics or programming skills.
 
 == Why Start Studying Classical Ciphers Now?
 
@@ -53,7 +52,7 @@ There are still many unsolved ciphertexts left in the world. Some are world-famo
 
 It is commonly believed that the number of unsolved ciphertexts will not increase, but this is not actually the case. During the dismantling or organization of libraries or old houses, previously unknown documents, journals, and notes are sometimes discovered. Among these documents, there are occasionally ciphertexts.
 
-If you're interested, try accessing the ciphertext database on HCPortal (Portal of Historical Ciphers). It contains a wide range of ciphertexts, including encrypted postcards and notes. Each entry is tagged as either "Solved" or "Not solved," making it easy to find unsolved ciphertexts.
+If you're interested, try accessing the ciphertext database on HCPortal (Portal of Historical Ciphers). It contains a wide range of ciphertexts, including encrypted postcards and notes. Each entry is tagged as either "Solved" or "Not solved", making it easy to find unsolved ciphertexts.
 
  * HCPortal
  ** @<href>{https://hcportal.eu/}

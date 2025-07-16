@@ -223,7 +223,7 @@ The substitution table for ROT13 is shown in @<img>{rot13_tikanhyou}.
 #@# //}
 
 Notice that each letter maps to another letter exactly 13 positions away. 
-The second row is formed by swapping the first half (a–m) with the second half (n–z). This symmetry means that applying ROT13 twice returns the original text:
+The second row is formed by swapping the first half @<m>{(a–m)} with the second half @<m>{(n–z)}. This symmetry means that applying ROT13 twice returns the original text:
 
 //texequation{
 \mathrm{ROT13}( \mathrm{ROT13}(m) ) = m

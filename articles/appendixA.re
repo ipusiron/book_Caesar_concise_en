@@ -1,108 +1,96 @@
-= アルファベットの文字頻度
+= Letter Frequency in Alphabets
 
-文字頻度（文字の出現頻度）の特徴は、古典暗号の解読においてたびたび効果的です。
-さらに、文字頻度は、解読対象の言語（あるいは文字体系）を特定したり、絞り込んだりするのにも役立ちます。
+The characteristics of letter frequency (how often letters appear) are often effective in deciphering classical ciphers. Moreover, letter frequency can help identify or narrow down the language (or writing system) used in the encrypted message.
 
-たとえば、スペイン語では"que"という関係代名詞がよく使われるため、他の言語に比べて文章全体で'q'がたくさん現れます。
-また、ドイツ語の文章全体では、'e'や'n'という文字が頻出します。
-このように各言語には、特定の文字がその他の文字よりも頻繁に使われるという、文字頻度の偏りがあります。
-言い換えれば、各言語には固有の記号論的な指紋があるということです。
+For example, in Spanish, the relative pronoun "que" is frequently used, so the letter 'q' appears more often compared to other languages. In German texts, letters like 'e' and 'n' are highly frequent. Each language has its own skewed distribution where certain letters appear more frequently than others. In other words, every language has a unique semiotic fingerprint.
 
-こうした文字頻度の偏りをうまく活用することで、暗号解読に役立てられるわけです。
+By effectively leveraging these biases in letter frequency, cryptanalysis can become significantly more powerful.
 
-== 各アルファベットの出現確率
+== Letter Frequency Distribution
 
-英語の場合、各アルファベットは@<table>{char_frequency}に示す確率で出現することが知られています。
-これは一般的な英文の文字頻度そのものです。
+In English, each letter appears with the probabilities shown in @<table>{char_frequency}. These values represent the typical letter frequency in general English texts.
 
-//table[char_frequency][各アルファベットの出現確率]{
-文字	出現確率	文字	出現確率
+//table[char_frequency][Letter Frequency Distribution]{
+Letter	Frequency		Letter	Frequency
 -------------------------------------------------------------
-A	0.082	N	0.067
-B	0.015	O	0.075
-C	0.028	P	0.019
-D	0.043	Q	0.001
-E	0.127	R	0.060
-F	0.022	S	0.063
-G	0.020	T	0.091
-H	0.061	U	0.028
-I	0.070	V	0.010
-J	0.002	W	0.023
-K	0.008	X	0.001
-L	0.040	Y	0.020
-M	0.024	Z	0.001
+A				0.082				N				0.067
+B				0.015				O				0.075
+C				0.028				P				0.019
+D				0.043				Q				0.001
+E				0.127				R				0.060
+F				0.022				S				0.063
+G				0.020				T				0.091
+H				0.061				U				0.028
+I				0.070				V				0.010
+J				0.002				W				0.023
+K				0.008				X				0.001
+L				0.040				Y				0.020
+M				0.024				Z				0.001
 //}
 
-== 文字頻度のグラフ
+== Letter Frequency Graph
 
-CrypTool 2には古典暗号向けのフリードマン・テスト用のテンプレートが用意されています。
-"Friedman Test for Classical Ciphers"テンプレートのサンプルを用いて、テストすると次の結果が得られます。
-サンプルは8,334文字の英文です。
+CrypTool 2 provides a built-in template for classical cipher analysis called the @<b>{Friedman Test for Classical Ciphers}. Using the sample provided with this template, we obtain the following results. The sample consists of 8,334 characters of English text.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-#@# //image[friedman_test][文字頻度のグラフ][scale=1.0]{
-#@# //}
+//image[friedman_test][Letter Frequency Graph][scale=1.0]{
+//}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
 #@# //}
 
-//embed[html]{
-<figure style="text-align: center;">
-  <img src="images/friedman_test.png" alt="文字頻度のグラフ" style="max-width: 90%; height: auto;" />
-  <figcaption>図：文字頻度のグラフ</figcaption>
-</figure>
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/friedman_test.png" alt="Letter Frequency Graph" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Letter Frequency Graph</figcaption>
+#@# </figure>
+#@# //}
+
+The letter 'E' appears with striking prominence. Its frequency is 13.17%, which is quite close to the 12.7% shown in @<table>{char_frequency}.
+
+Next comes 'T', followed by 'O', 'N', 'A', 'S', 'I', and 'R'. While the exact order doesn't perfectly match the frequencies in @<table>{char_frequency}, it is largely consistent.
+
+== Grouping by Letter Frequency
+
+Letters can be classified into six groups based on their frequency of appearance, as shown in @<table>{char_frequency_group}.
+
+//table[char_frequency_group][Hierarchical Classification of Letter Frequencies]{
+Group							Letters										Frequency Range		Remarks
+-------------------------------------------------------------------------------------------------------------
+Most Frequent			E													0.12							Key for analysis
+High Frequency		T, A, O, I, N, S, H, R		0.06-0.09					Common letters
+Medium Frequency	D, L, U, C, M							0.03-0.04					-
+Low Frequency			F, Y, W, G, P, B, V				0.015-0.028				-
+Rare							J, K, Q, X, Z							Below 0.01				Very rare
 //}
 
-'E'が突出して出現しています。
-13.17%なので、@<table>{char_frequency}で示した出現確率12.7%とかなり近いといえます。
+== Letter Frequencies Across Languages
 
-次いで'T'が多く出現しており、以降'O'、'N'、'A'、'S', 'I', 'R'となります。
-@<table>{char_frequency}の出現確率の順序と完全に一致しているわけではありませんが、ほぼ一致します。
+Wikipedia's "Letter frequencies" page (@<href>{https://en.wikipedia.org/wiki/Letter_frequency}) provides information on letter frequencies for various languages.
 
-== 出現確率によるグループ化
+When letters are ordered by frequency, we get the sequences shown in @<table>{ETAOIN}.
 
-出現確率により、6つのグループに分類すると、@<table>{char_frequency_group}のようになります。
-
-#@# 今回ははみ出さなくした。はみ出す場合は強制改行＋文章を調整.
-//table[char_frequency_group][文字頻度の階層分類]{
-グループ	属するアルファベット	出現確率	備考
+//table[ETAOIN][Most Frequent Letters and Mnemonics by Language]{
+Language	Letter Sequence
 -------------------------------------------------------------
-最頻度	E	0.12	暗号解読で積極的に利用したい。
-高頻度	T, A, O, I, N, S, H, R	0.06～0.09	よく現れる。
-中頻度	D, L, U, C, M	0.03～0.04	.
-低頻度	P, F, Y, W, G, P, B, V	0.015～0.28	.
-稀頻度	J, K, Q, X, Z	0.01以下	100文字の文章でも登場しないことがある。
+English		ETAOIN SHRDLU
+Spanish		EAOSR NIDLT
+French		ESAIT NRUOL
+German		ENISR ATDHU
+Italian		EAION LRTSC
 //}
 
-== 各言語の文字頻度
+You don't need to memorize every sequence, but it's useful to remember @<b>{ETAOIN} for English. This is a well-known mnemonic that aids memory and is commonly used in cryptanalysis.
 
-Wikipediaの"Letter frequencies"（@<href>{https://en.wikipedia.org/wiki/Letter_frequency}）に各言語の文字頻度が掲載されています。
+While not every English text will follow this exact order of frequency, most will roughly align with it.
 
-頻度の高い順に文字を並べると、@<table>{ETAOIN}に示す文字列が得られます。
-
-//table[ETAOIN][各言語の頻出文字とニーモニック]{
-言語	文字列
--------------------------------------------------------------
-英語	ETAOIN SHRDLU
-スペイン語	EAOSR NIDLT
-フランス語	ESAIT NRUOL
-ドイツ語	ENISR ATDHU
-イタリア語	EAION LRTSC
-//}
-
-すべてを暗記する必要性はありませんが、英語の"ETAOIN"だけは覚えておきましょう。
-これはよく知られたニーモニック（記憶を助ける工夫）であり、暗記するのを助けてくれます。
-
-すべての英文においてこの文字頻度の順序というわけではありませんが、ほぼ一致します。
-
-なお、"ETAOIN SHRDLU"という文字列は、鋳造活字で組版を行なっていた時代に、組版職人の慣習から、英語の印刷物にしばしば用いられたフレーズとしても有名です。
-オックスフォード英語辞典（"Oxford English Dictionary"）やランダムハウスウェブスター完全版辞典（"Random House Webster's Unabridged Dictionary"）などに掲載されています。
+Incidentally, the phrase @<b>{ETAOIN SHRDLU} also became famous in the era of hot metal typesetting. It originated from typesetters' habits and often appeared in printed English materials as a placeholder. It is documented in resources such as the @<i>{Oxford English Dictionary} and @<i>{Random House Webster's Unabridged Dictionary}.
 
  * Merriam-Webster Online Dictionary
  ** @<href>{https://www.merriam-webster.com}
- ** "ETAOIN SHRDLU"の説明ページ
+ ** "ETAOIN SHRDLU" explanation page
  *** @<href>{https://www.merriam-webster.com/dictionary/etaoin%20shrdlu}
 
-リノタイプ機のキーボードの左側にあるキーの最初の縦2列を指でなぞるとできる文字列でもあります。
+This string also corresponds to the first two vertical columns of keys on the left side of a Linotype machine keyboard, traceable by hand.

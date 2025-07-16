@@ -11,7 +11,7 @@ With @<b>{over 30 books published in Japanese} on cryptography, hacking, and cyb
  * @<i>{The Complete Guide to Cryptography (暗号技術のすべて)}
  * @<i>{How to Build a Hacking Lab – Complete Edition (ハッキング・ラボのつくりかた 完全版)}
  * @<i>{The Textbook of White-Hat Hackers (ホワイトハッカーの教科書)}
- * @<i>{The Hacker’s School: A Handbook of Lockpicking (ハッカーの学校 鍵開けの教科書)}
+ * @<i>{The Hacker's School: A Handbook of Lockpicking (ハッカーの学校 鍵開けの教科書)}
 
 As an experienced translator and editorial supervisor, he has brought important cryptographic literature to Japanese readers:
 
