@@ -113,8 +113,7 @@ Since frequency patterns persist regardless of spacing, this technique breaks bo
 
 ==={cryptool_caesar_by_frequency} Breaking Shift Ciphers with Frequency Analysis in CrypTool 2
 
-CrypTool 2 provides the Caesar Analyzer component (found under Cryptanalysis > Specific) for frequency-based cryptanalysis.
-This component breaks shift ciphers by analyzing character frequencies, supporting unigrams, bigrams, trigrams, and higher n-grams.
+CrypTool 2 provides the Caesar Analyzer component (found under Cryptanalysis > Specific) for frequency-based cryptanalysis. This component breaks shift ciphers by analyzing character frequencies, supporting unigrams, bigrams, trigrams, and higher n-grams.
 
 The Caesar Analyzer operates as follows:
 
@@ -392,7 +391,7 @@ Just above that, the "Found shift key" component displays the key (shift value) 
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
-#@#   <img src="images/cryptool_brute2_epub.png" alt="Brute-force attacking the sample ciphertext" style="max-width: 90%; height: auto;" />
+#@#   <img src="images/cryptool_brute2b.png" alt="Brute-force attacking the sample ciphertext" style="max-width: 90%; height: auto;" />
 #@#   <figcaption>Figure: Brute-force attacking the sample ciphertext</figcaption>
 #@# </figure>
 #@# //}
@@ -482,7 +481,7 @@ The calculated value of 8.2% is therefore closer to German than to English.
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
-#@#   <img src="images/cryptool_brute3_epub.png" alt="Roles of each part" style="max-width: 90%; height: auto;" />
+#@#   <img src="images/cryptool_brute3.png" alt="Roles of each part" style="max-width: 90%; height: auto;" />
 #@#   <figcaption>Figure: Roles of each part</figcaption>
 #@# </figure>
 #@# //}

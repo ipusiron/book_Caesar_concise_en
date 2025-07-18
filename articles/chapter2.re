@@ -39,7 +39,7 @@ As an example, let us examine how the plaintext "hello" is encrypted using the C
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-//image[caesar_enc_hello][Encrypting "hello"][scale=0.8]{
+//image[caesar_enc_hello][Encrypting "hello" using Caesar cipher][scale=0.8]{
 //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
@@ -47,8 +47,8 @@ As an example, let us examine how the plaintext "hello" is encrypted using the C
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
-#@#   <img src="images/caesar_enc_hello.png" alt="Encrypting &quot;hello&quot;" style="max-width: 90%; height: auto;" />
-#@#   <figcaption>Figure: Encrypting "hello"</figcaption>
+#@#   <img src="images/caesar_enc_hello.png" alt="Encrypting &quot;hello&quot; using Caesar cipher" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Encrypting "hello" using Caesar cipher</figcaption>
 #@# </figure>
 #@# //}
 
@@ -158,12 +158,12 @@ The modified algorithm using a substitution table is shown in @<img>{shift_enc_a
 
 === How to Call Each Algorithm
 
-@<img>{alice_bob_3alg_epub} shows the algorithm execution sequence. Alice and Bob call @<b>{KeyGen} in the preparation stage, then @<b>{Enc} and @<b>{Dec} in the main stage.
+@<img>{alice_bob_3alg} shows the algorithm execution sequence. Alice and Bob call @<b>{KeyGen} in the preparation stage, then @<b>{Enc} and @<b>{Dec} in the main stage.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-//image[alice_bob_3alg_epub][Calling the algorithm by Alice and Bob][scale=0.8]{
+//image[alice_bob_3alg][Calling the algorithm by Alice and Bob][scale=0.9]{
 //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
@@ -171,7 +171,7 @@ The modified algorithm using a substitution table is shown in @<img>{shift_enc_a
 
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
-#@#   <img src="images/alice_bob_3alg_epub.png" alt="Calling the algorithm by Alice and Bob" style="max-width: 90%; height: auto;" />
+#@#   <img src="images/alice_bob_3alg.png" alt="Calling the algorithm by Alice and Bob" style="max-width: 90%; height: auto;" />
 #@#   <figcaption>Figure: alling the algorithm by Alice and Bob</figcaption>
 #@# </figure>
 #@# //}

@@ -70,7 +70,9 @@ Note: In Step 2, we apply the same transformation twice. Since ROT13 shifts by e
 
 == Testing ROT13 with the @<code>{nkf} Command
 
-The @<code>{nkf} command is a filter command used for converting Japanese character encodings for network use. It is widely used on UNIX systems to convert character encodings and newline formats.
+The @<code>{nkf} command is a filter tool used primarily on UNIX systems to convert text encoding and newline formats.
+
+e.g., It was originally developed for handling Japanese encodings such as Shift_JIS and EUC-JP.
 
 //noindent
 @<b>{Step 1}: Prepare a file named @<code>{plain.txt} containing the plaintext. Here, we assume the plaintext consists of lowercase letters.
@@ -117,8 +119,7 @@ We have successfully confirmed that the original plaintext message has been rest
 
 == Testing ROT13 with One-Liner Commands
 
-One-liner commands execute complete operations in a single line.
-Python's @<code>{codecs} module includes built-in ROT13 support through its encoding functions.
+One-liner commands execute complete operations in a single line. Python's @<code>{codecs} module includes built-in ROT13 support through its encoding functions.
 
 We'll use @<code>{codecs.encode()} for encryption and @<code>{codecs.decode()} for decryption, with "i love you." as our test string.
 
@@ -169,9 +170,7 @@ Set Shift to 1 for ROT1, or 3 for ROT3 (traditional Caesar cipher).
 
 Caesar and shift ciphers are fundamental encryption methods with implementations readily available online.
 
-This section uses code adapted from @<i>{Cracking Codes with Python} by Al Sweigart (Japanese translation: 『Pythonでいかにして暗号を破るか』, Socym).
-
-The book covers shift ciphers across two chapters:
+This section uses code adapted from @<i>{Cracking Codes with Python} by Al Sweigart (Japanese translation: 『Pythonでいかにして暗号を破るか』, Socym). The book covers shift ciphers across two chapters:
 
  * Chapter 5: Encryption and decryption implementation
  * Chapter 6: Brute-force attack techniques

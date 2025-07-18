@@ -13,7 +13,7 @@ The Vigenère table is a compilation of 26 different substitution tables used in
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}
 #@# //}
-//image[tikan_table_tougou][The Vigenère table (reproduced)][scale=1.0]{
+//image[tikan_table_tougou][The Vigenère table][scale=1.0]{
 //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
@@ -22,7 +22,7 @@ The Vigenère table is a compilation of 26 different substitution tables used in
 #@# //embed[html]{
 #@# <figure style="text-align: center;">
 #@#   <img src="images/tikan_table_tougou_epub.png" alt="The Vigenère table (reproduced)" style="max-width: 90%; height: auto;" />
-#@#   <figcaption>Figure: The Vigenère table (reproduced)</figcaption>
+#@#   <figcaption>Figure: The Vigenère table</figcaption>
 #@# </figure>
 #@# //}
 
