@@ -6,6 +6,7 @@ gem 'pandoc2review'
 gem 'playwright-runner'
 gem 'rake'
 # gem 'review-peg', '0.2.2'
-## ƒR[ƒh“à‚Ì©“®Ü‚è•Ô‚µ‘Î‰.review-ext.rb‚ÆƒZƒbƒg‚ÅC³.
+
+## ã‚³ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯å†…ã§ã®è‡ªå‹•æŠ˜ã‚Šè¿”ã—ãŸå¯¾å¿œ.
 ## https://zenn.dev/sikkim/articles/d5e6d851d100d2
-+ gem 'unicode-display_width'
+gem 'unicode-display_width'

@@ -33,9 +33,13 @@ Under the following terms:
 - **Attribution** — You must give appropriate credit.
 - **NonCommercial** — You may not use the material for commercial purposes.
 
-For full license terms, see: https://creativecommons.org/licenses/by-nc/4.0/
+For full license terms, see: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
 
 Commercial use is allowed upon request. Please contact the author at ipusiron@gmail.com for licensing inquiries.
+
+Note: This license applies only to the book content and manuscript files in this repository.  
+The Re:VIEW tool used for typesetting is licensed separately under the MIT License.  
+See: [Re:VIEW](https://github.com/kmuto/review)
 
 ---
 
@@ -96,7 +100,6 @@ Alternatively, you can use the provided `build.sh` script for convenience:
 sh build.sh
 ```
 
-
 ---
 
 ## 👤 About the Author
@@ -104,7 +107,8 @@ sh build.sh
 **IPUSIRON** is a Japanese technical author and educator specializing in security and cryptography.
 
 Born in 1979 in Soma City, Fukushima, Japan, he continues to reside in his hometown.  
-With over 20 years of experience in technical writing, he has published more than 30 books on cryptography, hacking, and cybersecurity—both commercially and independently. Notable titles include:
+With over 20 years of experience in technical writing, he has published **more than 30 books** on cryptography, hacking, and cybersecurity—both commercially and independently.
+Notable titles include:
 
 - _The Complete Guide to Cryptography (暗号技術のすべて)_
 - _How to Build a Hacking Lab - Complete Edition (ハッキング・ラボのつくりかた 完全版)_
