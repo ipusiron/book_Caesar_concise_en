@@ -13,9 +13,29 @@ This edition is part of the **Classical Cipher Series**, aiming to make foundati
 - **Author:** IPUSIRON  
 - **Original Language:** Japanese  
 - **Translated by:** The author (self-translated)  
-- **License:** To be announced (TBA)
+- **License:** CC BY-NC 4.0
 
 This edition focuses solely on the Caesar cipher and its natural extension, the shift cipher. It is designed for readers new to cryptography, educators, students, and cipher enthusiasts alike.
+
+---
+
+## 📄 License
+
+This book is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** license.
+
+You are free to:
+
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material
+
+Under the following terms:
+
+- **Attribution** — You must give appropriate credit.
+- **NonCommercial** — You may not use the material for commercial purposes.
+
+For full license terms, see: https://creativecommons.org/licenses/by-nc/4.0/
+
+Commercial use is allowed upon request. Please contact the author at ipusiron@gmail.com for licensing inquiries.
 
 ---
 
@@ -58,42 +78,65 @@ These files are stored in the `articles/` directory and will be published under 
 
 This repository uses [Re:VIEW](https://github.com/kmuto/review) as the primary typesetting and publishing tool.
 
-All manuscripts are written in Re:VIEW format, and the output (PDF/EPUB) is generated via a reproducible build process.  
+All manuscripts are written in Re:VIEW format, and the output (PDF/EPUB) is generated via a reproducible build process.
 This ensures consistency and typographic quality for both print and digital editions.
 
-### 📦 Toolchain
+### 📦 Build Instructions (for PDF)
 
-- Re:VIEW 5.x
-- review-epubmaker
-- review-pdfmaker
-- Ruby (via rbenv or rvm recommended)
-- Build automation: `rake` or GitHub Actions (TBA)
+Make sure Docker is installed, then run:
 
-Build instructions and scripts will be added before the public release.
+```sh
+docker run --rm -v "$(pwd)":/work vvakame/review:5.8 \
+  /bin/sh -c "gem install unicode-display_width && cd /work && review-pdfmaker config.yml"
+```
+
+Alternatively, you can use the provided `build.sh` script for convenience:
+
+```sh
+sh build.sh
+```
+
 
 ---
 
 ## 👤 About the Author
 
-**IPUSIRON** is a Japanese technical writer and cryptography educator known for making complex security concepts accessible to learners and practitioners.
+**IPUSIRON** is a Japanese technical author and educator specializing in security and cryptography.
 
-He has authored **over 30 books in Japanese** on cryptography, classical ciphers, and cybersecurity—including bestsellers such as:
+Born in 1979 in Soma City, Fukushima, Japan, he continues to reside in his hometown.  
+With over 20 years of experience in technical writing, he has published more than 30 books on cryptography, hacking, and cybersecurity—both commercially and independently. Notable titles include:
 
-- _The Complete Guide to Cryptography (暗号技術のすべて』_
-- _How to Build a Hacking Lab Complete Edition (ハッキング・ラボのつくりかた 完全版)_
+- _The Complete Guide to Cryptography (暗号技術のすべて)_
+- _How to Build a Hacking Lab - Complete Edition (ハッキング・ラボのつくりかた 完全版)_
 - _The Textbook of White-Hat Hackers (ホワイトハッカーの教科書)_
 - _The Hacker’s School: A Handbook of Lockpicking (ハッカーの学校 鍵開けの教科書)_
 
-He is also an experienced translator and editorial supervisor of cryptographic literature.  
-Notably, he served as:
+He is also an experienced translator and editorial supervisor of cryptographic literature.
+Notable translation work includes:
 
 - One of the supervising translators of _Serious Cryptography_ by Jean-Philippe Aumasson (Japanese edition)  
 - The translator of _Codebreaking: A Practical Guide_ by Elonka Dunin and Klaus Schmeh (Japanese edition)  
 - The translator of _Cracking Codes with Python_ by Al Sweigart (Japanese edition)
 
-In addition, he is the founder of the **Security Akademeia** blog, where he shares hands-on tutorials, cryptographic tools, and insights from the Japanese security community.
+His professional background includes:
 
-This book marks the first English installment of his ongoing **Classical Cipher Series**, aimed at bringing historically significant ciphers to a wider global audience.
+- Developing business applications
+- Inspecting and debugging mobile and web apps
+- Installing physical security and disaster prevention systems
+
+He currently focuses on writing, lecturing, and tool development, while continuing comprehensive research across information, physical, and human security domains.
+
+His educational philosophy emphasizes active learning—encouraging readers not just to read, but to “learn by doing.”
+
+In recent years, he has expanded into independently published technical books, commonly known as “doujinshi” in Japan. These self-published works allow him to explore niche topics and reach a broader range of readers beyond commercial publishing.
+
+He has also presented at security conferences, high schools, and technical book fairs such as 技術書典 (Gijutsu-Shoten).
+
+He serves as a board member of the **Cyber Risk Defender Association**, a Japanese non-profit organization focused on security awareness and education.
+
+He is also the founder of **Security Akademeia**, a long-running blog where he shares tutorials, cryptographic tools, and insights from the Japanese security community.
+
+This book is the first English installment in his **Classical Cipher Series**, aimed at introducing foundational cryptographic methods to an international audience.
 
 - Blog: [https://akademeia.info/](https://akademeia.info/)  
 - X: [@ipusiron](https://x.com/ipusiron)  
