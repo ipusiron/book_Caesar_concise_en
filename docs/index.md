@@ -1,5 +1,10 @@
-# Caesar Cipher Breaking – A Concise Edition
+---
+title: Caesar Cipher Breaking – A Concise Edition
+description: A concise and practical guide to understanding and breaking the Caesar cipher.
+image: /book_Caesar_concise_en/cover-ogp.png
+---
 
+# Caesar Cipher Breaking – A Concise Edition
 
 Welcome to the official site for the English edition of _Caesar Cipher Breaking – A Concise Edition_, a concise and practical guide to understanding and breaking the Caesar cipher.
 
