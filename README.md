@@ -51,13 +51,25 @@ See: [Re:VIEW](https://github.com/kmuto/review)
 
 ---
 
-## 📁 Repository Structure
+## 📚 Build Environment
+
+This repository uses [Re:VIEW](https://github.com/kmuto/review) as the primary typesetting and publishing tool.
+
+All manuscripts are written in Re:VIEW format, and the output (PDF/EPUB) is generated via a reproducible build process.
+This ensures consistency and typographic quality for both print and digital editions.
+
+### 📁 Repository Structure
 
 ```text
 .
-├── articles/                 # Main manuscript directory (EPUB/PDF output stored here)
+├── articles/                # Main manuscript directory (EPUB/PDF output stored here)
 │   ├── book_Caesar_concise_en.epub
 │   └── book_Caesar_concise_en.pdf
+├── docs/                    # GitHub Pages site (landing page and assets)
+│   ├── index.md             # Top page content (Markdown)
+│   ├── cover-ogp.png        # OGP image used for social media previews
+│   ├── favicon.ico          # Favicon for the site
+│   └── _config.yml          # GitHub Pages config (Jekyll)
 ├── pdf-sample/              # Optional sample PDFs for preview or layout checking
 ├── .circleci/               # CI/CD configuration
 ├── .devcontainer/           # Dev container settings for VSCode/Dev Containers
@@ -76,23 +88,6 @@ See: [Re:VIEW](https://github.com/kmuto/review)
 └── README.md                # This file
 ```
 
-### 📦 Output Files
-
-The main outputs of this repository are the finalized English edition of the book in both EPUB and PDF formats.  
-These files are stored in the `articles/` directory and will be published under open access terms upon release.
-
-- `articles/book_Caesar_concise_en.epub` — EPUB format (for Kindle and other e-readers)
-- `articles/book_Caesar_concise_en.pdf` — Printable PDF format
-
----
-
-## 📚 Build Environment
-
-This repository uses [Re:VIEW](https://github.com/kmuto/review) as the primary typesetting and publishing tool.
-
-All manuscripts are written in Re:VIEW format, and the output (PDF/EPUB) is generated via a reproducible build process.
-This ensures consistency and typographic quality for both print and digital editions.
-
 ### 📦 Build Instructions (for PDF)
 
 Make sure Docker is installed, then run:
@@ -107,6 +102,14 @@ Alternatively, you can use the provided `build.sh` script for convenience:
 ```sh
 sh build.sh
 ```
+
+### 📦 Output Files
+
+The main outputs of this repository are the finalized English edition of the book in both EPUB and PDF formats.  
+These files are stored in the `articles/` directory and will be published under open access terms upon release.
+
+- `articles/book_Caesar_concise_en.epub` — EPUB format (for Kindle and other e-readers)
+- `articles/book_Caesar_concise_en.pdf` — Printable PDF format
 
 ---
 
