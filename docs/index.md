@@ -118,3 +118,7 @@ Under the following terms:
 For full license terms, see: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
 
 Commercial use is allowed upon request. Please contact the author at ipusiron@gmail.com for licensing inquiries.
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5c5aeffb46a945288efe3565c9a7040f"}'></script>
+<!-- End Cloudflare Web Analytics -->
