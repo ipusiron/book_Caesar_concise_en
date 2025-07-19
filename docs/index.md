@@ -1,19 +1,14 @@
 ---
 title: Caesar Cipher Breaking – A Concise Edition
 description: A concise and practical guide to understanding and breaking the Caesar cipher.
+image: https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png
+twitter:card: summary_large_image
+twitter:image: https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png
+
+twitter:site: "@ipusiron"
+og:image: https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png
+og:type: website
 ---
-
-<!-- OGP meta tags -->
-<meta property="og:title" content="Caesar Cipher Breaking – A Concise Edition" />
-<meta property="og:description" content="A concise and practical guide to understanding and breaking the Caesar cipher." />
-<meta property="og:image" content="https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://ipusiron.github.io/book_Caesar_concise_en/" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Caesar Cipher Breaking – A Concise Edition" />
-<meta name="twitter:description" content="A concise and practical guide to understanding and breaking the Caesar cipher." />
-<meta name="twitter:image" content="https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png" />
 
 
 # Caesar Cipher Breaking – A Concise Edition
