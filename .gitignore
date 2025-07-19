@@ -5,7 +5,6 @@ Gemfile.lock
 
 articles/*.pdf
 !articles/images/cover-b5.pdf
-!docs/articles/book_Caesar_concise_en.pdf
 
 articles/*.epub
 articles/*.html

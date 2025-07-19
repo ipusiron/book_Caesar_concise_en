@@ -41,11 +41,12 @@ This edition is part of the **Classical Cipher Series**, aiming to make foundati
 
 ## 📥 Download
 
-- [📘 PDF version (free)](./articles/book_Caesar_concise_en.pdf)
-- 📗 EPUB version — _planned for release soon_
+👉 [Download Page (via GitHub Releases)](https://github.com/ipusiron/book_Caesar_concise_en/releases/latest)
 
-Both versions are distributed under the **CC BY-NC 4.0** license.  
-Commercial use is allowed upon request. Contact: ipusiron@gmail.com
+Both the PDF and EPUB versions are available for free download.
+
+- 📘 PDF version (free)
+- 📗 EPUB version — _planned for release soon_
 
 ---
 
