@@ -6,6 +6,14 @@ This edition is part of the **Classical Cipher Series**, aiming to make foundati
 
 ---
 
+## 🌐 Official Page
+
+The e-book is available for download from the link below.
+
+- 👉 [https://ipusiron.github.io/book_Caesar_concise_en/](https://ipusiron.github.io/book_Caesar_concise_en/)
+
+---
+
 ## 📖 About This Book
 
 - **Title:** Caesar Cipher Breaking – A Concise Edition
