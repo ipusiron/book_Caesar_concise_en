@@ -8,7 +8,7 @@ In this chapter, we'll use computers to explore shift ciphers through commands, 
 
 You can implement shift ciphers easily by piping @<code>{echo} and @<code>{tr} commands.
 
-The @<code>{echo} command outputs text to standard output, while @<code>{tr} (translate) transforms characters from standard input and sends the result to standard output. By combining these commands with a pipe (|), we can create functional shift ciphers in a single line.
+The @<code>{echo} command outputs text to standard output, while @<code>{tr} (translate) command transforms characters from standard input and sends the result to standard output. By combining these commands with a pipe (|), we can create functional shift ciphers in a single line.
 
 === Testing Caesar Cipher with @<code>{tr} Command
 
@@ -200,41 +200,41 @@ mode = 'encrypt' # Set to either 'encrypt' or 'decrypt'.
 
 # Every possible symbol that can be encrypted:
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' \
-			'abcdefghijklmnopqrstuvwxyz' \
-			'1234567890 !?.'
+        'abcdefghijklmnopqrstuvwxyz' \
+        '1234567890 !?.'
 
 def caesar(message, key):
-	# Stores the encrypted/decrypted form of the message:
-	translated = ""
-	for symbol in message:
-    	# Note: Only symbols in the `SYMBOLS` string can be encrypted/decrypted.
-		if symbol in SYMBOLS:
-			symbolIndex = SYMBOLS.find(symbol)
+  # Stores the encrypted/decrypted form of the message:
+  translated = ""
+  for symbol in message:
+    # Note: Only symbols in the `SYMBOLS` string can be encrypted/decrypted.
+    if symbol in SYMBOLS:
+      symbolIndex = SYMBOLS.find(symbol)
 
-			# Perform encryption/decryption:
-			if mode == 'encrypt':
-				translatedIndex = symbolIndex + key
-			elif mode == 'decrypt':
-				translatedIndex = symbolIndex - key
+      # Perform encryption/decryption:
+      if mode == 'encrypt':
+        translatedIndex = symbolIndex + key
+      elif mode == 'decrypt':
+        translatedIndex = symbolIndex - key
 
-			# Handle wrap-around, if needed:
-			if translatedIndex >= len(SYMBOLS):
-				translatedIndex = translatedIndex - len(SYMBOLS)
-			elif translatedIndex < 0:
-				translatedIndex = translatedIndex + len(SYMBOLS)
+      # Handle wrap-around, if needed:
+      if translatedIndex >= len(SYMBOLS):
+        translatedIndex = translatedIndex - len(SYMBOLS)
+      elif translatedIndex < 0:
+        translatedIndex = translatedIndex + len(SYMBOLS)
 
-			translated = translated + SYMBOLS[translatedIndex]
-		else:
-			# Append the symbol without encrypting/decrypting:
-			translated = translated + symbol
-	return translated
+      translated = translated + SYMBOLS[translatedIndex]
+    else:
+      # Append the symbol without encrypting/decrypting:
+      translated = translated + symbol
+  return translated
 
 def main():
-	# Output the translated string:
-	print(caesar(message, key))
+  # Output the translated string:
+  print(caesar(message, key))
 
 if __name__ == '__main__':
-	main()
+  main()
 //}
 
 Try running the program in your local Python environment or online:
@@ -250,8 +250,7 @@ When you execute @<list>{caesarCipher} as is, it outputs: @<code>{"guv6Jv6Jz!J6r
 
 Notice that spaces, punctuation, and case are all preserved during encryption.
 
-To decrypt, set @<code>{message} to the ciphertext and @<code>{mode} to @<code>{"decrypt"}.
-The output will be the original message: @<code>{"This is my secret message."}.
+To decrypt, set @<code>{message} to the ciphertext and @<code>{mode} to @<code>{"decrypt"}. The output will be the original message: @<code>{"This is my secret message."}.
 
 === Extending ROT13 to Match the Character Set
 

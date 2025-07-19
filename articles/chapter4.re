@@ -60,7 +60,7 @@ To identify the correct plaintext, apply these three approaches:
  ** Exclude results with unnatural consonant clusters (e.g., "kzdv")
  ** Remember: word boundaries may be removed ("goodbye" from "good bye")
  * @<b>{Approach 3: Rare letter analysis}
- ** Check context around uncommon letters (z, q)
+ ** Check context around uncommon letters ('z', 'q')
  ** Verify if they form valid English words
 
 Applying these approaches reveals that shift value 17 produces "timeflieslikeanarrow". Adding spaces and proper capitalization yields: "Time flies like an arrow". This English proverb confirms we've found the correct plaintext with key shift n = 17.

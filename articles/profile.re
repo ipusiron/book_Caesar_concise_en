@@ -4,7 +4,7 @@
 
 == IPUSIRON
 
-IPUSIRON is a Japanese technical writer and cryptography educator known for making complex security concepts accessible to learners worldwide.
+IPUSIRON is a Japanese technical writer and educator who helps people around the world understand security in a simple, approachable way.
 
 With @<b>{over 30 books published in Japanese} on cryptography, hacking, and cybersecurity, he has established himself as a leading voice in Japan's security community. His bestsellers include:
 
@@ -26,7 +26,7 @@ He founded @<b>{Security Akademeia} (akademeia.info), where he shares hands-on t
 == Contact
 
  * Email: ipusiron@gmail.com
- * X (Twitter): @<href>{https://x.com/ipusiron}
+ * X: @<href>{https://x.com/ipusiron}
  * Website: @<href>{https://akademeia.info/}
  * GitHub: @<href>{https://github.com/ipusiron}
 

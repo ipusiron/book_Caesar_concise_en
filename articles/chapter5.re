@@ -8,7 +8,9 @@ With this fact in mind, this chapter introduces specific improvements to enhance
 
 =={vigenere_cipher} Extending to the Vigenère Cipher
 
-The Vigenère table is a compilation of 26 different substitution tables used in the shift cipher. The leftmost column contains the key letters, and the alphabet is arranged in alphabetical order based on these key letters.
+The @<b>{Vigenère table} is a matrix of 26 different Caesar-style substitution rows, each corresponding to a different key letter from A to Z. In the table, the leftmost column shows the key letters, and each row presents a shifted version of the alphabet starting from that key.
+
+The full table is shown in @<img>{vigenere_table}.
 
 #@# //embed[latex]{
 #@# \floatplacement{figure}{t}

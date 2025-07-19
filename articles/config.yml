@@ -383,7 +383,8 @@ texstyle: ['reviewmacro']
 #texdocumentclass: ["review-jsbook", "media=print,paper=b5,tombopaper=b5,serial_pagination=true,hiddenfolio=nikko-pc,openany, fontsize=10pt,baselineskip=15.4pt,line_length=40zw,number_of_lines=42, head_space=15mm,headheight=5mm, headsep=2mm,footskip=7mm, draft"]
 
 # B5電子配布版　【本番用】
-texdocumentclass: ["review-jsbook", "media=ebook,paper=b5,serial_pagination=true,hiddenfolio=nikko-pc,openany, fontsize=10pt,baselineskip=15.4pt,line_length=40zw,number_of_lines=42, head_space=15mm,headheight=5mm, headsep=2mm,footskip=7mm,  cover_fit_page=true"]
+# 末尾のcover_fit_pageはカバーが小さくなってしまうことを防止し、font=timesは欧文フォントtimesを指定.
+texdocumentclass: ["review-jsbook", "media=ebook,paper=b5,serial_pagination=true,hiddenfolio=nikko-pc,openany, fontsize=10pt,baselineskip=15.4pt,line_length=40zw,number_of_lines=42, head_space=15mm,headheight=5mm, headsep=2mm,footskip=7mm, cover_fit_page=true,font=times"]
 # B5電子配布版　【ドラフト用】
 #texdocumentclass: ["review-jsbook", "media=ebook,paper=b5,serial_pagination=true,hiddenfolio=nikko-pc,openany, fontsize=10pt,baselineskip=15.4pt,line_length=40zw,number_of_lines=42, head_space=15mm,headheight=5mm, headsep=2mm,footskip=7mm, draft"]
 

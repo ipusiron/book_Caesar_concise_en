@@ -222,8 +222,9 @@ The substitution table for ROT13 is shown in @<img>{rot13_tikanhyou}.
 #@# </figure>
 #@# //}
 
-Notice that each letter maps to another letter exactly 13 positions away. 
-The second row is formed by swapping the first half @<m>{(a–m)} with the second half @<m>{(n–z)}. This symmetry means that applying ROT13 twice returns the original text:
+Notice that each letter maps to another letter exactly 13 positions away.
+
+The second row is formed by swapping the first half @<m>{(a-m)} with the second half @<m>{(n-z)}. This symmetry means that applying ROT13 twice returns the original text:
 
 //texequation{
 \mathrm{ROT13}( \mathrm{ROT13}(m) ) = m
@@ -324,16 +325,20 @@ Shift Value		Key Character
 25							'Z'
 //}
 
-For example, ROT3 uses key character 'D'. 
-In its substitution table, the ciphertext row begins with 'D'—the key character determines the table structure.
+For example, ROT3 uses the key character 'D', corresponding to a shift value of 3. In the substitution table, this means that 'A' in plaintext maps to 'D' in ciphertext, and so on.  The key character defines how the alphabet is shifted, which in turn determines the substitution mapping.
 
-This principle applies to all shift ciphers: knowing the key character instantly reveals the substitution pattern.
+This principle applies to all shift ciphers: once you know the key character, the entire substitution pattern is fixed.
 
 Therefore:
 
 //centering{
-Caesar cipher key = shift value = key character = substitution table
+Key ⇔ Shift Value ⇔ Key Character
 //}
+
+//centering{
+Substitution Table ⇔ Letter-to-Letter Mapping
+//}
+
 
 == Encrypting English Sentences with a Shift Cipher
 
@@ -398,7 +403,7 @@ Now let's go through the decryption process:
 @<b>{Step 2}: Verify the message makes sense and apply proper capitalization. In the final step, we apply proper capitalization as follows:
 
  * The first letter of the sentence
- * The pronoun "I"
+ * The pronoun 'I'
  * Proper nouns (months, countries, names)
 
 The final result is:
