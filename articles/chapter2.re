@@ -369,7 +369,6 @@ For decryption, @<m>{T} is unknown while @<m>{C} and @<m>{K} are known. We solve
 
 Since substitution ciphers (including shift ciphers) replace letters systematically, we can view the substitution table as a bijective mapping from the alphabet set to itself.
 
-This mathematical perspective clarifies the fundamental mechanisms of classical ciphers 
-and often directly informs their implementation in code.
+This mathematical perspective clarifies the fundamental mechanisms of classical ciphers and often directly informs their implementation in code.
 #@# ==[/column]
 #@# Columns are used when complex layouts are needed during EPUB or PDF builds, but they are not necessary for regular paragraphs or block quotes.
