@@ -23,7 +23,7 @@ jobs:
         working-directory: articles
 
       - name: Build EPUB
-        run: review-epubmaker config.yml
+        run: review-epubmaker config-epub.yml
         working-directory: articles
         
       - name: Upload PDF
