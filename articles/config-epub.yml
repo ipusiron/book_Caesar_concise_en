@@ -8,6 +8,8 @@ inherit: ['config.yml']
 # 電子版を別のファイル名にしたい場合
 #bookname: book_Caesar_concise_en
 
+catalogfile: catalog-epub.yml
+
 date: 2025-07-20
 history: [['2025-07-20 A Concise Edition（EPUB）v1.0.0']]
 

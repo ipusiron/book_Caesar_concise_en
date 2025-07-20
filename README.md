@@ -103,6 +103,15 @@ Alternatively, you can use the provided `build.sh` script for convenience:
 sh build.sh
 ```
 
+### 📦 Build Instructions (for EPUB)
+
+Make sure Docker is installed, then run:
+
+```sh
+docker run --rm -v "$(pwd)":/work vvakame/review:5.8 \
+  /bin/sh -c "gem install unicode-display_width && cd /work && review-epubmaker config-epub.yml"
+```
+
 ### 📦 Output Files
 
 The main outputs of this repository are the finalized English edition of the book in both EPUB and PDF formats.  

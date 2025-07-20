@@ -25,6 +25,13 @@ This cipher is named after Gaius Julius Caesar—known simply as "Caesar" in Eng
 #@# \floatplacement{figure}{H}
 #@# //}
 
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot3_tikanhyou.png" alt="Substitution Table for the Caesar Cipher" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Substitution Table for the Caesar Cipher</figcaption>
+#@# </figure>
+#@# //}
+
 Each letter in the plaintext is shifted three positions forward to generate the ciphertext. When this shift extends beyond 'Z', it wraps around to the beginning of the alphabet.
 
 As an example, let us examine how the plaintext "hello" is encrypted using the Caesar cipher. Each letter is encrypted sequentially. See @<img>{caesar_enc_hello}.
@@ -36,6 +43,13 @@ As an example, let us examine how the plaintext "hello" is encrypted using the C
 //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
+#@# //}
+
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/caesar_enc_hello.png" alt="Encrypting &quot;hello&quot; using Caesar cipher" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Encrypting "hello" using Caesar cipher</figcaption>
+#@# </figure>
 #@# //}
 
  * Plaintext letter 'h' ⇒ Ciphertext letter 'K'
@@ -73,6 +87,13 @@ For example, a 1-position shift is written as @<kw>{ROT1}. See @<img>{rot1_tikan
 #@# \floatplacement{figure}{H}
 #@# //}
 
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot1_tikanhyou.png" alt="Substitution Table for ROT1" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Substitution Table for ROT1</figcaption>
+#@# </figure>
+#@# //}
+
 The Caesar cipher is a shift cipher with a shift of 3, denoted as ROT3.
 
 Since shift ciphers and the Caesar cipher share the same mechanism, some sources use these terms interchangeably. Context determines which term is more appropriate.
@@ -92,6 +113,13 @@ From an algorithmic perspective, an encryption scheme comprises three fundamenta
 #@# \floatplacement{figure}{H}
 #@# //}
 
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/shift_enc_alg.png" alt="Shift Cipher Algorithm" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Shift Cipher Algorithm</figcaption>
+#@# </figure>
+#@# //}
+
 The key generation algorithm generates a key, while the encryption algorithm converts plaintext into ciphertext. The decryption algorithm decrypts the ciphertext.
 
 The term key here refers to the data that controls the transformation process in both encryption and decryption algorithms. In cryptographic systems, keys are critically important and must be kept secret from anyone other than the sender and receiver to maintain secure communication. If a key is compromised, the ciphertext can be decrypted by anyone, exposing the plaintext.
@@ -105,6 +133,8 @@ As mentioned earlier, the shift cipher is defined by three algorithms. Using the
 //texequation{
 m=Dec(key, Enc(key, m))
 //}
+#@# //noindent
+#@# @<m>{m=Dec(key, Enc(key, m))}
 
 === Modify the Process to Use a Substitution Table
 
@@ -119,6 +149,13 @@ The modified algorithm using a substitution table is shown in @<img>{shift_enc_a
 #@# \floatplacement{figure}{H}
 #@# //}
 
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/shift_enc_alg2.png" alt="Shift Cipher Algorithm &lt;Substitution Table Version&gt;" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Shift Cipher Algorithm &lt;Substitution Table Version&gt;</figcaption>
+#@# </figure>
+#@# //}
+
 === How to Call Each Algorithm
 
 @<img>{alice_bob_3alg} shows the algorithm execution sequence. Alice and Bob call @<b>{KeyGen} in the preparation stage, then @<b>{Enc} and @<b>{Dec} in the main stage.
@@ -130,6 +167,13 @@ The modified algorithm using a substitution table is shown in @<img>{shift_enc_a
 //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
+#@# //}
+
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/alice_bob_3alg.png" alt="Calling the algorithm by Alice and Bob" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: alling the algorithm by Alice and Bob</figcaption>
+#@# </figure>
 #@# //}
 
 === Focus on Input/Output Before Implementation Details
@@ -171,13 +215,23 @@ The substitution table for ROT13 is shown in @<img>{rot13_tikanhyou}.
 #@# \floatplacement{figure}{H}
 #@# //}
 
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot13_tikanhyou.png" alt="Substitution Table for ROT13" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: Substitution Table for ROT13</figcaption>
+#@# </figure>
+#@# //}
+
 Notice that each letter maps to another letter exactly 13 positions away.
 
 The second row is formed by swapping the first half @<m>{(a-m)} with the second half @<m>{(n-z)}. This symmetry means that applying ROT13 twice returns the original text:
 
-//texequation{
-\mathrm{ROT13}( \mathrm{ROT13}(m) ) = m
-//}
+#@# //texequation{
+#@# \mathrm{ROT13}( \mathrm{ROT13}(m) ) = m
+#@# //}
+
+//noindent
+@<code>{ROT13(ROT13(m)) = m}
 
 === ROT13 Substitution Table
 
@@ -190,6 +244,13 @@ The second row is formed by swapping the first half @<m>{(a-m)} with the second 
 //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
+#@# //}
+
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot13_mapping_epub.png" alt="ROT13 Character Mapping" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: ROT13 Character Mapping</figcaption>
+#@# </figure>
 #@# //}
 
 Notice that shifting 13 positions left equals shifting 13 positions right. Since 13 is half of 26, this creates ROT13's defining characteristic: @<kw>{self-inverse property}.
@@ -218,6 +279,13 @@ Therefore, applying ROT13 twice returns each letter to its original position—R
 //}
 #@# //embed[latex]{
 #@# \floatplacement{figure}{H}
+#@# //}
+
+#@# //embed[html]{
+#@# <figure style="text-align: center;">
+#@#   <img src="images/rot13_and_rot13.png" alt="ROT13 Applied Twice: Full Cycle" style="max-width: 90%; height: auto;" />
+#@#   <figcaption>Figure: ROT13 Applied Twice: Full Cycle</figcaption>
+#@# </figure>
 #@# //}
 
 === Applications of ROT13
