@@ -4,6 +4,9 @@
 # 生成されます。
 # このファイルはUTF-8エンコーディングで記述してください。
 
+# PDFビルド時のコマンド
+# root@UBUNTU:/mnt/d/Dropbox/Git2/book_Caesar_concise_en/articles# docker run --rm -v `pwd`:/work vvakame/review:5.8 /bin/sh -c "gem install unicode-display_width && cd /work && review-pdfmaker config.yml"
+
 # この設定ファイルでサポートするRe:VIEWのバージョン番号。
 # major versionが違うときにはエラーを出す。
 review_version: 5.0
