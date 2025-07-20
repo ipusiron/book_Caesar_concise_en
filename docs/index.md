@@ -41,7 +41,8 @@ This edition is part of the **Classical Cipher Series**, aiming to make foundati
 Both the PDF and EPUB versions are available for free download.
 
 - 📘 PDF version (free)
-- 📗 EPUB version — _planned for release soon_
+- 📗 EPUB version (free)
+- 📙 KDP(Kindle) version— _planned for release soon_
 
 ---
 
