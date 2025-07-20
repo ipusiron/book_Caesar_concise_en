@@ -226,12 +226,9 @@ Notice that each letter maps to another letter exactly 13 positions away.
 
 The second row is formed by swapping the first half @<m>{(a-m)} with the second half @<m>{(n-z)}. This symmetry means that applying ROT13 twice returns the original text:
 
-#@# //texequation{
-#@# \mathrm{ROT13}( \mathrm{ROT13}(m) ) = m
-#@# //}
-
-//noindent
-@<code>{ROT13(ROT13(m)) = m}
+//texequation{
+ROT13(ROT13(m)) = m
+//}
 
 === ROT13 Substitution Table
 
@@ -255,10 +252,10 @@ The second row is formed by swapping the first half @<m>{(a-m)} with the second 
 
 Notice that shifting 13 positions left equals shifting 13 positions right. Since 13 is half of 26, this creates ROT13's defining characteristic: @<kw>{self-inverse property}.
 
-Mathematically, since @<m>$13 = -13 \pmod {26}$:
+Mathematically, since @<m>{13 = -13 mod 26}:
 
- * Encryption: @<m>$(x + 13) \pmod {26}$
- * Decryption: @<m>$(x - 13) \pmod {26} = (x + 13) \pmod {26}$
+ * Encryption: @<m>{(x + 13) mod 26}
+ * Decryption: @<m>{(x - 13) mod 26 = (x + 13) mod 26}
 
 Therefore, applying ROT13 twice returns each letter to its original position—ROT13 is its own inverse.
 
@@ -341,7 +338,6 @@ Key ⇔ Shift Value ⇔ Key Character
 //centering{
 Substitution Table ⇔ Letter-to-Letter Mapping
 //}
-
 
 == Encrypting English Sentences with a Shift Cipher
 
@@ -428,7 +424,7 @@ Let @<m>{T} be the plaintext character, @<m>{K} the key character, and @<m>{C} t
 The shift cipher operation is then:
 
 //texequation{
-T + K \equiv C \pmod{26}
+T + K = C mod 26
 //}
 
 For encryption, @<m>{C} is unknown while @<m>{T} and @<m>{K} are known. Since only one variable is unknown, we can solve for @<m>{C}.
