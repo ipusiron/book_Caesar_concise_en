@@ -2,6 +2,8 @@
 # EPUBビルド時のコマンド
 # root@UBUNTU:/mnt/d/Dropbox/Git2/book_Caesar_concise_en/articles# docker run --rm -v `pwd`:/work vvakame/review:5.8 /bin/sh -c "gem install unicode-display_width && cd /work && review-epubmaker config-epub.yml"
 
+# ビルドで得られたEPUBファイルは、epubcheck（https://github.com/w3c/epubcheck）に通してみるとよい。
+
 # 継承元設定
 inherit: ['config.yml']
 
@@ -14,3 +16,9 @@ date: 2025-07-20
 history: [['2025-07-20 A Concise Edition（EPUB）v1.0.0']]
 
 titlefile: title.xhtml
+
+# EPUB仕様（EPUB 3.x）では、<dc:identifier> に記載される uuid がユニークなIDとして求められる。
+# 形式はUUID（RFC4122形式）であることが強く推奨される。
+# https://www.uuidgenerator.net で4UUIDを生成できる。
+# 内容を改訂した場合は、新しいUUIDを生成して設定すること。
+urnid: urn:uuid:bbda2509-e22d-45b6-a1b2-917bd06d7332
