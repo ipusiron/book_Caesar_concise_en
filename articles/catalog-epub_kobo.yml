@@ -1,0 +1,15 @@
+PREDEF:
+
+CHAPS:
+  - chapter1-epub_kobo.re
+  - chapter2-epub_kobo.re
+  - chapter3-epub_kobo.re
+  - chapter4-epub_kobo.re
+  - chapter5-epub_kobo.re
+
+APPENDIX:
+  - appendixA-epub_kobo.re
+
+POSTDEF:
+  - postface.re
+  - license.re

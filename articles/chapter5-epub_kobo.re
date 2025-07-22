@@ -89,29 +89,29 @@ Extended Key		S		T		A		R		S		T		A		R		S		T
 Ciphertext			Z		X		L		C		G		P		O		I		D		W
 //}
 
-== Experimenting with the Vigenère Cipher Tool
+#@# == Experimenting with the Vigenère Cipher Tool
 
-The Vigenère Cipher Tool is a web-based application for encrypting and decrypting text using the Vigenère cipher. It is designed to help users visually understand the encryption process.
+#@# The Vigenère Cipher Tool is a web-based application for encrypting and decrypting text using the Vigenère cipher. It is designed to help users visually understand the encryption process.
 
- * GitHub Page
- ** @<href>{https://github.com/ipusiron/vigenere-cipher-tool}
- * Demo Page
- ** @<href>{https://ipusiron.github.io/vigenere-cipher-tool/}
+#@#  * GitHub Page
+#@#  ** @<href>{https://github.com/ipusiron/vigenere-cipher-tool}
+#@#  * Demo Page
+#@#  ** @<href>{https://ipusiron.github.io/vigenere-cipher-tool/}
 
-Try entering the example we encrypted manually earlier into the tool and verify that it produces the same ciphertext.
+#@# Try entering the example we encrypted manually earlier into the tool and verify that it produces the same ciphertext.
 
-#@# //embed[latex]{
-#@# \floatplacement{figure}{t}
+#@# #@# //embed[latex]{
+#@# #@# \floatplacement{figure}{t}
+#@# #@# //}
+#@# //image[vigenere_cipher_tool][Result of performing the same encryption with the Vigenère Cipher Tool][scale=0.8]{
 #@# //}
-//image[vigenere_cipher_tool][Result of performing the same encryption with the Vigenère Cipher Tool][scale=0.8]{
-//}
-#@# //embed[latex]{
-#@# \floatplacement{figure}{H}
-#@# //}
+#@# #@# //embed[latex]{
+#@# #@# \floatplacement{figure}{H}
+#@# #@# //}
 
-#@# //embed[html]{
-#@# <figure style="text-align: center;">
-#@#   <img src="images/vigenere_cipher_tool.png" alt="Result of performing the same encryption with the Vigenère Cipher Tool" style="max-width: 90%; height: auto;" />
-#@#   <figcaption>Figure: Result of performing the same encryption with the Vigenère Cipher Tool</figcaption>
-#@# </figure>
-#@# //}
+#@# #@# //embed[html]{
+#@# #@# <figure style="text-align: center;">
+#@# #@#   <img src="images/vigenere_cipher_tool.png" alt="Result of performing the same encryption with the Vigenère Cipher Tool" style="max-width: 90%; height: auto;" />
+#@# #@#   <figcaption>Figure: Result of performing the same encryption with the Vigenère Cipher Tool</figcaption>
+#@# #@# </figure>
+#@# #@# //}
