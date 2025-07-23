@@ -12,8 +12,8 @@ inherit: ['config.yml']
 
 catalogfile: catalog-epub.yml
 
-date: 2025-07-20
-history: [['2025-07-20 A Concise Edition（EPUB）v1.0.0']]
+date: 2025-07-23
+history: [["2025-07-23 A Concise Edition（EPUB）v1.1.0"], ["2025-07-20 A Concise Edition（EPUB）v1.0.0"]]
 
 titlefile: title.xhtml
 

@@ -2,24 +2,26 @@
 
 This book focuses on the Caesar cipher, one of the most famous and simplest classical ciphers, along with its natural extension—the shift cipher.
 
-While conventional cryptography books typically devote only a few pages to these ciphers, this book dedicates an entire volume to exploring them in depth. You will fully understand both the Caesar cipher and the shift cipher, gaining insight into the essence of classical cryptography.
+While conventional cryptography books typically devote only a few pages to these ciphers, this book dedicates an entire volume to exploring them in depth. You will gain a thorough understanding of both the Caesar cipher and the shift cipher, along with insight into the essence of classical cryptography.
 
-The shift cipher's simplicity makes it easy to apply, and it forms the foundation for several advanced classical and modern ciphers. By mastering these fundamental concepts, you'll develop a fresh perspective on modern cryptographic systems.
+The shift cipher's simplicity makes it easy to apply, and it forms the foundation for several advanced classical and modern ciphers. By mastering these fundamental concepts, you will gain fresh insight into how classical principles underpin modern cryptographic systems.
 
-== The Original Book Has Full and Simplified Versions
+== The Original Book Includes Both Full and Simplified Versions
 
-This book is an English translation of "How to Decipher Caesar Ciphers: Simplified Version," originally published in Japanese.
+This book is the English translation of @<i>{シーザー暗号の解読法 簡易版}, originally published in Japanese.
 
-The Japanese edition comes in two versions:
+The Japanese edition is available in two formats:
 
- * Full version: 16 chapters + 5 appendices with detailed explanations
+ * @<i>{シーザー暗号の解読法}
+ ** Full version: 16 chapters and 5 appendices offering in-depth explanations
  ** @<href>{https://hack.booth.pm/items/5557030}
- * Simplified version: 5 chapters + 1 appendix focusing on essentials
+ * @<i>{シーザー暗号の解読法 簡易版}
+ ** Simplified version: 5 chapters and 1 appendix covering the essentials
  ** @<href>{https://www.amazon.co.jp/dp/B0FH1DT5RX}
 
-This English edition, based on the simplified version, is ideal for readers who want to quickly grasp Caesar cipher mechanisms and decryption methods.
+This English edition is based on the simplified version and is ideal for readers looking to quickly understand how the Caesar cipher works and how it can be broken.
 
-Depending on reader response and interest, we may consider translating the full version or creating an expanded edition in the future.
+Based on reader interest and feedback, we may consider translating the full version or publishing an expanded edition in the future.
 
 == What You Can Learn from This Book
 
@@ -27,7 +29,7 @@ Depending on reader response and interest, we may consider translating the full 
  * Basic structure and concepts of classical cryptography
  * Hands-on experience with encryption using Linux commands
  * Cryptanalysis using CrypTool 2
- * Interactive practice using web tools created by the author
+ * Interactive practice using browser-based tools developed by the author
 
 == Intended Audience
 
@@ -36,9 +38,9 @@ Depending on reader response and interest, we may consider translating the full 
  * Amateur cryptography enthusiasts
  * Those interested in cryptographic theory
  * People who want to revisit classical ciphers
- * People who want to develop cryptanalysis skills
+ * Those eager to try breaking classical ciphers
  * Fans of the Caesar cipher
- * Those seeking classical cryptography for general education
+ * Those exploring classical cryptography as part of general education
 
 == Prerequisites
 
@@ -48,7 +50,7 @@ No prior knowledge is required to read this book. You don't need advanced mathem
 
 === Many Unsolved Ciphertexts Still Remain
 
-There are still many unsolved ciphertexts left in the world. Some are world-famous, while others were created by ordinary individuals and may seem insignificant from a historical standpoint.
+Many unsolved ciphertexts still remain in the world. Some are world-famous, while others were created by ordinary individuals and may seem insignificant from a historical standpoint.
 
 It is commonly believed that the number of unsolved ciphertexts will not increase, but this is not actually the case. During the dismantling or organization of libraries or old houses, previously unknown documents, journals, and notes are sometimes discovered. Among these documents, there are occasionally ciphertexts.
 
@@ -59,13 +61,13 @@ If you're interested, try accessing the ciphertext database on HCPortal (Portal 
  * Ciphertext Database
  ** @<href>{https://www.cryptograms.hcportal.eu/}
 
-If you succeed in deciphering a famous unsolved ciphertext, it will undoubtedly bring you great recognition—possibly even beyond the cryptography and IT communities.
+If you succeed in deciphering a famous unsolved ciphertext, you may gain notable recognition, even beyond the cryptography and IT communities.
 
 === Classical Ciphers Satisfy Intellectual Curiosity
 
 The final reason to study classical ciphers is that they satisfy intellectual curiosity.
 
-Knowing about classical ciphers as trivia might come in handy two or three times in your life. Since they frequently appear in movies and novels, understanding them will enhance your enjoyment of these stories.
+You may find your knowledge of classical ciphers surprisingly useful on a few occasions in your life. Since they frequently appear in movies and novels, understanding them will enhance your enjoyment of these stories.
 
 Classical ciphers can be created with nothing more than pen and paper, making them useful for secret communication when computers are unavailable. There have been documented cases of prisoners under surveillance using classical ciphers to communicate with each other or with people on the outside.
 
@@ -78,7 +80,7 @@ To share your thoughts publicly, please post on X (formerly Twitter) using:
  * Keyword: "Caesar Cipher Breaking"
  * Hashtag: #CaesarCipherBreaking
 
-Public discussions benefit the entire reader community. When reporting issues or asking questions, please include relevant details such as error screenshots to facilitate troubleshooting.
+Sharing your experience publicly helps benefit the wider reader community. When reporting issues or asking questions, please include relevant details such as screenshots of error messages to facilitate troubleshooting.
 
  * Resources:
  ** FAQ and errata: Security Akademeia(@<href>{https://akademeia.info/})
@@ -91,9 +93,9 @@ Verified corrections will be added to the errata promptly.
 
 == Notes on This Book
 
- * We cannot respond to inquiries beyond the scope of this book, questions without specific section references, or issues arising from individual reader environments.
+ * We cannot respond to inquiries beyond the scope of this book, questions that do not cite a specific chapter or section, or environment-specific issues.
  * URLs and other information in this book may change without notice.
- * PDF viewers may introduce spaces or break URLs when copying. If this occurs, please type the URL manually.
+ * When copying URLs, some PDF viewers may insert extra spaces or line breaks. If this occurs, please enter the URL manually in your browser.
 
 == Terminology
 
@@ -101,4 +103,4 @@ Verified corrections will be added to the errata promptly.
 
 == Disclaimer
 
-The content of this book is provided for informational purposes only and does not guarantee fitness or accuracy for any specific purpose. Any use of this book's content must be at your own discretion and risk. The author assumes no liability for any resulting outcomes.
+The content of this book is provided for informational purposes only and is not guaranteed to be accurate or suitable for any particular purpose. Any use of this book's content must be at your own discretion and risk. The author assumes no liability for any resulting outcomes.
