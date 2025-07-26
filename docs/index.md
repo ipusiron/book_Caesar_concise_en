@@ -2,12 +2,11 @@
 title: Caesar Cipher Breaking – A Concise Edition
 description: A concise and practical guide to understanding and breaking the Caesar cipher.
 image: https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png
-twitter:card: summary_large_image
-twitter:image: https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png
-
-twitter:site: "@ipusiron"
-og:image: https://ipusiron.github.io/book_Caesar_concise_en/cover-ogp.png
-og:type: website
+twitter:
+  card: summary_large_image
+  site: "@ipusiron"
+og:
+  type: website
 ---
 
 
@@ -15,9 +14,9 @@ og:type: website
 
 Welcome to the official site for the English edition of _Caesar Cipher Breaking – A Concise Edition_, a concise and practical guide to understanding and breaking the Caesar cipher.
 
-This edition focuses on the Caesar cipher and its natural extension, the shift cipher—designed for beginners, educators, students, and cipher enthusiasts alike.
+This 60-page guide focuses on the Caesar cipher and its natural extension, the shift cipher—designed for beginners, educators, students, and cipher enthusiasts alike. It is part of the **Classical Cipher Series**, aiming to make foundational ciphers accessible to international readers.
 
-This edition is part of the **Classical Cipher Series**, aiming to make foundational ciphers accessible to international readers.
+The book prioritizes clarity and practical experimentation over abstract theory. Readers are encouraged to engage directly through tools and examples.
 
 ---
 
@@ -26,32 +25,68 @@ This edition is part of the **Classical Cipher Series**, aiming to make foundati
  The book is authored and translated by **IPUSIRON**, a Japanese cryptography writer known for works such as _The Complete Guide to Cryptography_ and _How to Build a Hacking Lab_.
 
 - **Title:** Caesar Cipher Breaking – A Concise Edition
-- **Original Japanese Title:** 『シーザー暗号の解読法 簡易版』  
-- **Author:** IPUSIRON  
-- **Original Language:** Japanese  
-- **Translated by:** The author (self-translated)  
+- **Original Japanese Title:** *『シーザー暗号の解読法 簡易版』*
+- **Author:** IPUSIRON
+- **Original Language:** Japanese
+- **Translated by:** the original author (IPUSIRON)
 - **License:** CC BY-NC 4.0
 
 ---
 
-## 📥 Download
+## 📘 Contents Overview
 
-👉 [Download Page (via GitHub Releases)](https://github.com/ipusiron/book_Caesar_concise_en/releases/latest)
+This book offers a concise and hands-on introduction to the Caesar cipher, one of the most iconic classical ciphers in cryptographic history.
 
-Both the PDF and EPUB versions are available for free download.
+- ✅ 5 chapters + 1 appendix
+- 🧠 Learn the math behind Caesar and shift ciphers
+- 🔧 Try encryption and decryption with real examples
+- 💻 Practice command-line and CrypTool 2 operations
+- 🌐 Explore extended concepts like ROT13 and Vigenère cipher
+- 📄 Approximately 60 pages in total (PDF version)
 
-- 📘 PDF version (free)
-- 📗 EPUB version (free)
-- 📙 KDP(Kindle) version— _planned for release soon_
+Each chapter emphasizes hands-on practice over rote memorization, helping readers build true intuition.
+
+This edition is based on the Japanese book *『シーザー暗号の解読法 簡易版』*, translated and adapted by the original author.
+
+---
+
+## 🎯 Target Readers
+
+A perfect starting point for beginners, students, or anyone preparing for CTF competitions.
+
+This book is ideal for:
+
+- 🔐 **Security beginners** looking for a gentle introduction to classical cryptography  
+- 📚 **Students** (middle school, high school, or university) exploring ciphers as part of STEM or cryptography coursework  
+- 👨‍🏫 **Educators** seeking practical teaching material for introductory lessons on ciphers  
+- 🧠 **Cipher enthusiasts** and hobbyists interested in breaking and experimenting with classical encryption  
+- 💡 **Self-learners** who want to understand the logic of Caesar and shift ciphers through hands-on exercises  
+- 🛠️ **CTF beginners** or security competition participants brushing up on classical techniques
+
+---
+
+## 📥 How to Get the Book
+
+You can download all versions for free.
+
+- 📘 **PDF version**
+- 📗 **EPUB version**
+- 📙 **Kindle version** (ASIN: B0FJ79LX48)
+
+👉 [PDF/EPUB Download via GitHub Releases](https://github.com/ipusiron/book_Caesar_concise_en/releases/latest)
+👉 [Read on Amazon Kindle](https://www.amazon.co.jp/dp/B0FJ79LX48/)
+
+📎 All files are DRM-free and suitable for personal or educational use.
 
 ---
 
 ## 👤 About the Author
 
-**IPUSIRON** is a Japanese technical author and educator specializing in security and cryptography.
+**IPUSIRON** is a prolific Japanese technical author and educator specializing in security and cryptography.
 
 Born in 1979 in Soma City, Fukushima, Japan, he continues to reside in his hometown.  
 With over 20 years of experience in technical writing, he has published **more than 30 books** on cryptography, hacking, and cybersecurity—both commercially and independently.
+
 Notable titles include:
 
 - _The Complete Guide to Cryptography (暗号技術のすべて)_
@@ -60,7 +95,8 @@ Notable titles include:
 - _The Hacker’s School: A Handbook of Lockpicking (ハッカーの学校 鍵開けの教科書)_
 
 He is also an experienced translator and editorial supervisor of cryptographic literature.
-Notable translation work includes:
+
+Notable translation projects include:
 
 - One of the supervising translators of _Serious Cryptography_ by Jean-Philippe Aumasson (Japanese edition)  
 - The translator of _Codebreaking: A Practical Guide_ by Elonka Dunin and Klaus Schmeh (Japanese edition)  
