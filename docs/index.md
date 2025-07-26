@@ -74,6 +74,7 @@ You can download all versions for free.
 - 📙 **Kindle version** (ASIN: B0FJ79LX48)
 
 👉 [PDF/EPUB Download via GitHub Releases](https://github.com/ipusiron/book_Caesar_concise_en/releases/latest)
+
 👉 [Read on Amazon Kindle](https://www.amazon.co.jp/dp/B0FJ79LX48/)
 
 📎 All files are DRM-free and suitable for personal or educational use.
